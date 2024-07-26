@@ -1,5 +1,6 @@
-using AS_Ekbatan_Showdown.Scripts.Core.Module.GUI;
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.GUI
+using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
+
+namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI
 {
     public class LoadingWindow : Window
     {

@@ -1,7 +1,7 @@
 using System;
-using AS_Ekbatan_Showdown.Scripts.Core.Module.GUI;
+using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
 
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.GUI
+namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI
 {
     public abstract class AdReceiverWindow : Window
     {

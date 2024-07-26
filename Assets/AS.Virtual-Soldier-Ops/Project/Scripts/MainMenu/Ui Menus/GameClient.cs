@@ -1,10 +1,11 @@
 using System;
-using AS_Ekbatan_Showdown.Scripts.Core.GUI;
+using AS_Ekbatan_Showdown.Scripts.MainMenu.Ui_Menus;
+using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.Ui_Menus
+namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.Ui_Menus
 {
     public class GameClient : PageBaseUI
     {

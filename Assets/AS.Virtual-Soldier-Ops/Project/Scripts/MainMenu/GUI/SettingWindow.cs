@@ -1,9 +1,9 @@
 using System;
-using AS_Ekbatan_Showdown.Scripts.Core.Module.GUI;
+using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.GUI
+namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI
 {
     public class SettingWindow : Window
     {
