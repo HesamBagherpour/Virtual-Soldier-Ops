@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AS.Virtual_Soldier_Ops.Packages.Tutorial
+namespace AS.Virtual_Soldier_Ops.Packages.Tutorial.Scripts
 {
     public class CirculateAroundObject : HighlightBehavior
     {

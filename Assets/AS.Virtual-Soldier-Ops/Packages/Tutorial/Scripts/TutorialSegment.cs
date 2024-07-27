@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace AS.Virtual_Soldier_Ops.Packages.Tutorial
+namespace AS.Virtual_Soldier_Ops.Packages.Tutorial.Scripts
 {
     public class TutorialSegment : MonoBehaviour
     {

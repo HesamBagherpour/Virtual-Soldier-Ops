@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace AS.Virtual_Soldier_Ops.Packages.Tutorial
+namespace AS.Virtual_Soldier_Ops.Packages.Tutorial.Scripts
 {
     public abstract class HighlightBehavior : MonoBehaviour
     {
