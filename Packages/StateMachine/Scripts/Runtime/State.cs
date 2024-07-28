@@ -1,6 +1,6 @@
-﻿using AS.Virtual_Soldier_Ops.Packages.Logger;
+﻿using ArioSoren.Logger;
 
-namespace AS.Virtual_Soldier_Ops.Packages.StateMachine
+namespace ArioSoren.StateMachine
 {
     public abstract class State
     {

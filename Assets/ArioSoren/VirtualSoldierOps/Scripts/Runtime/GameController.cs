@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using AS_Ekbatan_Showdown.Scripts.Core.DI;
-using AS_Ekbatan_Showdown.Scripts.Core.Module;
-using AS.Virtual_Soldier_Ops.Packages.DI;
-using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Core;
-using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
+using ArioSoren.InjectKit;
+using ArioSoren.VirtualSoldierOps.Module;
+using ArioSoren.UIKit.Core;
+using ArioSoren.UIKit.Module;
 using UnityEngine;
 
-namespace AS.Virtual_Soldier_Ops.Project.Scripts
+namespace ArioSoren.VirtualSoldierOps
 {
     public class GameController : MonoBehaviour
     {

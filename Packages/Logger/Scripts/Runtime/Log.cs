@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AS.Virtual_Soldier_Ops.Packages.Logger
+namespace ArioSoren.Logger
 {
     public abstract class Logger
     {

@@ -1,6 +1,6 @@
-using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
+using ArioSoren.UIKit.Module;
 
-namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI
+namespace ArioSoren.VirtualSoldierOps.MainMenu.GUI
 {
     public class LoadingWindow : Window
     {

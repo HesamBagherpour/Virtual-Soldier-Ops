@@ -3,10 +3,10 @@
     "rootNamespace": "ArioSoren.VirtualSoldierOps",
     "references": [
         "ArioSoren.StateMachine",
-        "ArioSoren.DI",
-        "ArioSoren.Tutorial",
+        "ArioSoren.InjectKit",
+        "ArioSoren.TutorialKit",
         "ArioSoren.Logger",
-        "ArioSoren.UI",
+        "ArioSoren.UIKit",
         "UniTask",
         "DOTween.Modules",
         "Unity.TextMeshPro"

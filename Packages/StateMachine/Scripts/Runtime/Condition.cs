@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AS.Virtual_Soldier_Ops.Packages.StateMachine
+namespace ArioSoren.StateMachine
 {
     public abstract class Condition
     {

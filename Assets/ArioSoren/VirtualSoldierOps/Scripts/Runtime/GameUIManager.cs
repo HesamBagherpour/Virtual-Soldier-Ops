@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
-using AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI;
+using ArioSoren.UIKit.Module;
+using ArioSoren.VirtualSoldierOps.MainMenu.GUI;
 using UnityEngine;
 
-namespace AS.Virtual_Soldier_Ops.Project.Scripts
+namespace ArioSoren.VirtualSoldierOps
 {
     public class GameUIManager : Window
     {

@@ -1,8 +1,8 @@
 
 
-using AS.Virtual_Soldier_Ops.Packages.StateMachine;
+using ArioSoren.StateMachine;
 
-namespace AS.Virtual_Soldier_Ops.Project.Scripts.Conditions
+namespace ArioSoren.VirtualSoldierOps.Conditions
 {
   
     public class IfOnlineMode : Condition

@@ -1,15 +1,24 @@
 {
   "dependencies": {
     "com.ariosoren.di": {
-      "version": "file:DI",
+      "version": "0.1.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.5"
+      },
+      "url": "http://localhost:4873"
+    },
+    "com.ariosoren.general-utility": {
+      "version": "file:GeneralUtility",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
         "com.cysharp.unitask": "2.5.5"
       }
     },
-    "com.ariosoren.general-utility": {
-      "version": "file:GeneralUtility",
+    "com.ariosoren.inject-kit": {
+      "version": "file:InjectKit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -49,16 +58,16 @@
         "com.ariosoren.logger": "0.1.0"
       }
     },
-    "com.ariosoren.tutorial": {
-      "version": "file:Tutorial",
+    "com.ariosoren.tutorial-kit": {
+      "version": "file:TutorialKit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
         "com.cysharp.unitask": "2.5.5"
       }
     },
-    "com.ariosoren.ui": {
-      "version": "file:UI",
+    "com.ariosoren.ui-kit": {
+      "version": "file:UIKit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
