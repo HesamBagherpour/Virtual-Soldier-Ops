@@ -1,0 +1,25 @@
+{
+    "name": "ArioSoren.VirtualSoldierOps",
+    "rootNamespace": "ArioSoren.VirtualSoldierOps",
+    "references": [
+        "ArioSoren.StateMachine",
+        "ArioSoren.DI",
+        "ArioSoren.Tutorial",
+        "ArioSoren.Logger",
+        "ArioSoren.UI",
+        "UniTask",
+        "DOTween.Modules",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

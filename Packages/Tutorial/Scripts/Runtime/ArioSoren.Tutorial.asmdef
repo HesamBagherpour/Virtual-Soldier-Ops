@@ -1,0 +1,19 @@
+{
+    "name": "ArioSoren.Tutorial",
+    "rootNamespace": "ArioSoren.Tutorial",
+    "references": [
+        "UniTask",
+        "DOTween.Modules"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

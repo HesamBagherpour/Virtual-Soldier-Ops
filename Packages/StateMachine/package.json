@@ -1,0 +1,19 @@
+{
+  "name": "com.ariosoren.state-machine",
+  "displayName": "State Machine",
+  "version": "0.1.0",
+  "refrenceVersion": "0.1.0",
+  "description": "State Machine",
+  "hideInEditor": false,
+  "author": {
+    "name": "ArioSoren General Utility"
+  },
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.5",
+    "com.ariosoren.logger": "0.1.0"
+  },
+  "repository": {
+    "type": "local",
+    "url": "Packages/StateMachine"
+  }
+}

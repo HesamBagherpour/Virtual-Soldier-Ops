@@ -1,0 +1,18 @@
+{
+  "name": "com.ariosoren.tutorial",
+  "displayName": "Tutorial",
+  "version": "0.1.0",
+  "refrenceVersion": "0.1.0",
+  "description": "Tutorial\nLegacy Dependencies:\n - DOTween_1_2_420",
+  "hideInEditor": false,
+  "author": {
+    "name": "ArioSoren General Utility"
+  },
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.5"
+  },
+  "repository": {
+    "type": "local",
+    "url": "Packages/Tutorial"
+  }
+}

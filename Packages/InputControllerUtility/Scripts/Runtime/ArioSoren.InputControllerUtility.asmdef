@@ -1,0 +1,16 @@
+{
+    "name": "ArioSoren.InputControllerUtility",
+    "rootNamespace": "ArioSoren.InputControllerUtility",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
