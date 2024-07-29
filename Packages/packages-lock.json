@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.ariosoren.di": {
-      "version": "0.1.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.cysharp.unitask": "2.5.5"
-      },
-      "url": "http://localhost:4873"
-    },
     "com.ariosoren.general-utility": {
       "version": "file:GeneralUtility",
       "depth": 0,
@@ -72,7 +63,7 @@
       "source": "embedded",
       "dependencies": {
         "com.cysharp.unitask": "2.5.5",
-        "com.ariosoren.di": "0.1.0"
+        "com.ariosoren.inject-kit": "0.1.0"
       }
     },
     "com.cysharp.unitask": {
