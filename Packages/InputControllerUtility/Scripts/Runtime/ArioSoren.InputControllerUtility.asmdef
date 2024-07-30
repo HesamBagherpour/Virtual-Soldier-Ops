@@ -2,7 +2,8 @@
     "name": "ArioSoren.InputControllerUtility",
     "rootNamespace": "ArioSoren.InputControllerUtility",
     "references": [
-        "UniTask"
+        "UniTask",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
