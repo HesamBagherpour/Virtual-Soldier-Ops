@@ -1,9 +1,9 @@
 using System;
-using AS_Ekbatan_Showdown.Scripts.Core.DI;
+using ArioSoren.InjectKit;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace AS_Ekbatan_Showdown.Scripts.Core.Module
+namespace ArioSoren.VirtualSoldierOps.Module
 {
     public class AudioModule : MonoModule ,ILoadable
     {

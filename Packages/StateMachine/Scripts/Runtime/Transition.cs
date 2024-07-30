@@ -1,4 +1,4 @@
-﻿namespace AS.Virtual_Soldier_Ops.Packages.StateMachine
+﻿namespace ArioSoren.StateMachine
 {
     public class Transition
     {

@@ -1,8 +1,8 @@
 using System;
-using AS.Virtual_Soldier_Ops.Packages.UI.Scripts.Module;
+using ArioSoren.UIKit.Module;
 using UnityEngine.UI;
 
-namespace AS.Virtual_Soldier_Ops.Project.Scripts.MainMenu.GUI
+namespace ArioSoren.VirtualSoldierOps.MainMenu.GUI
 {
     public class SpatialGameWindow : Window
     {
