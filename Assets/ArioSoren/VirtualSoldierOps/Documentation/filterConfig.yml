@@ -1,0 +1,4 @@
+apiRules:
+  - include:
+      uidRegex: ArioSoren.VirtualSoldierOps
+      type : Namespace

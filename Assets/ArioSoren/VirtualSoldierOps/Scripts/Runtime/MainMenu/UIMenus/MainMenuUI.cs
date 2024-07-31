@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.UIMenus
+namespace ArioSoren.VirtualSoldierOps.MainMenu.UIMenus
 {
     public class MainMenuUI : MonoBehaviour
     {

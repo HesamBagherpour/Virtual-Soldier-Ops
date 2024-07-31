@@ -1,5 +1,5 @@
 using System;
-using AS_Ekbatan_Showdown.Scripts.MainMenu.UIMenus;
+using ArioSoren.VirtualSoldierOps.MainMenu.UIMenus;
 using ArioSoren.UIKit.Core;
 using TMPro;
 using UnityEngine;

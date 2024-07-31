@@ -1,0 +1,29 @@
+{
+    "name": "ArioSoren.PackageTemplateUtility.Editor",
+    "rootNamespace": "ArioSoren.PackageTemplateUtility.Editor",
+    "references": [
+        "UnityEditor.UI",
+        "UnityEngine.UI",
+        "UniTask",
+        "ArioSoren.GeneralUtility",
+        "ArioSoren.DocsGenerator.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll",
+        "Sirenix.OdinInspector.Editor.dll",
+        "Sirenix.Utilities.Editor.dll",
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.Utilities.dll",
+        "Sirenix.Serialization.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "com.ariosoren.docs-utility",
+  "displayName": "AS Docs Utility",
+  "version": "1.0.7",
+  "refrenceVersion": "1.0.7",
+  "description": "This is tool to create and modify documents.",
+  "hideInEditor" : false,
+  "author": {
+    "name": "ArioSoren General Utility"
+  },
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.cysharp.unitask": "2.5.5",
+    "com.unity.nuget.newtonsoft-json": "3.0.2"
+  },
+  "repositories": {
+    "type": "gitlab",
+    "url": ""
+  }
+}
