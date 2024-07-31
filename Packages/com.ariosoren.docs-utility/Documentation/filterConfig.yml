@@ -1,4 +1,0 @@
-apiRules:
-  - exclude:
-      uidRegex: ^*.
-      type: Namespace

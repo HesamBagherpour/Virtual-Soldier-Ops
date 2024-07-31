@@ -42,20 +42,11 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
             process = Process.Start("powershell.exe", commend);
             // await Task.Delay(3000);
-            Application.OpenURL("http://localhost:8080/manual/overview/index.html");
+            Application.OpenURL("http://localhost:8080/");
             process.WaitForExit();
-
-            // *** Read the streams ***
-            // Warning: This approach can lead to deadlocks, see Edit #2
-            // string output = process.StandardOutput.ReadToEnd();
-            // string error = process.StandardError.ReadToEnd();
 
             exitCode = process.ExitCode;
 
-
-            // UnityEngine.Debug.Log("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
-            // UnityEngine.Debug.Log("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
-            // UnityEngine.Debug.Log("ExitCode: " + exitCode.ToString() + " ExecuteCommand");
             process.Close();
             AssetDatabase.Refresh();
         }
@@ -80,7 +71,7 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
             process = Process.Start("powershell.exe", commend);
             await Task.Delay(3000);
-            Application.OpenURL("http://localhost:8080/manual/overview/");
+            Application.OpenURL("http://localhost:8080/");
             process.WaitForExit();
 
             exitCode = process.ExitCode;
@@ -106,7 +97,7 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
             process = Process.Start("powershell.exe", commend);
             // await Task.Delay(3000);
-            Application.OpenURL("http://localhost:8080/manual/overview/index.html");
+            Application.OpenURL("http://localhost:8080/");
             process.WaitForExit();
 
             exitCode = process.ExitCode;
@@ -132,7 +123,7 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
             process = Process.Start("powershell.exe", commend);
             // await Task.Delay(3000);
-            Application.OpenURL("http://localhost:8080/manual/overview/");
+            Application.OpenURL("http://localhost:8080/");
             process.WaitForExit();
 
             exitCode = process.ExitCode;

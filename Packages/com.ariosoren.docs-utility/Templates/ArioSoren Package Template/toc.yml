@@ -1,4 +1,6 @@
-﻿- name: Manual
+﻿- name: Getting Started
+  href: index.md
+- name: Manual
   href: manual/
 - name: API Documentation
   href: _api~/
