@@ -11,7 +11,7 @@
       }
     },
     "com.ariosoren.general-utility": {
-      "version": "file:GeneralUtility",
+      "version": "file:com.ariosoren.general-utility",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -19,7 +19,7 @@
       }
     },
     "com.ariosoren.inject-kit": {
-      "version": "file:InjectKit",
+      "version": "file:com.ariosoren.inject-kit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -27,7 +27,7 @@
       }
     },
     "com.ariosoren.input-controller-utility": {
-      "version": "file:InputControllerUtility",
+      "version": "file:com.ariosoren.input-controller-utility",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -35,7 +35,7 @@
       }
     },
     "com.ariosoren.logger": {
-      "version": "file:Logger",
+      "version": "file:com.ariosoren.logger",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -43,7 +43,7 @@
       }
     },
     "com.ariosoren.patterns": {
-      "version": "file:Patterns",
+      "version": "file:com.ariosoren.patterns",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -51,7 +51,7 @@
       }
     },
     "com.ariosoren.state-machine": {
-      "version": "file:StateMachine",
+      "version": "file:com.ariosoren.state-machin",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -60,7 +60,7 @@
       }
     },
     "com.ariosoren.tutorial-kit": {
-      "version": "file:TutorialKit",
+      "version": "file:com.ariosoren.tutorial-kit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -68,7 +68,7 @@
       }
     },
     "com.ariosoren.ui-kit": {
-      "version": "file:UIKit",
+      "version": "file:com.ariosoren.ui-kit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
