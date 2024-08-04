@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AS_Ekbatan_Showdown.Scripts.MainMenu.UIMenus
+namespace ArioSoren.VirtualSoldierOps.MainMenu.UIMenus
 {
     public class NumPadUI : MonoBehaviour
     {

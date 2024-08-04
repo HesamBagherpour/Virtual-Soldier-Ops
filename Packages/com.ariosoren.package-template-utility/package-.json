@@ -1,0 +1,21 @@
+{
+  "name": "com.ariosoren.package-template-utility",
+  "displayName": "AS Package Template Utility",
+  "version": "1.1.5",
+  "refrenceVersion": "1.0.0",
+  "description": "It's a tool to create, modify, manage, and publish custom packages.",
+  "hideInEditor" : false,
+  "author": {
+    "name": "ArioSoren General Utility"
+  },
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.ariosoren.docs-utility": "1.0.9",
+    "com.unity.nuget.newtonsoft-json": "3.0.2",
+    "com.ariosoren.general-utility" : "0.1.0"
+  },
+  "repository": {
+    "type": "github",
+    "url": ""
+  }
+}

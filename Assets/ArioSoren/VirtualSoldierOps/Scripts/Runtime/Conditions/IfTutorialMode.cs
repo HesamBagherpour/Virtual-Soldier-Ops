@@ -1,4 +1,3 @@
-
 using ArioSoren.StateMachine;
 
 namespace ArioSoren.VirtualSoldierOps.Conditions

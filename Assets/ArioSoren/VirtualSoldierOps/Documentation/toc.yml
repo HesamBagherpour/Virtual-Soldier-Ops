@@ -1,0 +1,12 @@
+- name: Getting Started
+  href: index.md
+- name: Manual
+  href: manual/
+- name: API Documentation
+  href: _api~/
+- name: Change Log
+  href: change-log/CHANGELOG.md
+- name: License
+  href: license/LICENSE.md
+- name: Third Party Notices
+  href: third-party-notices/ThirdPartyNotices.md
