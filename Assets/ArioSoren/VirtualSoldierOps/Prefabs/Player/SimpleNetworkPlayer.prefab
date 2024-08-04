@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 6420552185407096997}
   - component: {fileID: 6654616088585099699}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SimpleNetworkPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 7181369571683565454
+  <AssetPathHash>k__BackingField: 13225334385335348828
 --- !u!114 &6420552185407096997
 MonoBehaviour:
   m_ObjectHideFlags: 0
