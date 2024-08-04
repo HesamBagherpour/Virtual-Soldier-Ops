@@ -22,7 +22,23 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: tree
-      Entry: 6
+      Entry: 7
+      Data: 0|Sirenix.OdinInspector.Editor.OdinMenuTree, Sirenix.OdinInspector.Editor
+    - Name: FlatMenuTree
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Sirenix.OdinInspector.Editor.OdinMenuItem,
+        Sirenix.OdinInspector.Editor]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
   assetName: package-template-utility
   assetDisplayName: package-template-utility
@@ -48,4 +64,4 @@ MonoBehaviour:
       templateName: 
       version: 
   templates: []
-  docValidationState: 0
+  docValidationState: 2

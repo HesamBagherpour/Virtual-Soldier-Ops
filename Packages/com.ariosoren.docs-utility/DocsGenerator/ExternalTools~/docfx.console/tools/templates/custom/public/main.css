@@ -1,0 +1,16 @@
+/* This rule hides the display of inherited types */
+.typelist.inheritedMembers {
+    display: none;
+}
+
+/* dl.typelist.inheritance {
+    display: none;
+}
+
+dl.typelist.implements {
+    display: none;
+}
+
+dl.typelist.derived {
+    display: none;
+} */

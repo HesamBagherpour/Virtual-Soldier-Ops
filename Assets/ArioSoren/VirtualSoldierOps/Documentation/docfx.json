@@ -80,7 +80,8 @@
     "markdownEngineName": "markdig",
     "template": [
       "default",
-      "modern"
+      "modern",
+      "custom"
     ]
   },
   "templateData": {
