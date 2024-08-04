@@ -1,0 +1,17 @@
+{
+    "name": "ArioSoren.StateMachine",
+    "rootNamespace": "ArioSoren.StateMachine",
+    "references": [
+        "UniTask",
+        "ArioSoren.Logger"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

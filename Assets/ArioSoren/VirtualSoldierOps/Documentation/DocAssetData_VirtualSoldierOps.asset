@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055cda48daa09204cb618912a10d698f, type: 3}
+  m_Name: DocAssetData_VirtualSoldierOps
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: tree
+      Entry: 7
+      Data: 0|Sirenix.OdinInspector.Editor.OdinMenuTree, Sirenix.OdinInspector.Editor
+    - Name: FlatMenuTree
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Sirenix.OdinInspector.Editor.OdinMenuItem,
+        Sirenix.OdinInspector.Editor]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  assetName: VirtualSoldierOps
+  assetDisplayName: VirtualSoldierOps
+  assetPath: Assets/ArioSoren/VirtualSoldierOps
+  assetVersion: 1.0.0
+  templateName: ArioSoren Project Template
+  rootNamespaces:
+  - ArioSoren.VirtualSoldierOps
+  docFxModel:
+    metadata: []
+    build:
+      content: []
+      resource: []
+      xrefService: []
+      postProcessors: []
+      globalMetadata:
+        _appTitle: 
+        _appFooter: 
+        _enableSearch: 0
+      dest: 
+      markdownEngineName: 
+      template: []
+    templateData:
+      templateName: 
+      version: 
+  templates: []
+  docValidationState: 2

@@ -1,0 +1,29 @@
+{
+    "name": "ArioSoren.DocsGenerator.Editor",
+    "rootNamespace": "ArioSoren.DocsGenerator.Editor",
+    "references": [
+        "UnityEditor.UI",
+        "UnityEngine.UI",
+        "UniTask",
+        "YamlDotNet"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Unity.Plastic.Newtonsoft.Json.dll",
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.OdinInspector.Editor.dll",
+        "Sirenix.Utilities.dll",
+        "Sirenix.Serialization.Config.dll",
+        "Sirenix.Serialization.dll",
+        "Sirenix.Utilities.Editor.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
