@@ -1,10 +1,7 @@
 {
-    "name": "ArioSoren.InputControllerUtility",
-    "rootNamespace": "ArioSoren.InputControllerUtility",
-    "references": [
-        "UniTask",
-        "Unity.InputSystem"
-    ],
+    "name": "ArioSoren.TerminalKit",
+    "rootNamespace": "ArioSoren.TerminalKit",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

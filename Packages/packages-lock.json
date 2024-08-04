@@ -59,6 +59,12 @@
         "com.ariosoren.logger": "0.1.0"
       }
     },
+    "com.ariosoren.terminal-kit": {
+      "version": "file:com.ariosoren.terminal-kit",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.ariosoren.tutorial-kit": {
       "version": "file:com.ariosoren.tutorial-kit",
       "depth": 0,
@@ -143,7 +149,7 @@
     },
     "com.unity.inputsystem": {
       "version": "1.7.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
