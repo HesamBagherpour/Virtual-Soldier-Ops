@@ -233,6 +233,14 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
         }
 
         [ShowIf("_cachedDocument")]
+        [Button("Clear Build", ButtonSizes.Medium)]
+        [GUIColor("@Color.yellow")]
+        public void ClearBuild()
+        {
+            Utility.DeleteDirectory(Path.Combine(_docRelativePath, "Documentation", "_site~"));
+        }
+
+        [ShowIf("_cachedDocument")]
         [Button("Edit", ButtonSizes.Medium)]
         [GUIColor("@Color.green")]
         public static void EditFields()
@@ -986,6 +994,14 @@ public class DocTemplate
     public void Preview()
     {
         Utility.ExecuteCommandAllStage(docfxPath);
+    }
+
+    [HorizontalGroup("Group1")]
+    [Button("Clear Build")]
+    [GUIColor("@Color.yellow")]
+    public void ClearBuild()
+    {
+        Utility.DeleteDirectory(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(docfxPath)), "_site~"));
     }
 }
 

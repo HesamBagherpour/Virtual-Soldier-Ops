@@ -42,6 +42,17 @@
         "com.cysharp.unitask": "2.5.5"
       }
     },
+    "com.ariosoren.package-template-utility": {
+      "version": "file:com.ariosoren.package-template-utility",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.ariosoren.docs-utility": "1.0.9",
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.ariosoren.general-utility": "0.1.0"
+      }
+    },
     "com.ariosoren.patterns": {
       "version": "file:com.ariosoren.patterns",
       "depth": 0,

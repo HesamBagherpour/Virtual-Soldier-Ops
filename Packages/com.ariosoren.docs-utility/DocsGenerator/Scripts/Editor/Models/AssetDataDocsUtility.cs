@@ -231,6 +231,14 @@ namespace ArioSoren.DocsGenerator.Editor.Models
             Utility.ExecuteCommandAllStage(assetPath + "/Documentation/docfx.json");
         }
 
+        [ShowIf("@this.docValidationState.HasFlag(DocValidationState.Documented)")]
+        [Button("Clear Build", ButtonSizes.Medium)]
+        [GUIColor("@Color.yellow")]
+        public void ClearBuild()
+        {
+            Utility.DeleteDirectory(assetPath + "/Documentation/_site~");
+        }
+
         [ShowIf("@this.docValidationState.HasFlag(DocValidationState.CorruptedDocFX)")]
         [InfoBox("docfx.json does not exist in Documentation folder", InfoMessageType.Error)]
         [GUIColor("@Color.red")]

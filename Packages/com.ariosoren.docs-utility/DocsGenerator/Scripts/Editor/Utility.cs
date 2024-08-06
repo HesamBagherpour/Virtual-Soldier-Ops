@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
+using System;
 
 namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 {
@@ -97,7 +98,7 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
             process = Process.Start("powershell.exe", commend);
             // await Task.Delay(3000);
-            Application.OpenURL("http://localhost:8080/");
+            // Application.OpenURL("http://localhost:8080/");
             process.WaitForExit();
 
             exitCode = process.ExitCode;
@@ -158,8 +159,45 @@ namespace ArioSoren.DocsUtility.DocsGenerator.Editor
 
         public async static void ExecuteCommandAllStage(string docfxPath)
         {
-           await ExecuteCommandMetadata(docfxPath);
-           ExecuteCommandBuildAndServe(docfxPath);
+            string siteFolder = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(docfxPath)), "_site~");
+
+            if (!Directory.Exists(siteFolder))
+            {
+                await ExecuteCommandMetadata(docfxPath);
+                await ExecuteCommandBuild(docfxPath);
+            }
+
+            int port = HttpServerManager.StartServer(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(docfxPath)), "_site~"));
+            Application.OpenURL($"http://localhost:{port}/");
+        }
+
+        public static void DeleteDirectory(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                try
+                {
+                    foreach (string file in Directory.GetFiles(path))
+                    {
+                        File.Delete(file);
+                    }
+
+                    foreach (string subDir in Directory.GetDirectories(path))
+                    {
+                        DeleteDirectory(subDir);
+                    }
+
+                    Directory.Delete(path, true);
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.unityLogger.Log($"Error occurred while deleting directory '{path}': {ex.Message}");
+                }
+            }
+            else
+            {
+                UnityEngine.Debug.unityLogger.Log($"Directory '{path}' does not exist.");
+            }
         }
 
 

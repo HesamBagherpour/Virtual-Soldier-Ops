@@ -2,9 +2,3 @@ apiRules:
   - include:
       uidRegex: ArioSoren.VirtualSoldierOps
       type : Namespace
-  - include:
-      uidRegex: ^Global
-      type: Namespace
-  - exclude:
-      uidRegex: .*
-      type: Namespace

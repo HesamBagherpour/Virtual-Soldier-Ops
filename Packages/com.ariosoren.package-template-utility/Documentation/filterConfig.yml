@@ -1,4 +1,4 @@
 apiRules:
-- include:
-    uidRegex: .*
-    type: Namespace
+  - exclude:
+      uidRegex: ^*.
+      type: Namespace
