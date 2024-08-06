@@ -9,7 +9,9 @@
         "ArioSoren.UIKit",
         "UniTask",
         "DOTween.Modules",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "FishNet.Runtime",
+        "Unity.XR.Interaction.Toolkit"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
