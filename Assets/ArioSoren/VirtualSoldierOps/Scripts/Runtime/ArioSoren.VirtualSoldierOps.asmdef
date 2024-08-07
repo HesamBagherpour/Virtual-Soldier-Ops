@@ -11,7 +11,8 @@
         "DOTween.Modules",
         "Unity.TextMeshPro",
         "FishNet.Runtime",
-        "Unity.XR.Interaction.Toolkit"
+        "Unity.XR.Interaction.Toolkit",
+        "RootMotion"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

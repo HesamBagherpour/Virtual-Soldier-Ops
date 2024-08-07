@@ -12,6 +12,10 @@ EditorBuildSettings:
     path: Assets/ArioSoren/VirtualSoldierOps/Scenes/Multiplayer/FishNet-InitSetup.unity
     guid: 1523c5bb9529f0b439ca54eca544239c
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: acaa92819c8d45e42a3c4f7abac752ab,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: ad5300c944e2fd84a8f3c9d8956e018c,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bd350b30090a52a46af85a111832c024,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 049834633e912e24eb3319e9cfe3e0ab,
