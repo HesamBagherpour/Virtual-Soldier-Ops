@@ -10,6 +10,15 @@
         "com.unity.nuget.newtonsoft-json": "3.0.2"
       }
     },
+    "com.ariosoren.fishnet-extension": {
+      "version": "file:com.ariosoren.fishnet-extension",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.5",
+        "com.firstgeargames.fishnet": "4.3.8"
+      }
+    },
     "com.ariosoren.general-utility": {
       "version": "file:com.ariosoren.general-utility",
       "depth": 0,
