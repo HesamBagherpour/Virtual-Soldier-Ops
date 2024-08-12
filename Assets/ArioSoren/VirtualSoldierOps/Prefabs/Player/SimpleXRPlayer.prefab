@@ -6605,6 +6605,8 @@ MonoBehaviour:
   - {fileID: 9014170783809206330}
   - {fileID: 9014170783809206328}
   - {fileID: 3127728407712097246}
+  - {fileID: 3127728407712097234}
+  - {fileID: 3127728407712097234}
 --- !u!114 &192798255593504426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6637,9 +6639,9 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  _enablePrediction: 0
+  _enablePrediction: 1
   _predictionType: 0
-  _graphicalObject: {fileID: 0}
+  _graphicalObject: {fileID: 7087880496071558080}
   _detachGraphicalObject: 0
   _enableStateForwarding: 1
   _networkTransform: {fileID: 0}
@@ -6857,7 +6859,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 1.8
   m_Radius: 0.28
