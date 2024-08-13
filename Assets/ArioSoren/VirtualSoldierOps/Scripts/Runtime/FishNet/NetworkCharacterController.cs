@@ -53,6 +53,7 @@ namespace ArioSoren.VirtualSoldierOps
 	            characterInputControllers.RightControllerStabilized.SetActive(true);
 
 	            characterInputControllers.LocomotionSystem.SetActive(false);           
+	            characterInputControllers.MainCamera.SetActive(true);
 	         
 	            characterInputControllers.XROrigin.SetActive(true);	 
 	            

@@ -76,7 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enableNetworkLod: 0
-  _levelOfDetailDistances: []
+  _levelOfDetailDistances:
+  - 5
+  - 10
   _updateHostVisibility: 1
   _maximumTimedObserversDuration: 10
   _defaultConditions:
@@ -167,7 +169,7 @@ MonoBehaviour:
   _maximumFrameTicks: 3
   _tickRate: 30
   _pingInterval: 1
-  _physicsMode: 0
+  _physicsMode: 1
 --- !u!114 &360171258416868139
 MonoBehaviour:
   m_ObjectHideFlags: 0
