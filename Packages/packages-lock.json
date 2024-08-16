@@ -70,6 +70,14 @@
         "com.cysharp.unitask": "2.5.5"
       }
     },
+    "com.ariosoren.player-system": {
+      "version": "file:com.ariosoren.player-system",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.5"
+      }
+    },
     "com.ariosoren.state-machine": {
       "version": "file:com.ariosoren.state-machin",
       "depth": 0,
@@ -393,6 +401,13 @@
         "com.unity.xr.core-utils": "2.1.1"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.veriorpies.parrelsync": {
+      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d1ef610e9fe3ad0b490cce91594449fc0af809a6"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

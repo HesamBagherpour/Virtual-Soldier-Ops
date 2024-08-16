@@ -1,0 +1,17 @@
+{
+    "name": "ArioSoren.PlayerSystem.Effects",
+    "rootNamespace": "ArioSoren.PlayerSystem.Effects",
+    "references": [
+        "UniTask",
+        "Unity.RenderPipelines.Universal.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

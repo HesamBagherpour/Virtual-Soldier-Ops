@@ -1,0 +1,17 @@
+{
+    "name": "ArioSoren.PlayerSystem.Input",
+    "rootNamespace": "ArioSoren.PlayerSystem.Input",
+    "references": [
+        "UniTask",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CinemachineTarget
+  - mesh
+  - mp5mag
+  - Clip
+  - Bolt
+  - Gun
+  - Hand
   layers:
   - Default
   - TransparentFX
