@@ -114392,14 +114392,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4242034614701616620}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.025786668, y: 0.8157751, z: 0.006539138, w: 0.5777572}
+  m_LocalRotation: {x: 0.02578531, y: 0.8157771, z: 0.0065382067, w: 0.5777544}
   m_LocalPosition: {x: 0.342, y: 1.327, z: -0.23000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6783869950833720500}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 112.299, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.096, y: 109.413, z: 2.845}
 --- !u!54 &5165501327540143362
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114669,7 +114669,7 @@ MonoBehaviour:
   _shooptStartPosition: {fileID: 41541796114403504}
   _currentMagazine: {fileID: 0}
   _gunController: {fileID: 1203112359195426104}
-  _shootingMode: 0
+  _shootingMode: 2
   _boltControl: {fileID: 1341826085553378632}
   _magazineReceiver: {fileID: 6893826453604369350}
   _shootingModeControl: {fileID: 9193008475023174772}
