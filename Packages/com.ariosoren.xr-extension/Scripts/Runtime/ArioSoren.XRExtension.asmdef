@@ -1,0 +1,17 @@
+{
+    "name": "ArioSoren.XRExtension",
+    "rootNamespace": "ArioSoren.XRExtension",
+    "references": [
+        "UniTask",
+        "Unity.XR.Interaction.Toolkit"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

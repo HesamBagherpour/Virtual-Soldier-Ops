@@ -1,0 +1,19 @@
+{
+  "name": "com.ariosoren.xr-extension",
+  "displayName": "AS XR Extension",
+  "version": "0.1.0",
+  "refrenceVersion": "0.1.0",
+  "description": "XR Extension",
+  "hideInEditor": false,
+  "author": {
+    "name": "ArioSoren General Utility"
+  },
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.5",
+    "com.unity.xr.interaction.toolkit" : "2.5.4"
+  },
+  "repository": {
+    "type": "local",
+    "url": "Packages/XRExtension"
+  }
+}

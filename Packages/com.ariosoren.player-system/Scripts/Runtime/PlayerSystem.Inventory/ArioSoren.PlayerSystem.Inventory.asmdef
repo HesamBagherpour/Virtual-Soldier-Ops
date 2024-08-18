@@ -1,0 +1,16 @@
+{
+    "name": "ArioSoren.PlayerSystem.Inventory",
+    "rootNamespace": "ArioSoren.PlayerSystem.Inventory",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
