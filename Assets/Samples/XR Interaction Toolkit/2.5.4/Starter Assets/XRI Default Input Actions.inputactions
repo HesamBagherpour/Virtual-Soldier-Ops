@@ -747,6 +747,24 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Switch Down",
+                    "type": "Button",
+                    "id": "8337e071-d975-46ae-a550-62677c67d77c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Switch Up",
+                    "type": "Button",
+                    "id": "2205276b-2028-4a12-b198-0fa52e294c00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Rotate Anchor",
                     "type": "Value",
                     "id": "21b75b25-12ad-410f-b4f8-a7745b7aca27",
@@ -946,6 +964,28 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f05ed63b-e7d1-4744-9e83-c663c418cddf",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f68ffbf-3749-4d5b-bde8-8de34fa95313",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1489,6 +1529,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Switch Up",
+                    "type": "Button",
+                    "id": "aaffe6f5-74f8-4851-a2d9-a4d3fee2b38d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Switch Down",
+                    "type": "Button",
+                    "id": "a9739ee2-b9f8-4b8b-919e-329db6601490",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Value",
                     "type": "Value",
                     "id": "39bbf1ac-21a3-413d-90f6-6dbf6efeaabe",
@@ -1742,6 +1800,28 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17c446f7-20e6-4e01-8c61-a29cfda174ae",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "582235d2-8c65-43ea-bcd7-4d6501030b4d",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

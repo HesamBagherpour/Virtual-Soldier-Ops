@@ -35,6 +35,7 @@ namespace ArioSoren.VirtualSoldierOps
 	            characterInputControllers.LocomotionSystem.SetActive(true);
 	            
 	            characterInputControllers.XROrigin.SetActive(true);
+	            // characterInputControllers.PlayerArmature.SetActive(false);
             }
             else
             {
@@ -56,6 +57,9 @@ namespace ArioSoren.VirtualSoldierOps
 	            characterInputControllers.MainCamera.SetActive(true);
 	         
 	            characterInputControllers.XROrigin.SetActive(true);	 
+	            characterInputControllers.PlayerArmature.SetActive(true);
+	            characterInputControllers.LeftHand.SetActive(false);
+	            characterInputControllers.RightHand.SetActive(false);
 	            
             }
         }
@@ -76,5 +80,8 @@ namespace ArioSoren.VirtualSoldierOps
         public GameObject RightController;
         public GameObject RightControllerStabilized;
         public GameObject LocomotionSystem;       
+        public GameObject PlayerArmature;       
+        public GameObject LeftHand;       
+        public GameObject RightHand;       
     }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "ArioSoren.PlayerSystem.Audio",
+    "rootNamespace": "ArioSoren.PlayerSystem.Audio",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
