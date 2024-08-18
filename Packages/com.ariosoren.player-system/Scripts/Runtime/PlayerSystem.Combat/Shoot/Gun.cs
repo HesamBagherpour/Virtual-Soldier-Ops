@@ -45,6 +45,9 @@ public abstract class Gun : MonoBehaviour
         _shootingModeControl.OnShootingModeChange = (mode) => { _shootingMode = mode; };
         _boltControl.OnBoltPull = BoltPuller;
         _boltControl.OnReadyToPull = () => ReadyToPull = true;
+        //todo just for Enhance XR controller 
+        CurrentBullet = _currentMagazine.GetBullet();
+        //------------------------------------
         _magazineReceiver.OnMagazineSelectEnter += (t) =>
         {
             _currentMagazine = t.GetComponent<MagazineControl>();
@@ -125,7 +128,8 @@ public abstract class Gun : MonoBehaviour
         if (_currentMagazine == null)
             Debug.LogWarning("clip is null");
 
-        CurrentBullet = clipReady ? _currentMagazine?.GetBullet() : null;
+        //todo I comment this line for enahance shooing mode mak it Auto shoot 
+        //CurrentBullet = clipReady ? _currentMagazine?.GetBullet() : null;
     }
 
     private float GetDistanceFactor(Vector3 startPoint, Vector3 endPoint)

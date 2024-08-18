@@ -39,6 +39,10 @@ public class TriggerControl : MonoBehaviour
 
     public void OnActionCancle()
     {
+        
+        // Todo just for emulator 
+        
+        readyToShoot = true;
         OnTriggerEnd?.Invoke();
         StartCoroutine(ReturnToDefault());
     }
