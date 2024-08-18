@@ -418,6 +418,18 @@
       "dependencies": {},
       "hash": "d1ef610e9fe3ad0b490cce91594449fc0af809a6"
     },
+    "third-party.com.opsive.behavior-designer": {
+      "version": "file:Behavior Designer",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "third-party.com.opsive.behavior-designer-movement": {
+      "version": "file:Behavior Designer Movement",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

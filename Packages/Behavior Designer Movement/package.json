@@ -1,0 +1,17 @@
+{
+  "name": "third-party.com.opsive.behavior-designer-movement",
+  "displayName": "Behavior Designer Movement",
+  "version": "1.6.1",
+  "refrenceVersion": "1.6.1",
+  "description": "Behavior Designer - Movement Pack contains 17 different behaviour tree tasks focused on both 2D and 3D movement.",
+  "hideInEditor": false,
+  "author": {
+    "name": "Third-party Packages"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "local",
+    "url": "Packages/Behavior Designer Movement"
+  }
+}

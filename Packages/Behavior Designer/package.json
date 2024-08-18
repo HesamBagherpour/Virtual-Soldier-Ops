@@ -1,0 +1,17 @@
+{
+  "name": "third-party.com.opsive.behavior-designer",
+  "displayName": "Behavior Designer",
+  "version": "1.7.9",
+  "refrenceVersion": "1.7.9",
+  "description": "Behavior trees are used by AAA studios to create a lifelike AI. With Opsive's Behavior Designer, you can bring the power of behaviour trees to Unity!",
+  "hideInEditor": false,
+  "author": {
+    "name": "Third-party Packages"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "local",
+    "url": "Packages/BehaviorDesigner"
+  }
+}
