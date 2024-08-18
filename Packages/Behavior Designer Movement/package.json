@@ -9,6 +9,7 @@
     "name": "Third-party Packages"
   },
   "dependencies": {
+    "third-party.com.opsive.behavior-designer" : "1.7.9"
   },
   "repository": {
     "type": "local",
