@@ -31,10 +31,15 @@ public class PlayerHandController : MonoBehaviour
 
     public event Action OnSelectChange;
 
-    void Start()
-    {
+    void Awake(){
         interactor = GetComponent<XRDirectInteractor>();
         handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
+    }
+
+    void Start()
+    {
+        // interactor = GetComponent<XRDirectInteractor>();
+        // handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
 
         interactor.selectEntered.AddListener(OnSelectEntered);
         interactor.selectExited.AddListener(OnSelectExited);
@@ -132,7 +137,7 @@ public class PlayerHandController : MonoBehaviour
 
     public bool HasSelection()
     {
-        return interactor.hasSelection;
+        return interactor != null && interactor.hasSelection;
     }
 
     Transform SelectedInteractable()

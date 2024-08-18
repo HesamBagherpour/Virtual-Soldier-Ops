@@ -11,6 +11,9 @@ TagManager:
   - Bolt
   - Gun
   - Hand
+  - interactor
+  - Right
+  - Left
   layers:
   - Default
   - TransparentFX
@@ -20,9 +23,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Restricted
+  - Player
+  - Grabbable
   - 
   - 
   - 

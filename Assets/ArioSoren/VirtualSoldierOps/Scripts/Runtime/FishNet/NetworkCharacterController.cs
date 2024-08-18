@@ -23,19 +23,21 @@ namespace ArioSoren.VirtualSoldierOps
 		    Debug.unityLogger.Log($"[NetworkCharacterController] [init] - IsLocalClient:{base.Owner.IsLocalClient} IsHostInitialized:{base.IsHostInitialized}");
             if (base.Owner.IsLocalClient || base.IsHostInitialized)
             {
-	            characterInputControllers.EventSystem.SetActive(true);
-                characterInputControllers.InputActionManager.SetActive(true);
-                characterInputControllers.XRInteractionManager.SetActive(true);
+	            // characterInputControllers.EventSystem.SetActive(true);
+                // characterInputControllers.InputActionManager.SetActive(true);
+                // characterInputControllers.XRInteractionManager.SetActive(true);
 	            characterInputControllers.MainCamera.SetActive(true);
 	            
 	            characterInputControllers.LeftController.SetActive(true);
-	            characterInputControllers.LeftControllerStabilized.SetActive(true);
+	            // characterInputControllers.LeftControllerStabilized.SetActive(true);
 	            characterInputControllers.RightController.SetActive(true);
-	            characterInputControllers.RightControllerStabilized.SetActive(true);
+	            // characterInputControllers.RightControllerStabilized.SetActive(true);
 	            characterInputControllers.LocomotionSystem.SetActive(true);
 	            
 	            characterInputControllers.XROrigin.SetActive(true);
 	            // characterInputControllers.PlayerArmature.SetActive(false);
+                characterInputControllers.LeftHand.SetActive(true);
+	            characterInputControllers.RightHand.SetActive(true);
             }
             else
             {
