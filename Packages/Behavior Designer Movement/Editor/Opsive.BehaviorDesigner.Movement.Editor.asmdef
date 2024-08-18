@@ -1,0 +1,23 @@
+{
+    "name": "Opsive.BehaviorDesigner.Movement.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Opsive.BehaviorDesigner.Movement",
+        "Opsive.BehaviorDesigner.Editor",
+        "Opsive.BehaviorDesigner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "BehaviorDesigner.Editor.dll",
+        "BehaviorDesigner.Runtime.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
