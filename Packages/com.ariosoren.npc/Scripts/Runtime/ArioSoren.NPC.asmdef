@@ -1,0 +1,20 @@
+{
+    "name": "ArioSoren.NPC",
+    "rootNamespace": "ArioSoren.NPC",
+    "references": [
+        "UniTask",
+        "Opsive.BehaviorDesigner",
+        "Opsive.BehaviorDesigner.Movement"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "BehaviorDesigner.Runtime.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

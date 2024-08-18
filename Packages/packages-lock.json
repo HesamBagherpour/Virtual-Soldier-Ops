@@ -51,6 +51,16 @@
         "com.cysharp.unitask": "2.5.5"
       }
     },
+    "com.ariosoren.npc": {
+      "version": "file:com.ariosoren.npc",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.5",
+        "third-party.com.opsive.behavior-designer": "1.7.9",
+        "third-party.com.opsive.behavior-designer-movement": "1.6.1"
+      }
+    },
     "com.ariosoren.package-template-utility": {
       "version": "file:com.ariosoren.package-template-utility",
       "depth": 0,
@@ -428,7 +438,9 @@
       "version": "file:Behavior Designer Movement",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "third-party.com.opsive.behavior-designer": "1.7.9"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
