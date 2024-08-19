@@ -85,7 +85,8 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.cysharp.unitask": "2.5.5"
+        "com.cysharp.unitask": "2.5.5",
+        "com.ariosoren.state-machine": "0.1.0"
       }
     },
     "com.ariosoren.state-machine": {
