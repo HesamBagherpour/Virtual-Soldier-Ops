@@ -2,10 +2,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+
+public enum InputName
+{
+    RightTrigger,
+    RightGrip,
+    RightPrimaryButton,
+    RightSecondaryButton,
+    RightJoystick,
+    RightControllerPosition,
+    RightControllerRotation,
+    RightMenuButton,
+    LeftTrigger,
+    LeftGrip,
+    LeftPrimaryButton,
+    LeftSecondaryButton,
+    LeftJoystick,
+    LeftControllerPosition,
+    LeftControllerRotation,
+    LeftMenuButton
+}
 
 public class InputController : MonoBehaviour
 {
+    public static InputController Instance { private set; get; }
+
     public bool autoEnable = true;
     public bool autoDisable = true;
 
@@ -15,6 +38,11 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+
         actionMap = new InputActionMap();
         actionDataList = new List<ActionModel>();
         InitialList(dataList);
@@ -191,5 +219,10 @@ public class InputController : MonoBehaviour
                 inputAction.ApplyBindingOverride(i, inputBinding);
             }
         }
+    }
+
+    public InputAction GetInputAction(InputName inputActionName)
+    {
+        return actionDataList.First(x => x.actionName == inputActionName.ToString()).inputAction;
     }
 }

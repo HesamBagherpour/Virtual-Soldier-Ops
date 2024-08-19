@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerHandController : MonoBehaviour
@@ -13,11 +14,6 @@ public class PlayerHandController : MonoBehaviour
 
     [Header("Inputs")]
     [SerializeField, Range(0, 1)] float pressureSensitivity = 0.5f;
-    [SerializeField] InputActionReference gripInput;
-    [SerializeField] InputActionReference selectInput;
-    [SerializeField] InputActionReference primaryButtonInput;
-    [SerializeField] InputActionReference secondaryButtonInput;
-    [SerializeField] InputActionReference handPosInput;
 
     PlayerHandAnimation handAnimation;
 
@@ -39,28 +35,28 @@ public class PlayerHandController : MonoBehaviour
         interactor.selectEntered.AddListener(OnSelectEntered);
         interactor.selectExited.AddListener(OnSelectExited);
 
-        selectInput.action.started += TakeAction;
-        selectInput.action.canceled += ReleaseAction;
-        gripInput.action.performed += TriggerStay;
-        gripInput.action.canceled += TriggerCancel;
-        primaryButtonInput.action.started += PrimaryButtonPressed;
-        secondaryButtonInput.action.started += SecondaryButtonPressed;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).started += TakeAction;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).canceled += ReleaseAction;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).performed += TriggerStay;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).canceled += TriggerCancel;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightPrimaryButton : InputName.LeftPrimaryButton).started += PrimaryButtonPressed;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightSecondaryButton : InputName.LeftSecondaryButton).started += SecondaryButtonPressed;
 
-        handPosInput.action.performed += HandPositionInput;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightControllerPosition : InputName.LeftControllerPosition).performed += HandPositionInput;
     }
     void OnDestroy()
     {
         interactor.selectEntered.RemoveListener(OnSelectEntered);
         interactor.selectExited.RemoveListener(OnSelectExited);
 
-        selectInput.action.started -= TakeAction;
-        selectInput.action.canceled -= ReleaseAction;
-        gripInput.action.performed -= TriggerStay;
-        gripInput.action.canceled -= TriggerCancel;
-        primaryButtonInput.action.started -= PrimaryButtonPressed;
-        secondaryButtonInput.action.started -= SecondaryButtonPressed;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).started -= TakeAction;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).canceled -= ReleaseAction;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).performed -= TriggerStay;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).canceled -= TriggerCancel;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightPrimaryButton : InputName.LeftPrimaryButton).started -= PrimaryButtonPressed;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightSecondaryButton : InputName.LeftSecondaryButton).started -= SecondaryButtonPressed;
 
-        handPosInput.action.performed -= HandPositionInput;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightControllerPosition : InputName.LeftControllerPosition).performed -= HandPositionInput;
     }
 
     void OnTriggerStay(Collider other)
