@@ -1,17 +1,14 @@
 {
-    "name": "ArioSoren.InputControllerUtility",
-    "rootNamespace": "ArioSoren.InputControllerUtility",
+    "name": "ArioSoren.PlayerSystem.States",
+    "rootNamespace": "ArioSoren.PlayerSystem.States",
     "references": [
-        "UniTask",
-        "Unity.InputSystem"
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [
-        "Sirenix.OdinInspector.Attributes.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],

@@ -2933,6 +2933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3701197125296931}
+  - component: {fileID: 4286617181660171342}
   - component: {fileID: 6688015753839463788}
   - component: {fileID: 7837635443077679090}
   - component: {fileID: 7648995207227333866}
@@ -2959,6 +2960,183 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9014170785475729501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4286617181660171342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412649390972202448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c0bea503f096408b1344459fb207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoEnable: 1
+  autoDisable: 1
+  dataList:
+  - reference: {fileID: -7730354020991396091, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Switch Down
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9362717e-f032-4960-a2e4-00386aad91e5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand/Position
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d43f9d7e-9dac-49c7-a8f1-ec5439cf424a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Select Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3e6e0e0f-60bc-464b-9205-27d9c8458786
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Activate Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4f141b5c-75d7-475a-90fe-2f0008509cdf
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand/Position
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4fc7b92b-6cff-4ca6-9306-939278a898a3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Select Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 83d09187-607d-4880-8f7d-9d3f612d18a4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Activate Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 51c519d6-8264-4a27-aee2-eabc6949bcf8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -3882623809816979830, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Switch Up
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 7b97a2a5-3562-4c97-84ed-3a63b6e433b2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -6804277775234923092, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Switch Down
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c3751b7b-5457-4edb-8803-f0d2a488f3d6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 8278778578336714892, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Switch Up
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e464bf1a-9609-47ca-974a-bd6073a092be
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  WriteEnumToScriptTarget: {fileID: 7648995207227333866}
+  enumName: InputActionName
 --- !u!114 &6688015753839463788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,16 +3243,6 @@ MonoBehaviour:
   handGameObject: {fileID: 819724218712409131}
   controller: {fileID: 9014170785475729501}
   pressureSensitivity: 0.5
-  gripInput: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  selectInput: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  primaryButtonInput: {fileID: -7730354020991396091, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  secondaryButtonInput: {fileID: 8278778578336714892, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  handPosInput: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &7648995207227333866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,10 +3255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1645e4ad226924c97ddba0d6e86441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectAction: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  activateAction: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
+  hand: 0
   controller: {fileID: 9014170785475729501}
 --- !u!135 &139700479909346137
 SphereCollider:
@@ -6127,6 +6292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8223754800080540374}
+  - component: {fileID: 3377146124632997520}
   - component: {fileID: 3385890772825029785}
   - component: {fileID: 6281465586775403504}
   - component: {fileID: 7057969354020294466}
@@ -6153,6 +6319,183 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9014170783705847996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3377146124632997520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6733349667411237925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c0bea503f096408b1344459fb207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoEnable: 1
+  autoDisable: 1
+  dataList:
+  - reference: {fileID: -7730354020991396091, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Switch Down
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9362717e-f032-4960-a2e4-00386aad91e5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand/Position
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d43f9d7e-9dac-49c7-a8f1-ec5439cf424a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Select Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3e6e0e0f-60bc-464b-9205-27d9c8458786
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Activate Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4f141b5c-75d7-475a-90fe-2f0008509cdf
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand/Position
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4fc7b92b-6cff-4ca6-9306-939278a898a3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Select Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 83d09187-607d-4880-8f7d-9d3f612d18a4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Activate Value
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 51c519d6-8264-4a27-aee2-eabc6949bcf8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -3882623809816979830, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Switch Up
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 7b97a2a5-3562-4c97-84ed-3a63b6e433b2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: -6804277775234923092, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI RightHand Interaction/Switch Down
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c3751b7b-5457-4edb-8803-f0d2a488f3d6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - reference: {fileID: 8278778578336714892, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+    _actionName: XRI LeftHand Interaction/Switch Up
+    _isActive: 1
+    _inputAction:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e464bf1a-9609-47ca-974a-bd6073a092be
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    onAction:
+      m_PersistentCalls:
+        m_Calls: []
+  WriteEnumToScriptTarget: {fileID: 6281465586775403504}
+  enumName: InputActionName
 --- !u!114 &3385890772825029785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6259,16 +6602,6 @@ MonoBehaviour:
   handGameObject: {fileID: 1668532871294724334}
   controller: {fileID: 9014170783705847996}
   pressureSensitivity: 0.5
-  gripInput: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  selectInput: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  primaryButtonInput: {fileID: -6804277775234923092, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  secondaryButtonInput: {fileID: -3882623809816979830, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  handPosInput: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &7057969354020294466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6281,10 +6614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1645e4ad226924c97ddba0d6e86441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectAction: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  activateAction: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
+  hand: 0
   controller: {fileID: 9014170783705847996}
 --- !u!135 &8349061882038045356
 SphereCollider:

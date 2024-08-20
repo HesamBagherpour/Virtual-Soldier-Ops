@@ -26,10 +26,12 @@ public class PlayerHandController : MonoBehaviour
     BoltControl boltControl;
 
     public event Action OnSelectChange;
+    private InputControllerComp inputControl;
 
     void Awake(){
         interactor = GetComponent<XRDirectInteractor>();
         handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
+        inputControl = gameObject.GetComponent<InputControllerComp>();
     }
 
     void Start()
@@ -40,28 +42,28 @@ public class PlayerHandController : MonoBehaviour
         interactor.selectEntered.AddListener(OnSelectEntered);
         interactor.selectExited.AddListener(OnSelectExited);
 
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).started += TakeAction;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).canceled += ReleaseAction;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).performed += TriggerStay;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).canceled += TriggerCancel;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightPrimaryButton : InputName.LeftPrimaryButton).started += PrimaryButtonPressed;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightSecondaryButton : InputName.LeftSecondaryButton).started += SecondaryButtonPressed;
-
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightControllerPosition : InputName.LeftControllerPosition).performed += HandPositionInput;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started += TakeAction;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  += ReleaseAction;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed += TriggerStay;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled += TriggerCancel;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started += PrimaryButtonPressed;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started += SecondaryButtonPressed;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed += HandPositionInput;
+    
     }
     void OnDestroy()
     {
         interactor.selectEntered.RemoveListener(OnSelectEntered);
         interactor.selectExited.RemoveListener(OnSelectExited);
 
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).started -= TakeAction;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).canceled -= ReleaseAction;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).performed -= TriggerStay;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).canceled -= TriggerCancel;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightPrimaryButton : InputName.LeftPrimaryButton).started -= PrimaryButtonPressed;
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightSecondaryButton : InputName.LeftSecondaryButton).started -= SecondaryButtonPressed;
-
-        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightControllerPosition : InputName.LeftControllerPosition).performed -= HandPositionInput;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started -= TakeAction;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  -= ReleaseAction;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed -= TriggerStay;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled -= TriggerCancel;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started -= PrimaryButtonPressed;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started -= SecondaryButtonPressed;
+        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed -= HandPositionInput;
+  
     }
 
     void OnTriggerStay(Collider other)
@@ -213,4 +215,34 @@ public class PlayerHandController : MonoBehaviour
             boltControl.MoveBolt(handPositionFloat);
         }
     }
+
+
+////// Generated Code [Start] --- InputController inspector -- Don't change this block /////
+#region InputActionName
+public enum InputActionName
+{
+    [EnumNameAttribute("XRI LeftHand Interaction/Switch Down")]
+    XRI_LeftHand_Interaction_Switch_Down,
+    [EnumNameAttribute("XRI LeftHand/Position")]
+    XRI_LeftHand_Position,
+    [EnumNameAttribute("XRI LeftHand Interaction/Select Value")]
+    XRI_LeftHand_Interaction_Select_Value,
+    [EnumNameAttribute("XRI LeftHand Interaction/Activate Value")]
+    XRI_LeftHand_Interaction_Activate_Value,
+    [EnumNameAttribute("XRI RightHand/Position")]
+    XRI_RightHand_Position,
+    [EnumNameAttribute("XRI RightHand Interaction/Select Value")]
+    XRI_RightHand_Interaction_Select_Value,
+    [EnumNameAttribute("XRI RightHand Interaction/Activate Value")]
+    XRI_RightHand_Interaction_Activate_Value,
+    [EnumNameAttribute("XRI RightHand Interaction/Switch Up")]
+    XRI_RightHand_Interaction_Switch_Up,
+    [EnumNameAttribute("XRI RightHand Interaction/Switch Down")]
+    XRI_RightHand_Interaction_Switch_Down,
+    [EnumNameAttribute("XRI LeftHand Interaction/Switch Up")]
+    XRI_LeftHand_Interaction_Switch_Up,
+}
+#endregion InputActionName
+////// Generated Code [End] --- InputController inspector -- Don't change this block /////
+
 }

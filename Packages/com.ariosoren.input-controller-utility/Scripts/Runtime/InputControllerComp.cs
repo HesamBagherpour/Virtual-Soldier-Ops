@@ -4,31 +4,23 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Unity.Burst;
+using Sirenix.OdinInspector;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
-public enum InputName
+
+
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
+public class InputControllerComp : MonoBehaviour
 {
-    RightTrigger,
-    RightGrip,
-    RightPrimaryButton,
-    RightSecondaryButton,
-    RightJoystick,
-    RightControllerPosition,
-    RightControllerRotation,
-    RightMenuButton,
-    LeftTrigger,
-    LeftGrip,
-    LeftPrimaryButton,
-    LeftSecondaryButton,
-    LeftJoystick,
-    LeftControllerPosition,
-    LeftControllerRotation,
-    LeftMenuButton
-}
-
-public class InputController : MonoBehaviour
-{
-    public static InputController Instance { private set; get; }
-
     public bool autoEnable = true;
     public bool autoDisable = true;
 
@@ -38,11 +30,6 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
-
         actionMap = new InputActionMap();
         actionDataList = new List<ActionModel>();
         InitialList(dataList);
@@ -75,15 +62,17 @@ public class InputController : MonoBehaviour
 
     public bool AddInputAction(ActionModel actionModel)
     {
+
         bool isFind = IsExistInputAction(actionModel.actionName);
         if (!isFind)
         {
             actionDataList.Add(actionModel);
             actionModel.inputAction.performed += context => { actionModel.onAction?.Invoke(context); };
-            actionModel.inputAction.Rename(actionModel.actionName);
+            if (actionModel.reference == null)
+                actionModel.inputAction.Rename(actionModel.actionName);
             if (actionModel.isActive)
                 actionModel.inputAction.Enable();
-            actionMap.AddAction(actionModel.inputAction.name);
+            actionMap.AddAction(actionModel.actionName);
         }
         else
         {
@@ -221,8 +210,110 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public InputAction GetInputAction(InputName inputActionName)
+    // public InputAction GetInputAction(string inputActionName)
+    // {
+    //     return actionDataList.First(x => x.actionName == inputActionName).inputAction;
+    // }
+
+
+#if UNITY_EDITOR
+    [ContextMenu("Append Selected to Input Action References")]
+    [Button("Append Selected to Input Action References")]
+    private void AppendSelectedToInputActionReferences()
     {
-        return actionDataList.First(x => x.actionName == inputActionName.ToString()).inputAction;
+        InputActionReference[] references = Selection.GetFiltered<InputActionReference>(SelectionMode.Unfiltered);
+
+        var newActionModels = references
+            .Where(reference => !dataList.Any(x => x.reference == reference))
+            .Select(reference =>
+            {
+                var actionModel = new ActionModel { reference = reference };
+                actionModel.reference_OnValueChanged();
+                return actionModel;
+            })
+            .ToList();
+
+        dataList.AddRange(newActionModels);
     }
+
+    [SerializeField] private MonoBehaviour WriteEnumToScriptTarget;
+
+    [ShowIf("isWriteEnumScriptTargetNotNull")]
+    [SerializeField] private string enumName = "InputActionName";
+
+    [ContextMenu("Write Enum From Action Names")]
+    [Button("Write Enum From Action Names")]
+    [ShowIf("isWriteEnumScriptTargetNotNull")]
+    private void WriteEnumFromActionNames()
+    {
+        if (WriteEnumToScriptTarget == null) return;
+
+        string startMarker = "////// Generated Code [Start] --- InputController inspector -- Don't change this block /////";
+        string endMarker = "////// Generated Code [End] --- InputController inspector -- Don't change this block /////";
+
+        string scriptPath = AssetDatabase.GetAssetPath(MonoScript.FromMonoBehaviour(WriteEnumToScriptTarget));
+
+        string scriptText = File.ReadAllText(scriptPath);
+
+        // Removing the code block between the specified lines
+        // Constructing the Regex pattern to find the code block
+        string patternToRemove = Regex.Escape(startMarker) + @"[\s\S]*?" + Regex.Escape(endMarker);
+        
+         // Removing the code block between the specified lines
+        scriptText = Regex.Replace(scriptText, patternToRemove, string.Empty, RegexOptions.Multiline);
+
+
+        StringBuilder enumCode = new StringBuilder();
+
+        enumCode.AppendLine(startMarker);
+        enumCode.AppendLine("#region InputActionName");
+        enumCode.AppendLine($"public enum {enumName}");
+        enumCode.AppendLine("{");
+
+        foreach (var action in dataList)
+        {
+            string cleanedName = CleanEnumName(action.actionName);
+            enumCode.AppendLine($"    [EnumNameAttribute(\"{action.actionName}\")]");
+            enumCode.AppendLine($"    {cleanedName},");
+        }
+        enumCode.AppendLine("}");
+
+        enumCode.AppendLine("#endregion InputActionName");
+        enumCode.AppendLine(endMarker);
+
+
+        // Finding the appropriate point to insert the enum
+        int insertIndex = scriptText.LastIndexOf("}");
+        string newScriptText = scriptText.Insert(insertIndex, enumCode.ToString() + "\n");
+
+        File.WriteAllText(scriptPath, newScriptText);
+
+        AssetDatabase.Refresh();
+
+    }
+    private bool isWriteEnumScriptTargetNotNull()
+    {
+        return WriteEnumToScriptTarget != null;
+    }
+
+    private string CleanEnumName(string name)
+    {
+        // Replacing invalid characters with _
+        var cleaned = new StringBuilder();
+        foreach (char c in name)
+        {
+            if (char.IsLetterOrDigit(c) || c == '_')
+                cleaned.Append(c);
+            else
+                cleaned.Append('_');
+        }
+
+        // Ensuring the name starts with a letter
+        if (char.IsDigit(cleaned[0]))
+            cleaned.Insert(0, '_');
+
+        return cleaned.ToString();
+    }
+#endif
+
 }
