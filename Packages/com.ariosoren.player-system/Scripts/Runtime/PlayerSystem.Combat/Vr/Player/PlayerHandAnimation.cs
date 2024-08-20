@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerHandAnimation : MonoBehaviour
 {
-    [SerializeField] InputActionReference selectAction;
-    [SerializeField] InputActionReference activateAction;
+    [SerializeField] PlayerHand hand;
     [SerializeField] Transform controller;
 
     Animator handDeformAnimator;
@@ -25,11 +24,11 @@ public class PlayerHandAnimation : MonoBehaviour
         //handGameObject = transform.GetChild(0).gameObject;
         //animator= handGameObject.GetComponent<Animator>();
 
-        selectAction.action.performed += OnGripping;
-        selectAction.action.canceled += OnGripRelease;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).performed += OnGripping;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightGrip : InputName.LeftGrip).canceled += OnGripRelease;
 
-        activateAction.action.performed += OnPinching;
-        activateAction.action.canceled += OnPinchRelease;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).performed += OnPinching;
+        InputController.Instance.GetInputAction(hand == PlayerHand.Right ? InputName.RightTrigger : InputName.LeftTrigger).canceled += OnPinchRelease;
     }
 
     void OnGripping(InputAction.CallbackContext obj)

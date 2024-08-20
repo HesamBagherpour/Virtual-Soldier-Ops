@@ -6,7 +6,8 @@
         "ArioSoren.PlayerSystem.Input",
         "Unity.InputSystem",
         "Unity.XR.Interaction.Toolkit",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "ArioSoren.InputControllerUtility"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
