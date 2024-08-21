@@ -1,11 +1,16 @@
 using System;
 using System.Threading.Tasks;
+using ArioSoren.GeneralUtility;
+using ArioSoren.InputControllerUtility;
+using FishNet.Connection;
+using FishNet.Object;
+using FishNet.Transporting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PlayerHandController : MonoBehaviour
+public class PlayerHandController : NetworkBehaviour
 {
     [SerializeField] PlayerHand hand;
     public PlayerHand Hand { get { return hand; } }
@@ -116,13 +121,44 @@ public class PlayerHandController : MonoBehaviour
     }
     void SetDeActiveHandAnimation()
     {
-        handAnimation.Deactive();
+        handAnimation.Deactivate();
     }
 
     void SetGunController(GunController _gunController)
     {
+        if(_gunController == gunController) return;
+
+        if (gunController != null)
+        {
+            Debug.unityLogger.Log($"PlayerHandController | SetGunController | call RpcSrv_GunChangeOwnership with null");
+            RpcSrv_GunChangeOwnership(null,gunController.gameObject.GetComponent<NetworkObject>());
+        }
+        
+        if (_gunController != null)
+        {
+            Debug.unityLogger.Log($"PlayerHandController | SetGunController | call RpcSrv_GunChangeOwnership with ownerId: {base.OwnerId}");
+            RpcSrv_GunChangeOwnership(base.Owner,_gunController.gameObject.GetComponent<NetworkObject>());
+        }
+
         gunController = _gunController;
     }
+
+    [ServerRpc]
+    private void RpcSrv_GunChangeOwnership(NetworkConnection owner,NetworkObject networkObject ,Channel channel = Channel.Reliable)
+    {
+        if (owner == null)
+        {
+            Debug.unityLogger.Log($"PlayerHandController | RpcSrv_GunChangeOwnership | ownerId is null {base.OwnerId}");
+            networkObject.RemoveOwnership();
+        }
+        else
+        {
+            Debug.unityLogger.Log($"PlayerHandController | RpcSrv_GunChangeOwnership | before ownerId is {networkObject.OwnerId}");
+            networkObject.GiveOwnership(owner);
+            Debug.unityLogger.Log($"PlayerHandController | RpcSrv_GunChangeOwnership | after ownerId is {networkObject.OwnerId}");
+        }
+    }
+    
     GunController GetGunController()
     {
         return gunController;
@@ -221,25 +257,25 @@ public class PlayerHandController : MonoBehaviour
 #region InputActionName
 public enum InputActionName
 {
-    [EnumNameAttribute("XRI LeftHand Interaction/Switch Down")]
+    [EnumName("XRI LeftHand Interaction/Switch Down")]
     XRI_LeftHand_Interaction_Switch_Down,
-    [EnumNameAttribute("XRI LeftHand/Position")]
+    [EnumName("XRI LeftHand/Position")]
     XRI_LeftHand_Position,
-    [EnumNameAttribute("XRI LeftHand Interaction/Select Value")]
+    [EnumName("XRI LeftHand Interaction/Select Value")]
     XRI_LeftHand_Interaction_Select_Value,
-    [EnumNameAttribute("XRI LeftHand Interaction/Activate Value")]
+    [EnumName("XRI LeftHand Interaction/Activate Value")]
     XRI_LeftHand_Interaction_Activate_Value,
-    [EnumNameAttribute("XRI RightHand/Position")]
+    [EnumName("XRI RightHand/Position")]
     XRI_RightHand_Position,
-    [EnumNameAttribute("XRI RightHand Interaction/Select Value")]
+    [EnumName("XRI RightHand Interaction/Select Value")]
     XRI_RightHand_Interaction_Select_Value,
-    [EnumNameAttribute("XRI RightHand Interaction/Activate Value")]
+    [EnumName("XRI RightHand Interaction/Activate Value")]
     XRI_RightHand_Interaction_Activate_Value,
-    [EnumNameAttribute("XRI RightHand Interaction/Switch Up")]
+    [EnumName("XRI RightHand Interaction/Switch Up")]
     XRI_RightHand_Interaction_Switch_Up,
-    [EnumNameAttribute("XRI RightHand Interaction/Switch Down")]
+    [EnumName("XRI RightHand Interaction/Switch Down")]
     XRI_RightHand_Interaction_Switch_Down,
-    [EnumNameAttribute("XRI LeftHand Interaction/Switch Up")]
+    [EnumName("XRI LeftHand Interaction/Switch Up")]
     XRI_LeftHand_Interaction_Switch_Up,
 }
 #endregion InputActionName

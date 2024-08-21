@@ -9,7 +9,8 @@
     "name": "ArioSoren General Utility"
   },
   "dependencies": {
-    "com.cysharp.unitask": "2.5.5"
+    "com.cysharp.unitask": "2.5.5",
+    "com.ariosoren.general-utility": "0.1.0"
   },
   "repository": {
     "type": "local",

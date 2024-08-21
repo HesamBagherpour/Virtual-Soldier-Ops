@@ -9,8 +9,10 @@ public class TriggerControl : MonoBehaviour
     [SerializeField] Animator triggerAnimator;
     Animator fingerAnimator;
 
+    //TODO @Network check network sync
     public Action OnTriggerStart;
     public Action OnTriggerEnd;
+    
     bool readyToShoot = true;
 
     void Start()

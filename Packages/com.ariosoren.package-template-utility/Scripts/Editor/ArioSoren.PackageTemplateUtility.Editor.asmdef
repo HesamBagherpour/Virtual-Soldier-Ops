@@ -6,7 +6,8 @@
         "UnityEngine.UI",
         "UniTask",
         "ArioSoren.GeneralUtility",
-        "ArioSoren.DocsGenerator.Editor"
+        "ArioSoren.DocsGenerator.Editor",
+        "YamlDotNet"
     ],
     "includePlatforms": [
         "Editor"

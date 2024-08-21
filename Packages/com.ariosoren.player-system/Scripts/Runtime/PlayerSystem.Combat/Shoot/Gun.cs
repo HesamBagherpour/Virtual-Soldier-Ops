@@ -90,6 +90,8 @@ public abstract class Gun : MonoBehaviour
         Fire.Disable();
     }
 
+    
+    // @NetworkHint called form Triggered and update
     protected void Shoot()
     {
         //if (!_gunController.IsGunReadyToShoot())

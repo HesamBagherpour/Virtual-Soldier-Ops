@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class InputModel : MonoBehaviour
+namespace ArioSoren.InputControllerUtility
 {
+    public class InputModel : MonoBehaviour
+    {
+    }
 }

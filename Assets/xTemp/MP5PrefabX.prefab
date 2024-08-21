@@ -5505,6 +5505,7 @@ GameObject:
   - component: {fileID: 678015991425179787}
   - component: {fileID: 3070482620530357932}
   - component: {fileID: 1351231325938354576}
+  - component: {fileID: 261551488193311796}
   m_Layer: 0
   m_Name: R Hand
   m_TagString: Untagged
@@ -5565,6 +5566,28 @@ MonoBehaviour:
   returnSpeed: 0.1
   shootingMode: {fileID: 9193008475023174772}
   triggerAnimator: {fileID: 3435427192142907915}
+--- !u!114 &261551488193311796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217067162689895272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 9
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 3070482620530357932}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &227397394110893038
 GameObject:
   m_ObjectHideFlags: 0
@@ -42647,6 +42670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529351725469274615}
   - component: {fileID: 8688840374810910218}
+  - component: {fileID: 6948819996959674105}
   m_Layer: 0
   m_Name: R Hand
   m_TagString: Untagged
@@ -42692,6 +42716,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6948819996959674105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115939149395823733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 7
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 8688840374810910218}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &1120811635879146801
 GameObject:
   m_ObjectHideFlags: 0
@@ -48212,6 +48258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6783869950833720500}
   - component: {fileID: 904834343714664046}
+  - component: {fileID: 230825832714227819}
   m_Layer: 0
   m_Name: MP5_Mesh
   m_TagString: Untagged
@@ -48259,6 +48306,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &230825832714227819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355695221937457628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 904834343714664046}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &1375048937941444278
 GameObject:
   m_ObjectHideFlags: 0
@@ -114377,6 +114446,8 @@ GameObject:
   - component: {fileID: 797574676262330838}
   - component: {fileID: 964264076663477548}
   - component: {fileID: 1786589016116320224}
+  - component: {fileID: 978916459577974882}
+  - component: {fileID: 4876593889491321586}
   m_Layer: 0
   m_Name: MP5PrefabX
   m_TagString: Gun
@@ -114637,16 +114708,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59bcff0f66eb7045833666d2863b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
   handOnGun: {fileID: 896902184875226364}
   shootingMode: {fileID: 9193008475023174772}
   triggerControlRight: {fileID: 1351231325938354576}
   triggerControlLeft: {fileID: 1390922959424520264}
   magazineReceiver: {fileID: 6893826453604369350}
   boltControl: {fileID: 1341826085553378632}
-  xRGrabInteractable: {fileID: 5319715045901881715}
+  xRGrabIntractable: {fileID: 5319715045901881715}
   grabTransformer: {fileID: 737645243659624160}
-  secondAttachColider: {fileID: 6749212049586284719}
-  boltColider: {fileID: 7209593003279123317}
+  secondAttachCollider: {fileID: 6749212049586284719}
+  boltCollider: {fileID: 7209593003279123317}
   secondAttachPoint: {fileID: 2829922781520130850}
   recoil: {fileID: 904834343714664046}
   gunType: 2
@@ -114801,6 +114875,109 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &978916459577974882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242034614701616620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  _componentConfiguration: 0
+  _synchronizeParent: 0
+  _packing:
+    Position: 1
+    Rotation: 1
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _scaleThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 0
+  _enableNetworkLod: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+--- !u!114 &4876593889491321586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242034614701616620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 1203112359195426104}
+  - {fileID: 978916459577974882}
+  - {fileID: 230825832714227819}
+  - {fileID: 1859860255916450773}
+  - {fileID: 6784066203480335075}
+  - {fileID: 6516708553513493940}
+  - {fileID: 8429888121026667603}
+  - {fileID: 6948819996959674105}
+  - {fileID: 8217044863714463123}
+  - {fileID: 261551488193311796}
+  - {fileID: 5406507532912166459}
+  - {fileID: 4945723025988398423}
+  - {fileID: 927583152261838216}
+  <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
+  <NestedRootNetworkBehaviours>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: 0.057, y: 1.333, z: -0.129}
+    Rotation: {x: 0.025786668, y: 0.8157751, z: 0.006539138, w: 0.5777572}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isSpawnable: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  _enablePrediction: 0
+  _predictionType: 0
+  _graphicalObject: {fileID: 0}
+  _detachGraphicalObject: 0
+  _enableStateForwarding: 1
+  _networkTransform: {fileID: 0}
+  _ownerInterpolation: 1
+  _ownerSmoothedProperties: 255
+  _adaptiveInterpolation: 3
+  _spectatorSmoothedProperties: 255
+  _spectatorInterpolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  <PrefabId>k__BackingField: 1
+  <SpawnableCollectionId>k__BackingField: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 6845983780957522496
 --- !u!1 &4274532111167970886
 GameObject:
   m_ObjectHideFlags: 0
@@ -124855,6 +125032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1227162570397661132}
   - component: {fileID: 3435427192142907915}
+  - component: {fileID: 6516708553513493940}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -124899,6 +125077,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6516708553513493940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545891716769687899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 5
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 3435427192142907915}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &4551483800595266177
 GameObject:
   m_ObjectHideFlags: 0
@@ -186132,6 +186332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048682346432500181}
   - component: {fileID: 884450289893345104}
+  - component: {fileID: 4945723025988398423}
   m_Layer: 0
   m_Name: R Hand
   m_TagString: Untagged
@@ -186177,6 +186378,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4945723025988398423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752222209195394495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 11
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 884450289893345104}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &5752694822619485898
 GameObject:
   m_ObjectHideFlags: 0
@@ -196216,6 +196439,7 @@ GameObject:
   - component: {fileID: 531554483872503018}
   - component: {fileID: 494797601733268870}
   - component: {fileID: 1390922959424520264}
+  - component: {fileID: 5406507532912166459}
   m_Layer: 0
   m_Name: L Hand
   m_TagString: Untagged
@@ -196276,6 +196500,28 @@ MonoBehaviour:
   returnSpeed: 0.1
   shootingMode: {fileID: 9193008475023174772}
   triggerAnimator: {fileID: 3435427192142907915}
+--- !u!114 &5406507532912166459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938341885021538385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 10
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 494797601733268870}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &5940396926817035000
 GameObject:
   m_ObjectHideFlags: 0
@@ -206192,6 +206438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4868214237208290783}
   - component: {fileID: 3413127362163435330}
+  - component: {fileID: 927583152261838216}
   m_Layer: 0
   m_Name: L Hand
   m_TagString: Untagged
@@ -206237,6 +206484,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &927583152261838216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077067228952956228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 12
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 3413127362163435330}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &6107706155056702455
 GameObject:
   m_ObjectHideFlags: 0
@@ -237828,6 +238097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7510269962075012431}
   - component: {fileID: 3501029287217836734}
+  - component: {fileID: 8217044863714463123}
   m_Layer: 0
   m_Name: L Hand
   m_TagString: Untagged
@@ -237873,6 +238143,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8217044863714463123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017515559542069792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 8
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 3501029287217836734}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &7028997442476540929
 GameObject:
   m_ObjectHideFlags: 0
@@ -238602,6 +238894,7 @@ GameObject:
   - component: {fileID: 4699021444543454178}
   - component: {fileID: 2402282507320304866}
   - component: {fileID: 1804738627507129200}
+  - component: {fileID: 1859860255916450773}
   m_Layer: 0
   m_Name: MP5_Breechblock
   m_TagString: Untagged
@@ -238698,6 +238991,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1859860255916450773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392542507823638257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 1804738627507129200}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &7396656187497230370
 GameObject:
   m_ObjectHideFlags: 0
@@ -243785,6 +244100,7 @@ GameObject:
   - component: {fileID: 9193008475023174772}
   - component: {fileID: 6448710810488581348}
   - component: {fileID: 6965392456471892261}
+  - component: {fileID: 6784066203480335075}
   m_Layer: 0
   m_Name: ShootingMode
   m_TagString: Untagged
@@ -243940,6 +244256,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6784066203480335075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469127762650129293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 4
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 6448710810488581348}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &7488028058109134653
 GameObject:
   m_ObjectHideFlags: 0
@@ -268958,6 +269296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1548846111554809399}
   - component: {fileID: 1369256713492293804}
+  - component: {fileID: 8429888121026667603}
   m_Layer: 0
   m_Name: magazine
   m_TagString: Untagged
@@ -269003,6 +269342,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8429888121026667603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930274445982972663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 6
+  _addedNetworkObject: {fileID: 4876593889491321586}
+  _networkObjectCache: {fileID: 4876593889491321586}
+  IgnoredParameters: []
+  _animator: {fileID: 1369256713492293804}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &7934375600854692492
 GameObject:
   m_ObjectHideFlags: 0

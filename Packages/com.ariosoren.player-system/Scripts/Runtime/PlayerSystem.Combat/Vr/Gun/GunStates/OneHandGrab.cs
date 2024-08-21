@@ -13,10 +13,11 @@ public class OneHandGrab : IGunState
 
     public void Enter()
     {
-        gunController.FirstAttachColidersSetActive(false);
-        gunController.SecondAttachColiderSetActive(true);
-        gunController.BoltColiderSetActive(true);
+        gunController.FirstAttachCollidersSetActive(false);
+        gunController.SecondAttachColliderSetActive(true);
+        gunController.BoltColliderSetActive(true);
         gunController.SetDefaultSecondaryAttachTransform();
+        //TODO related to VR
         gunController.SetTwoHandRotationMode(XRGeneralGrabTransformer.TwoHandedRotationMode.FirstHandDirectedTowardsSecondHand);
         handOnGun.SetSecondHandToNormal();
         handOnGun.SetToSingleGrab(gunController.GetFirstSelectedHand());
@@ -35,5 +36,10 @@ public class OneHandGrab : IGunState
     public void ChangeTriggerMode(TriggerControl triggerHandControl)
     {
         
+    }
+    
+    public string GetNameId()
+    {
+        return "OneHandGrab";
     }
 }

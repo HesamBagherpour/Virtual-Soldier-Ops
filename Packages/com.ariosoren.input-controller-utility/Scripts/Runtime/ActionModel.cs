@@ -1,54 +1,56 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[Serializable]
-public class ActionModel
+namespace ArioSoren.InputControllerUtility
 {
-
-    [OnValueChanged("reference_OnValueChanged")]
-    public InputActionReference reference;
-
-
-    [DisableIf("isReferenceNotNull")]
-    [SerializeField] private string _actionName;
-
-    public string actionName => reference != null ? reference.name : _actionName;
-
-    [ShowIf("isReferenceNull")]
-    [SerializeField] private bool _isActive = true;
-
-    public bool isActive => reference != null ? reference.action.enabled : _isActive;
-
-    [ShowIf("isReferenceNull")]
-    [SerializeField] private InputAction _inputAction;
-
-    public InputAction inputAction => reference != null ? reference.action : _inputAction;
-
-    public UnityEvent<InputAction.CallbackContext> onAction;
-
-    private bool isReferenceNull()
+    [Serializable]
+    public class ActionModel
     {
-        return reference == null;
-    }
-    private bool isReferenceNotNull()
-    {
-        return reference != null;
-    }
 
-    public void reference_OnValueChanged()
-    {
-        if (reference != null)
+        [OnValueChanged("reference_OnValueChanged")]
+        public InputActionReference reference;
+
+
+        [DisableIf("isReferenceNotNull")]
+        [SerializeField] private string _actionName;
+
+        public string actionName => reference != null ? reference.name : _actionName;
+
+        [ShowIf("isReferenceNull")]
+        [SerializeField] private bool _isActive = true;
+
+        public bool isActive => reference != null ? reference.action.enabled : _isActive;
+
+        [ShowIf("isReferenceNull")]
+        [SerializeField] private InputAction _inputAction;
+
+        public InputAction inputAction => reference != null ? reference.action : _inputAction;
+
+        public UnityEvent<InputAction.CallbackContext> onAction;
+
+        private bool isReferenceNull()
         {
-            _actionName = reference.name;
+            return reference == null;
         }
-        else
+        private bool isReferenceNotNull()
         {
-            _actionName = "";
+            return reference != null;
         }
-    }
 
+        public void reference_OnValueChanged()
+        {
+            if (reference != null)
+            {
+                _actionName = reference.name;
+            }
+            else
+            {
+                _actionName = "";
+            }
+        }
+
+    }
 }

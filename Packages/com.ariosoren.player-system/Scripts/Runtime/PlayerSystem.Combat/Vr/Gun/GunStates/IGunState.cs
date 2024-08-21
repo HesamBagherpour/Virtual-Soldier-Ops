@@ -8,4 +8,6 @@ interface IGunState
     public virtual void ChangeTriggerMode(TriggerControl triggerControl) { }
 
     public virtual void Exit() { }
+
+    public abstract string GetNameId();
 }

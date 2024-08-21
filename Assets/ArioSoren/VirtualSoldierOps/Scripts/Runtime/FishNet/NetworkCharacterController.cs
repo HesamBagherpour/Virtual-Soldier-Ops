@@ -59,9 +59,10 @@ namespace ArioSoren.VirtualSoldierOps
 	            characterInputControllers.MainCamera.SetActive(true);
 	         
 	            characterInputControllers.XROrigin.SetActive(true);	 
-	            characterInputControllers.PlayerArmature.SetActive(true);
-	            characterInputControllers.LeftHand.SetActive(false);
-	            characterInputControllers.RightHand.SetActive(false);
+	            characterInputControllers.PlayerArmature.SetActive(false);
+                
+	            characterInputControllers.LeftHand.SetActive(true);
+	            characterInputControllers.RightHand.SetActive(true);
 	            
             }
         }

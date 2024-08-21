@@ -2,7 +2,8 @@
     "name": "ArioSoren.DocsGenerator.Editor.External",
     "rootNamespace": "ArioSoren.DocsGenerator.Editor.External",
     "references": [
-        "ArioSoren.DocsGenerator.Editor"
+        "ArioSoren.DocsGenerator.Editor",
+        "YamlDotNet"
     ],
     "includePlatforms": [
         "Editor"

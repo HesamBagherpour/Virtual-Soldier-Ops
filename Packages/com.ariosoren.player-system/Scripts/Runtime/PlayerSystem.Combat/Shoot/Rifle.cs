@@ -8,6 +8,7 @@ public class Rifle : Gun
     [SerializeField] private bool GunTriggered;
     //private int brustshotingCount = 0;
 
+    // @NetworkHint called form Triggered and update
     public override void DoAction()
     {
         //Debug.Log("DoAction");

@@ -13,13 +13,20 @@ public class Idle : IGunState
 
     public void Enter()
     {
-        gunController.FirstAttachColidersSetActive(true);
-        gunController.SecondAttachColiderSetActive(true);
-        gunController.BoltColiderSetActive(false);
+        gunController.FirstAttachCollidersSetActive(true);
+        gunController.SecondAttachColliderSetActive(true);
+        gunController.BoltColliderSetActive(false);
         gunController.SetDefaultSecondaryAttachTransform();
+        //TODO related to VR
         gunController.SetTwoHandRotationMode(XRGeneralGrabTransformer.TwoHandedRotationMode.FirstHandDirectedTowardsSecondHand);
         gunController.AllowTakeMagazine(true);
         handOnGun.SetSecondHandToNormal();
         handOnGun.SetToNoGrab();
     }
+
+    public string GetNameId()
+    {
+        return "Idle";
+    }
+
 }

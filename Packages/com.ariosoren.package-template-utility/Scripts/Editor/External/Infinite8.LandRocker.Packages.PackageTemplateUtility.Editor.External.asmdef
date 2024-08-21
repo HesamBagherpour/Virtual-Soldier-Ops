@@ -2,7 +2,10 @@
     "name": "ArioSoren.PackageTemplateUtility.Editor.External",
     "rootNamespace": "ArioSoren.PackageTemplateUtility.Editor.External",
     "references": [
-        "ArioSoren.PackageTemplateUtility.Editor"
+        "ArioSoren.PackageTemplateUtility.Editor",
+        "ArioSoren.DocsGenerator.Editor",
+        "ArioSoren.GeneralUtility",
+        "YamlDotNet"
     ],
     "includePlatforms": [
         "Editor"

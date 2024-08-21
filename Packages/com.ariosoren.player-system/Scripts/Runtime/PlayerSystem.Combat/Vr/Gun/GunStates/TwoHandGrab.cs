@@ -11,9 +11,9 @@ public class TwoHandGrab : IGunState
 
     public void Enter()
     {
-        gunController.FirstAttachColidersSetActive(false);
-        gunController.SecondAttachColiderSetActive(false);
-        gunController.BoltColiderSetActive(true);
+        gunController.FirstAttachCollidersSetActive(false);
+        gunController.SecondAttachColliderSetActive(false);
+        gunController.BoltColliderSetActive(true);
         handOnGun.SetToDoubleGrab(gunController.GetFirstSelectedHand());
     }
 
@@ -35,5 +35,10 @@ public class TwoHandGrab : IGunState
     public void ChangeTriggerMode(TriggerControl triggerHandControl)
     {
 
+    }
+    
+    public string GetNameId()
+    {
+        return "TwoHandGrab";
     }
 }

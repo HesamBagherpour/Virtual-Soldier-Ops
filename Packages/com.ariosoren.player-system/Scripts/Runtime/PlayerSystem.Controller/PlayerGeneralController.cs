@@ -11,7 +11,6 @@ namespace ArioSoren.PlayerSystem.Controller
         {
         
         }
-
         // Update is called once per frame
         void Update()
         {

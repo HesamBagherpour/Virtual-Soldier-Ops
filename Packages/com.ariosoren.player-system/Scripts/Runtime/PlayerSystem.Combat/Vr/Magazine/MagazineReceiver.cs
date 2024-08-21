@@ -107,6 +107,7 @@ public class MagazineReceiver : MonoBehaviour
         AllowSocketSelect(true);
     }
 
+    // @NetworkHint just set config for interact objects -> should leave run on owner side yet
     public void AllowSocketSelect(bool value)
     {
         if (value)

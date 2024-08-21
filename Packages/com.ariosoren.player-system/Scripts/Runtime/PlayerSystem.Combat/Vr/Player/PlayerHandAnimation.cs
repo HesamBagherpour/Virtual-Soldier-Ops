@@ -1,136 +1,233 @@
 using System.Linq;
+using ArioSoren.GeneralUtility;
+using ArioSoren.InputControllerUtility;
+using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerHandAnimation : MonoBehaviour
+public class PlayerHandAnimation : NetworkBehaviour
 {
-    [SerializeField] PlayerHand hand;
-    [SerializeField] Transform controller;
+    [SerializeField] private PlayerHand hand;
+    [SerializeField] private Transform controller;
 
-    Animator handDeformAnimator;
-    Animator directInteractorAnimator;
+    private Animator _handDeformAnimator;
+    private Animator _directInteractionAnimator;
 
-    GameObject handGameObject;
-    bool isActive = true;
-    bool Isis = false;
+    private GameObject _handGameObject;
+    
+    //@NetworkHint: Just used and set on owner client - player input
+    private bool _isActive = true;
+    private bool _playRecoilToggle;
 
-    private InputControllerComp inputControl;
+    private InputControllerComp _inputControl;
+    private static readonly int Grip = Animator.StringToHash("Grip");
+    private static readonly int Pinch = Animator.StringToHash("Pinch");
 
 
-    void Awake()
+    #region Shared
+
+    public override void OnStartNetwork()
     {
-        var handIndex = Enumerable.Range(0, controller.childCount).Where(x => controller.GetChild(x).tag == "Hand").First();
-        handGameObject = controller.GetChild(handIndex).gameObject;
-        handDeformAnimator = handGameObject.GetComponent<Animator>();
-        directInteractorAnimator = GetComponent<Animator>();
-        inputControl = gameObject.GetComponent<InputControllerComp>();
+        base.OnStartNetwork();
 
-        //handGameObject = transform.GetChild(0).gameObject;
-        //animator= handGameObject.GetComponent<Animator>();
-
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).performed += OnGripping;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled += OnGripRelease;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed += OnPinching;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled += OnPinchRelease;
-    }
-    void OnDestroy()
-    {
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started -= OnGripping;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  -= OnGripRelease;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed -= OnPinching;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled -= OnPinchRelease;
-  
+        // All Clients and Server
     }
 
-    void OnGripping(InputAction.CallbackContext obj)
+    #endregion
+
+    #region Server
+
+    public override void OnStartServer()
     {
-        if (isActive == true)
-            handDeformAnimator.SetFloat("Grip", obj.ReadValue<float>());
+        base.OnStartServer();
     }
 
-    void OnGripRelease(InputAction.CallbackContext obj)
-    {
-        GripRelease();
-    }
+    #endregion
 
-    void OnPinching(InputAction.CallbackContext obj)
-    {
-        if (isActive == true)
-            handDeformAnimator.SetFloat("Pinch", obj.ReadValue<float>());
-    }
+    #region Client
 
-    void OnPinchRelease(InputAction.CallbackContext obj)
+    public override void OnStartClient()
     {
-        PinchRelease();
-    }
-
-    void GripRelease()
-    {
-        handDeformAnimator.SetFloat("Grip", 0f);
-    }
-    void PinchRelease()
-    {
-        handDeformAnimator.SetFloat("Pinch", 0f);
-    }
-
-    public void Active()
-    {
-        isActive = true;
-    }
-    public void Deactive()
-    {
-        isActive = false;
-        GripRelease();
-        PinchRelease();
-    }
-
-    public void PlayRecoil()
-    {
-        if (Isis)
+        base.OnStartClient();
+        if (IsOwner)
         {
-            directInteractorAnimator.CrossFade("Recoil2", 0.1f);
-            Isis = false;
+            ChangePlayerInputSubscription(true);
         }
         else
         {
-            directInteractorAnimator.CrossFade("Recoil1", 0.1f);
-            Isis = true;
+            // All Remote Clients
+        }
+
+        // All Client
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        if (IsOwner)
+        {
+            ChangePlayerInputSubscription(false);
+        }
+        else
+        {
+            // All Remote Clients
+        }
+
+        // All Client
+    }
+
+    #endregion
+
+
+    private void ChangePlayerInputSubscription(bool state)
+    {
+        if (state)
+        {
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).performed += OnGripping;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled += OnGripRelease;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed += OnPinching;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled += OnPinchRelease;
+        }
+        else
+        {
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started -= OnGripping;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled -= OnGripRelease;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed -= OnPinching;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right
+                ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName()
+                : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled -= OnPinchRelease;
+
+            //TODO if 'this gameObject' possible will destroy -> should unsubscribe input in OnDestroy method too 
+        }
+    }
+    
+
+    protected void Awake()
+    {
+        var handIndex = Enumerable.Range(0, controller.childCount)
+            .First(x => controller.GetChild(x).CompareTag("Hand"));
+        _handGameObject = controller.GetChild(handIndex).gameObject;
+        _handDeformAnimator = _handGameObject.GetComponent<Animator>();
+        _directInteractionAnimator = GetComponent<Animator>();
+        _inputControl = gameObject.GetComponent<InputControllerComp>();
+    }
+
+    //TODO player input - animation sync - client 
+    private void OnGripping(InputAction.CallbackContext obj)
+    {
+        if (_isActive)
+            _handDeformAnimator.SetFloat(Grip, obj.ReadValue<float>());
+    }
+
+    //TODO player input - animation sync - client 
+    private void OnGripRelease(InputAction.CallbackContext obj)
+    {
+        GripRelease();
+    }
+
+    //TODO player input - animation sync - client 
+    private void OnPinching(InputAction.CallbackContext obj)
+    {
+        if (_isActive)
+            _handDeformAnimator.SetFloat(Pinch, obj.ReadValue<float>());
+    }
+
+    //TODO player input - animation sync - client 
+    private void OnPinchRelease(InputAction.CallbackContext obj)
+    {
+        PinchRelease();
+    }
+
+    private void GripRelease()
+    {
+        _handDeformAnimator.SetFloat(Grip, 0f);
+    }
+
+    private void PinchRelease()
+    {
+        _handDeformAnimator.SetFloat(Pinch, 0f);
+    }
+
+    // @NetworkHint: called by input action 
+    public void Active()
+    {
+        _isActive = true;
+    }
+
+    // @NetworkHint: called by input action 
+    public void Deactivate()
+    {
+        _isActive = false;
+        GripRelease();
+        PinchRelease();
+    }
+
+    //TODO animation sync
+    public void PlayRecoil()
+    {
+        if (_playRecoilToggle)
+        {
+            _directInteractionAnimator.CrossFade("Recoil2", 0.1f);
+            _playRecoilToggle = false;
+        }
+        else
+        {
+            _directInteractionAnimator.CrossFade("Recoil1", 0.1f);
+            _playRecoilToggle = true;
         }
     }
 
 
-
-
-    
-
-
-
 ////// Generated Code [Start] --- InputController inspector -- Don't change this block /////
-#region InputActionName
-public enum InputActionName
-{
-    [EnumNameAttribute("XRI LeftHand Interaction/Switch Down")]
-    XRI_LeftHand_Interaction_Switch_Down,
-    [EnumNameAttribute("XRI LeftHand/Position")]
-    XRI_LeftHand_Position,
-    [EnumNameAttribute("XRI LeftHand Interaction/Select Value")]
-    XRI_LeftHand_Interaction_Select_Value,
-    [EnumNameAttribute("XRI LeftHand Interaction/Activate Value")]
-    XRI_LeftHand_Interaction_Activate_Value,
-    [EnumNameAttribute("XRI RightHand/Position")]
-    XRI_RightHand_Position,
-    [EnumNameAttribute("XRI RightHand Interaction/Select Value")]
-    XRI_RightHand_Interaction_Select_Value,
-    [EnumNameAttribute("XRI RightHand Interaction/Activate Value")]
-    XRI_RightHand_Interaction_Activate_Value,
-    [EnumNameAttribute("XRI RightHand Interaction/Switch Up")]
-    XRI_RightHand_Interaction_Switch_Up,
-    [EnumNameAttribute("XRI RightHand Interaction/Switch Down")]
-    XRI_RightHand_Interaction_Switch_Down,
-    [EnumNameAttribute("XRI LeftHand Interaction/Switch Up")]
-    XRI_LeftHand_Interaction_Switch_Up,
-}
-#endregion InputActionName
-////// Generated Code [End] --- InputController inspector -- Don't change this block /////
 
+    #region InputActionName
+
+    public enum InputActionName
+    {
+        [EnumName("XRI LeftHand Interaction/Switch Down")]
+        XRI_LeftHand_Interaction_Switch_Down,
+
+        [EnumName("XRI LeftHand/Position")] XRI_LeftHand_Position,
+
+        [EnumName("XRI LeftHand Interaction/Select Value")]
+        XRI_LeftHand_Interaction_Select_Value,
+
+        [EnumName("XRI LeftHand Interaction/Activate Value")]
+        XRI_LeftHand_Interaction_Activate_Value,
+
+        [EnumName("XRI RightHand/Position")] XRI_RightHand_Position,
+
+        [EnumName("XRI RightHand Interaction/Select Value")]
+        XRI_RightHand_Interaction_Select_Value,
+
+        [EnumName("XRI RightHand Interaction/Activate Value")]
+        XRI_RightHand_Interaction_Activate_Value,
+
+        [EnumName("XRI RightHand Interaction/Switch Up")]
+        XRI_RightHand_Interaction_Switch_Up,
+
+        [EnumName("XRI RightHand Interaction/Switch Down")]
+        XRI_RightHand_Interaction_Switch_Down,
+
+        [EnumName("XRI LeftHand Interaction/Switch Up")]
+        XRI_LeftHand_Interaction_Switch_Up,
+    }
+
+    #endregion InputActionName
+
+////// Generated Code [End] --- InputController inspector -- Don't change this block /////
 }

@@ -1,64 +1,129 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using FishNet.Object;
+using FishNet.Transporting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
-public class GunController : MonoBehaviour
+public class GunController : NetworkBehaviour
 {
-    [Header("Gun Components")]
-    [SerializeField] HandsOnGunControl handOnGun;
-    [SerializeField] ShootingModeControl shootingMode;
-    [SerializeField] TriggerControl triggerControlRight;
-    [SerializeField] TriggerControl triggerControlLeft;
-    [SerializeField] MagazineReceiver magazineReceiver;
-    [SerializeField] BoltControl boltControl;
+    [Header("Gun Components")] [SerializeField]
+    private HandsOnGunControl handOnGun;
 
-    [Header("Xr Components")]
-    [SerializeField] XRGrabInteractable xRGrabInteractable;
+    [SerializeField] private ShootingModeControl shootingMode;
+    [SerializeField] private TriggerControl triggerControlRight;
+    [SerializeField] private TriggerControl triggerControlLeft;
+    [SerializeField] private MagazineReceiver magazineReceiver;
+    [SerializeField] private BoltControl boltControl;
+
+    [Header("Xr Components")] [SerializeField]
+    private XRGrabInteractable xRGrabIntractable;
+
     [SerializeField] XRGeneralGrabTransformer grabTransformer;
 
-    List<GameObject> firstAttachColliders = new List<GameObject>();
-    [Header("Coliders")]
-    [SerializeField] Collider secondAttachColider;
-    [SerializeField] Collider boltColider;
+    private List<GameObject> _firstAttachColliders;
+    [Header("Colliders")] [SerializeField] private Collider secondAttachCollider;
+    [SerializeField] private Collider boltCollider;
 
-    [Header("AttachPoints")]
-    [SerializeField] Transform secondAttachPoint;
+    [Header("AttachPoints")] [SerializeField]
+    private Transform secondAttachPoint;
 
-    [Header("Animator")]
-    [SerializeField] Animator recoil;
+    [Header("Animator")] [SerializeField] private Animator recoil;
 
-    [Header("GunType")]
-    [SerializeField] GunType gunType;
+    [Header("GunType")] [SerializeField] private GunType gunType;
 
-    //[SerializeField] XRDirectInteractor xRDirectInteractor;
+    private IGunState _gunState;
+    private Idle _idle;
+    private OneHandGrab _oneHandGrab;
+    private TwoHandGrab _twoHandGrab;
 
-    IGunState gunState;
-    Idle idle = new Idle();
-    OneHandGrab oneHandGrab = new OneHandGrab();
-    TwoHandGrab twoHandGrab = new TwoHandGrab();
+    private PlayerHandController _firstSelectingHand;
 
-    PlayerHandController firstSelectingHand;
+    #region Shared
 
-    void Start()
+    public override void OnStartNetwork()
     {
-        xRGrabInteractable.firstSelectEntered.AddListener(OnFirstSelectEntered);
-        xRGrabInteractable.selectEntered.AddListener(OnSelectEntered);
-        xRGrabInteractable.selectExited.AddListener(OnSelectExited);
+        base.OnStartNetwork();
 
-        //StartCoroutine(SelectEnterCoroutine());
-        GetFirstAttachColiders();
-        MoveToState(idle);
+        // All Clients and Server
+
+        GetFirstAttachColliders();
+        MoveToState(_idle);
     }
 
-    /*IEnumerator SelectEnterCoroutine()
-    {
-        yield return new WaitForSeconds(5);
-        GetInteractionManager().SelectEnter(xRDirectInteractor, xRGrabInteractable);
-    }*/
+    #endregion
 
-    public void AddGunReactionsToTrigger(Action startTrigger,Action endTrigger)
+    #region Server
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+    }
+
+    #endregion
+
+    #region Client
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (base.IsOwner)
+        {
+            ChangePlayerInputSubscription(true);
+        }
+        else
+        {
+            // All Remote Clients
+        }
+
+        // All Client
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        if (base.IsOwner)
+        {
+            ChangePlayerInputSubscription(false);
+        }
+        else
+        {
+            // All Remote Clients
+        }
+
+        // All Client
+    }
+
+    #endregion
+
+
+    #region Logics
+
+    private void ChangePlayerInputSubscription(bool state)
+    {
+        if (state)
+        {
+            xRGrabIntractable.firstSelectEntered.AddListener(OnFirstSelectEntered);
+            xRGrabIntractable.selectEntered.AddListener(OnSelectEntered);
+            xRGrabIntractable.selectExited.AddListener(OnSelectExited);
+        }
+        else
+        {
+            xRGrabIntractable.firstSelectEntered.RemoveListener(OnFirstSelectEntered);
+            xRGrabIntractable.selectEntered.RemoveListener(OnSelectEntered);
+            xRGrabIntractable.selectExited.RemoveListener(OnSelectExited);
+
+            //TODO if 'this gameObject' possible will destroy -> should unsubscribe input in OnDestroy method too 
+        }
+    }
+
+    #endregion
+
+
+    // @NetworkHint called on rifle's init <- start method
+    public void AddGunReactionsToTrigger(Action startTrigger, Action endTrigger)
     {
         triggerControlLeft.OnTriggerStart = startTrigger;
         triggerControlRight.OnTriggerStart = startTrigger;
@@ -66,73 +131,131 @@ public class GunController : MonoBehaviour
         triggerControlRight.OnTriggerEnd = endTrigger;
     }
 
-    public void CancelShootOnGunReleased()
+    // @NetworkHint called from player input
+    private void CancelShootOnGunReleased()
     {
-        if(GetSelectingInteractors().Count <= 0)
+        if (GetSelectingInteractors().Count <= 0)
         {
             GetFirstActiveHand().OnActionCancle();
         }
     }
 
-    void OnDestroy()
+    private void GetFirstAttachColliders()
     {
-        xRGrabInteractable.firstSelectEntered.RemoveListener(OnFirstSelectEntered);
-        xRGrabInteractable.selectEntered.RemoveListener(OnSelectEntered);
-        xRGrabInteractable.selectExited.RemoveListener(OnSelectExited);
+        foreach (var colliderObj in xRGrabIntractable.colliders
+                     .Where(colliderObj => colliderObj != secondAttachCollider
+                                           && colliderObj != boltCollider))
+            _firstAttachColliders.Add(colliderObj.gameObject);
     }
 
-    void GetFirstAttachColiders()
+    #region MoveToState
+    
+    private void MoveToState(IGunState state)
     {
-        foreach (var colider in xRGrabInteractable.colliders)
-            if(colider != secondAttachColider && colider != boltColider)
-                firstAttachColliders.Add(colider.gameObject);
+        _gunState?.Exit();
+        _gunState = state;
+        _gunState.init(this, handOnGun);
+        _gunState.Enter();
+        RpcSrv_MoveToState(state.GetNameId());
     }
 
-    void MoveToState(IGunState state)
+    [ServerRpc]
+    private void RpcSrv_MoveToState(string stateNameId, Channel channel = Channel.Reliable)
     {
-        if(gunState != null)
-            gunState.Exit();
-
-        gunState = state;
-        gunState.init(this, handOnGun);
-        gunState.Enter();
+        RpcObs_MoveToState(stateNameId);
+    }
+    [ObserversRpc(RunLocally = true, BufferLast = true,ExcludeOwner = true)]
+    private void RpcObs_MoveToState(string stateNameId, Channel channel = Channel.Reliable)
+    {
+        _gunState?.Exit();
+        _gunState = GetStateByNameId(stateNameId);
+        _gunState?.init(this, handOnGun);
+        _gunState?.Enter();
     }
 
+    private IGunState GetStateByNameId(string nameId)
+    {
+        switch (nameId)
+        {
+            case "Idle":
+                return _idle;
+            case "OneHandGrab":
+                return _oneHandGrab;
+            case "TwoHandGrab":
+                return _twoHandGrab;
+            default: return null;
+        }
+    }
+
+    #endregion
+
+    
     public bool IsGunReadyToShoot()
     {
-        return gunState!= idle;
+        return _gunState != _idle;
     }
 
-    List<IXRSelectInteractor> GetSelectingInteractors() { return xRGrabInteractable.interactorsSelecting; }
-    IXRSelectInteractor GetFirstSelectingInteractor() { return xRGrabInteractable.firstInteractorSelecting; }
-    XRInteractionManager GetInteractionManager() { return xRGrabInteractable.interactionManager; }
+    private List<IXRSelectInteractor> GetSelectingInteractors()
+    {
+        return xRGrabIntractable.interactorsSelecting;
+    }
 
-    void ChangeSelection()
+    private IXRSelectInteractor GetFirstSelectingInteractor()
+    {
+        return xRGrabIntractable.firstInteractorSelecting;
+    }
+
+    private XRInteractionManager GetInteractionManager()
+    {
+        return xRGrabIntractable.interactionManager;
+    }
+
+    #region ChangeSelection
+    
+    // @NetworkHint Called from player input
+    private void ChangeSelection()
     {
         switch (GetSelectingInteractors().Count)
         {
             case 0:
-                MoveToState(idle);
+                MoveToState(_idle);
                 break;
             case 1:
-                MoveToState(oneHandGrab);
+                MoveToState(_oneHandGrab);
                 break;
             case 2:
-                MoveToState(twoHandGrab);
+                MoveToState(_twoHandGrab);
                 break;
         }
 
-        magazineReceiver.AllowSocketSelect(gunState != idle);
+        magazineReceiver.AllowSocketSelect(_gunState != _idle);
+        boltControl.OnGunStateChnged();
+        RpcSrv_ChangeSelection(_gunState != _idle);
+    }
+
+    [ServerRpc]
+    private void RpcSrv_ChangeSelection(bool isAllowSocketSelect, Channel channel = Channel.Reliable)
+    {
+        RpcObs_ChangeSelection(isAllowSocketSelect);
+    }
+    
+    [ObserversRpc(RunLocally = true,ExcludeOwner = true)]
+    private void RpcObs_ChangeSelection(bool isAllowSocketSelect, Channel channel = Channel.Reliable)
+    {
+        // magazineReceiver.AllowSocketSelect(isAllowSocketSelect);
         boltControl.OnGunStateChnged();
     }
+    
+    #endregion
 
     public bool IsGrabbed()
     {
-        return gunState != idle;
+        return _gunState != _idle;
     }
+
     public bool IsInTwoHandGrab()
     {
-        return gunState == twoHandGrab;
+        return _gunState == _twoHandGrab;
     }
 
     public void AllowTakeMagazine(bool value)
@@ -140,112 +263,129 @@ public class GunController : MonoBehaviour
         magazineReceiver.AllowSelectMagazine(value);
     }
 
+    // TODO @Network VR -> should just run on owner
     public void SetTwoHandRotationMode(XRGeneralGrabTransformer.TwoHandedRotationMode rotationMode)
     {
-        if(gunType != GunType.Pistol)
+        if(!IsOwner) return;
+        if (gunType != GunType.Pistol)
             grabTransformer.allowTwoHandedRotation = rotationMode;
     }
 
-    public void SetSecondaryAttachTransform(Transform transform)
+    // TODO @Network VR -> should just run on owner
+    public void SetSecondaryAttachTransform(Transform transformParam)
     {
-        xRGrabInteractable.secondaryAttachTransform = transform;
+        if(!IsOwner) return;
+        xRGrabIntractable.secondaryAttachTransform = transformParam;
     }
+
+    // TODO @Network check VR -> should just run on owner
     public void SetDefaultSecondaryAttachTransform()
     {
-        xRGrabInteractable.secondaryAttachTransform = secondAttachPoint;
+        if(!IsOwner) return;
+        xRGrabIntractable.secondaryAttachTransform = secondAttachPoint;
     }
 
+    // @NetworkHint called from player input
+    // TODO Network sync -> values
     public void TriggerStay(float value, PlayerHand hand)
     {
-        if(firstSelectingHand.Hand == hand)
-            gunState.TriggerStay(value, GetFirstActiveHand());
-    }
-    public void TriggerCancel(PlayerHand hand)
-    {
-        if(firstSelectingHand.Hand == hand)
-            gunState.TriggerCancel(GetFirstActiveHand());
+        if (_firstSelectingHand.Hand == hand)
+            _gunState.TriggerStay(value, GetFirstActiveHand());
     }
 
+    // @NetworkHint called from player input
+    // TODO Network sync -> values
+    public void TriggerCancel(PlayerHand hand)
+    {
+        if (_firstSelectingHand.Hand == hand)
+            _gunState.TriggerCancel(GetFirstActiveHand());
+    }
+
+    // @NetworkHint called from player input
+    // TODO Network sync -> values
     public void PrimaryButtonPressed(PlayerHand hand, ChangeModeDirection direction)
     {
-        if(firstSelectingHand.Hand == hand)
+        if (_firstSelectingHand.Hand == hand)
             shootingMode.ChangeMode(direction);
     }
 
+    // @NetworkHint called from player input
+    // TODO Network sync -> values
     public void SecondaryButtonPressed(PlayerHand hand, ChangeModeDirection direction)
     {
-        if(gunType == GunType.Rifle)
+        switch (gunType)
         {
-            if(firstSelectingHand.Hand == hand)
-                shootingMode.ChangeMode(direction);
-        }
-        else if(gunType == GunType.Pistol)
-        {
-            magazineReceiver.ForceRelease();
+            case GunType.Rifle:
+            {
+                if (_firstSelectingHand.Hand == hand)
+                    shootingMode.ChangeMode(direction);
+                break;
+            }
+            case GunType.Pistol:
+                magazineReceiver.ForceRelease();
+                break;
         }
     }
-
+    // @NetworkHint called form Shoot -> this just set animator -> not need sync
     public void Recoil()
     {
-        if(gunState != idle)
-        {
-            string animation = gunState == oneHandGrab ? "onehand" : "twohand";
-            recoil.CrossFade(animation,0.15f);
-        }
+        if (_gunState == _idle) return;
+        var animationVar = _gunState == _oneHandGrab ? "onehand" : "twohand";
+        recoil.CrossFade(animationVar, 0.15f);
     }
 
-    internal TriggerControl GetFirstActiveHand()
+    private TriggerControl GetFirstActiveHand()
     {
-        if(triggerControlRight.gameObject.activeSelf)
+        if (triggerControlRight.gameObject.activeSelf)
             return triggerControlRight;
-        else if(triggerControlLeft.gameObject.activeSelf)
-            return triggerControlLeft;
-        else return null;
+        
+        return triggerControlLeft.gameObject.activeSelf ? triggerControlLeft : null;
     }
 
-    internal void FirstAttachColidersSetActive(bool value)
-    {    
-        foreach (var colider in firstAttachColliders)
-            if (colider.activeSelf != value)
-                colider.SetActive(value);
-    }
-    internal void SecondAttachColiderSetActive(bool value)
+    internal void FirstAttachCollidersSetActive(bool value)
     {
-        if (secondAttachColider.gameObject.activeSelf != value)
-            secondAttachColider.gameObject.SetActive(value);
+        foreach (var colliderItem in _firstAttachColliders.Where(colliderItem => colliderItem.activeSelf != value))
+            colliderItem.SetActive(value);
     }
-    internal void BoltColiderSetActive(bool value)
+
+    internal void SecondAttachColliderSetActive(bool value)
     {
-        if (boltColider.enabled != value)
-            boltColider.enabled = value;
+        if (secondAttachCollider.gameObject.activeSelf != value)
+            secondAttachCollider.gameObject.SetActive(value);
+    }
+
+    internal void BoltColliderSetActive(bool value)
+    {
+        if (boltCollider.enabled != value)
+            boltCollider.enabled = value;
     }
 
     internal PlayerHand GetFirstSelectedHand()
     {
-        return firstSelectingHand.Hand;
+        return _firstSelectingHand.Hand;
     }
 
-    void OnFirstSelectEntered(SelectEnterEventArgs eventArgs)
+    private void OnFirstSelectEntered(SelectEnterEventArgs eventArgs)
     {
         var playerHandController = GetFirstSelectingInteractor().transform.GetComponent<PlayerHandController>();
-        firstSelectingHand = playerHandController;
+        _firstSelectingHand = playerHandController;
     }
 
-    void OnSelectEntered(SelectEnterEventArgs eventArgs)
+    private void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
         ChangeSelection();
     }
 
-    void OnSelectExited(SelectExitEventArgs eventArgs)
+    private void OnSelectExited(SelectExitEventArgs eventArgs)
     {
         CancelShootOnGunReleased();
         CancelSelectionsOnFirstSelectExit(eventArgs);
         ChangeSelection();
     }
 
-    void CancelSelectionsOnFirstSelectExit(SelectExitEventArgs args)
+    private void CancelSelectionsOnFirstSelectExit(SelectExitEventArgs args)
     {
-        if(!GetFirstSelectingInteractor().hasSelection)
+        if (!GetFirstSelectingInteractor().hasSelection)
             GetInteractionManager().CancelInteractableSelection(args.interactableObject);
     }
 }

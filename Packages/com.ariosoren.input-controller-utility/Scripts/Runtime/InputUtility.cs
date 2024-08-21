@@ -1,14 +1,17 @@
 ﻿using UnityEngine.InputSystem;
 
-public static class InputUtility
+namespace ArioSoren.InputControllerUtility
 {
-    public static InputAction CreateInputAction(InputKeys inputKeys)
+    public static class InputUtility
     {
-        InputAction inputAction = new InputAction(inputKeys.actionName);
-        foreach (string item in inputKeys.keys)
+        public static InputAction CreateInputAction(InputKeys inputKeys)
         {
-            inputAction.AddBinding(item);
+            InputAction inputAction = new InputAction(inputKeys.actionName);
+            foreach (string item in inputKeys.keys)
+            {
+                inputAction.AddBinding(item);
+            }
+            return inputAction;
         }
-        return inputAction;
     }
 }
