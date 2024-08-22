@@ -145,7 +145,6 @@ namespace RootMotion.FinalIK {
 			arm.Write (ref positions, ref rotations);
 			
 			shoulder.transform.rotation = rotations [2];
-			upperArm.transform.rotation = rotations [3];
 			forearm.transform.rotation = rotations [4];
 			hand.transform.rotation = rotations [5];
 
