@@ -23,11 +23,13 @@ public class OneHandGrab : IGunState
         handOnGun.SetToSingleGrab(gunController.GetFirstSelectedHand());
     }
 
+    // @NetworkHint called from player input
     public void TriggerStay(float value, TriggerControl triggerHandControl)
     {
         triggerHandControl.OnActionStay(value);
     }
 
+    // @NetworkHint called from player input
     public void TriggerCancel(TriggerControl triggerHandControl)
     {
         triggerHandControl.OnActionCancle();

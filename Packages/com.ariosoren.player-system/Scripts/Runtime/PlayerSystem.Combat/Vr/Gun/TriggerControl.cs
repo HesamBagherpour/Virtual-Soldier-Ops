@@ -20,6 +20,7 @@ public class TriggerControl : MonoBehaviour
         fingerAnimator = GetComponent<Animator>();
     }
 
+    // @NetworkHint called from player input
     public void OnActionStay(float value)
     {
         fingerAnimator.SetFloat("TriggerValue", value);
@@ -39,6 +40,7 @@ public class TriggerControl : MonoBehaviour
         }
     }
 
+    // @NetworkHint called from player input
     public void OnActionCancle()
     {
         

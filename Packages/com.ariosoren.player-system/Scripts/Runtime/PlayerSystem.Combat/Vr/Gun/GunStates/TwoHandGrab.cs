@@ -22,11 +22,13 @@ public class TwoHandGrab : IGunState
         handOnGun.SetSecondHandToNormal();
     }
 
+    // @NetworkHint called from player input
     public void TriggerStay(float value, TriggerControl triggerHandControl)
     {
         triggerHandControl.OnActionStay(value);
     }
 
+    // @NetworkHint called from player input
     public void TriggerCancel(TriggerControl triggerHandControl)
     {
         triggerHandControl.OnActionCancle();
