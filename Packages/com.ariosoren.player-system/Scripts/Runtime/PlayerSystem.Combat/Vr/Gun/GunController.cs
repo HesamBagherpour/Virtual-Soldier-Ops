@@ -49,8 +49,6 @@ public class GunController : NetworkBehaviour
 
         // All Clients and Server
 
-        GetFirstAttachColliders();
-        MoveToState(_idle);
     }
 
     #endregion
@@ -72,6 +70,8 @@ public class GunController : NetworkBehaviour
         if (base.IsOwner)
         {
             ChangePlayerInputSubscription(true);
+            GetFirstAttachColliders();
+            MoveToState(_idle);
         }
         else
         {
@@ -258,7 +258,7 @@ public class GunController : NetworkBehaviour
         return _gunState == _twoHandGrab;
     }
 
-    public void AllowTakeMagazine(bool value)
+    public void  AllowTakeMagazine(bool value)
     {
         magazineReceiver.AllowSelectMagazine(value);
     }

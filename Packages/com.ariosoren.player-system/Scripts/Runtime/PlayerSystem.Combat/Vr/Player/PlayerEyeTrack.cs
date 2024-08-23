@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
+
+// TODO @Network This can be disabled on a remote or server
+// This is the handle UI interaction ray interactor just
 public class PlayerEyeTrack : MonoBehaviour
 {
     [Header("Head Gaze Interactor")]

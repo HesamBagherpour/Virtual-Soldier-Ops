@@ -5,6 +5,9 @@ using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+// TODO @Network This can be disabled on a remote or server
+// This is the handle animator state
 public class PlayerHandAnimation : NetworkBehaviour
 {
     [SerializeField] private PlayerHand hand;
@@ -23,26 +26,7 @@ public class PlayerHandAnimation : NetworkBehaviour
     private static readonly int Grip = Animator.StringToHash("Grip");
     private static readonly int Pinch = Animator.StringToHash("Pinch");
 
-
-    #region Shared
-
-    public override void OnStartNetwork()
-    {
-        base.OnStartNetwork();
-
-        // All Clients and Server
-    }
-
-    #endregion
-
-    #region Server
-
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-    }
-
-    #endregion
+    
 
     #region Client
 

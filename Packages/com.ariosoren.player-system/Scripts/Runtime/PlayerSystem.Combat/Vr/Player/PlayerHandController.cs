@@ -12,77 +12,113 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerHandController : NetworkBehaviour
 {
-    [SerializeField] PlayerHand hand;
-    public PlayerHand Hand { get { return hand; } }
-    [SerializeField] GameObject handGameObject;
-    [SerializeField] Transform controller;
+    [SerializeField] private PlayerHand hand;
+    public PlayerHand Hand => hand;
+    [SerializeField] private GameObject handGameObject;
+    [SerializeField] private Transform controller;
 
     [Header("Inputs")]
-    [SerializeField, Range(0, 1)] float pressureSensitivity = 0.5f;
+    [SerializeField, Range(0, 1)]
+    private float pressureSensitivity = 0.5f;
 
-    PlayerHandAnimation handAnimation;
+    private PlayerHandAnimation _handAnimation;
 
-    XRDirectInteractor interactor;
-    Vector3 OldHandPosition;
-    float handPositionFloat;
+    private XRDirectInteractor _interactor;
+    private Vector3 _oldHandPosition;
+    private float _handPositionFloat;
 
     //PlayerHandAnimation handAnimation;
-    GunController gunController;
-    BoltControl boltControl;
+    private GunController _gunController;
+    private BoltControl _boltControl;
 
     public event Action OnSelectChange;
-    private InputControllerComp inputControl;
+    private InputControllerComp _inputControl;
 
-    void Awake(){
-        interactor = GetComponent<XRDirectInteractor>();
-        handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
-        inputControl = gameObject.GetComponent<InputControllerComp>();
+    private void Awake(){
+        _interactor = GetComponent<XRDirectInteractor>();
+        _handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
+        _inputControl = gameObject.GetComponent<InputControllerComp>();
     }
 
-    void Start()
-    {
-        // interactor = GetComponent<XRDirectInteractor>();
-        // handAnimation = gameObject.GetComponent<PlayerHandAnimation>();
-
-        interactor.selectEntered.AddListener(OnSelectEntered);
-        interactor.selectExited.AddListener(OnSelectExited);
-
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started += TakeAction;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  += ReleaseAction;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed += TriggerStay;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled += TriggerCancel;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started += PrimaryButtonPressed;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started += SecondaryButtonPressed;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed += HandPositionInput;
     
-    }
-    void OnDestroy()
+    public override void OnStartClient()
     {
-        interactor.selectEntered.RemoveListener(OnSelectEntered);
-        interactor.selectExited.RemoveListener(OnSelectExited);
+        base.OnStartClient();
+        if (IsOwner)
+        {
+            ChangePlayerInputSubscription(true);
+        }
+        else
+        {
+            // All Remote Clients
+        }
 
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started -= TakeAction;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  -= ReleaseAction;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed -= TriggerStay;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled -= TriggerCancel;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started -= PrimaryButtonPressed;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started -= SecondaryButtonPressed;
-        inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed -= HandPositionInput;
-  
+        // All Client
+    }
+    
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        if (IsOwner)
+        {
+            ChangePlayerInputSubscription(false);
+        }
+        else
+        {
+            // All Remote Clients
+        }
+
+        // All Client
     }
 
-    void OnTriggerStay(Collider other)
+        private void ChangePlayerInputSubscription(bool state)
     {
-        if( ! HasSelection() && other.transform.tag == "Bolt")
+        if (state)
+        {
+            _interactor.selectEntered.AddListener(OnSelectEntered);
+            _interactor.selectExited.AddListener(OnSelectExited);
+
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started += TakeAction;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  += ReleaseAction;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed += TriggerStay;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled += TriggerCancel;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started += PrimaryButtonPressed;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started += SecondaryButtonPressed;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed += HandPositionInput;
+        }
+        else
+        {
+            _interactor.selectEntered.RemoveListener(OnSelectEntered);
+            _interactor.selectExited.RemoveListener(OnSelectExited);
+
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).started -= TakeAction;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Select_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Select_Value.GetName()).canceled  -= ReleaseAction;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).performed -= TriggerStay;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Activate_Value.GetName() : InputActionName.XRI_LeftHand_Interaction_Activate_Value.GetName()).canceled -= TriggerCancel;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Down.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Down.GetName()).started -= PrimaryButtonPressed;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Interaction_Switch_Up.GetName() : InputActionName.XRI_LeftHand_Interaction_Switch_Up.GetName()).started -= SecondaryButtonPressed;
+            _inputControl.GetInputActionByName(hand == PlayerHand.Right ? InputActionName.XRI_RightHand_Position.GetName() : InputActionName.XRI_LeftHand_Position.GetName()).performed -= HandPositionInput;
+
+            //TODO if 'this gameObject' possible will destroy -> should unsubscribe input in OnDestroy method too 
+        }
+    }
+    
+
+    
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if( ! HasSelection() && other.transform.CompareTag("Bolt"))
             SetBoltScript(other.GetComponent<BoltControl>());
     }
-    void OnTriggerExit(Collider other)
+
+    private void OnTriggerExit(Collider other)
     {
-        if( ! HasSelection() && other.transform.tag == "Bolt")
+        if( ! HasSelection() && other.transform.CompareTag("Bolt"))
             SetBoltScript(null);
     }
 
-    void OnSelectEntered(SelectEnterEventArgs eventArgs)
+    private void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
         string interactableTag = SelectedInteractable().tag;
         if (interactableTag == "Gun" || interactableTag == "ak47mag" || interactableTag == "mp5mag" || interactableTag == "pistolmag")
@@ -94,19 +130,19 @@ public class PlayerHandController : NetworkBehaviour
         OnSelectChange?.Invoke();
     }
 
-    public void HideDefaultHand()
+    private void HideDefaultHand()
     {
         SetDeActiveHandAnimation();
         SetHandActive(false);
     }
 
-    async void SetHandActive(bool value)
+    private async void SetHandActive(bool value)
     {
         await Task.Delay(10);
         handGameObject.SetActive(value);
     }
 
-    void OnSelectExited(SelectExitEventArgs eventArgs)
+    private void OnSelectExited(SelectExitEventArgs eventArgs)
     {
         SetHandActive(true);
         SetActiveHandAnimation();
@@ -115,32 +151,33 @@ public class PlayerHandController : NetworkBehaviour
         OnSelectChange?.Invoke();
     }
 
-    void SetActiveHandAnimation()
+    private void SetActiveHandAnimation()
     {
-        handAnimation.Active();
-    }
-    void SetDeActiveHandAnimation()
-    {
-        handAnimation.Deactivate();
+        _handAnimation.Active();
     }
 
-    void SetGunController(GunController _gunController)
+    private void SetDeActiveHandAnimation()
     {
-        if(_gunController == gunController) return;
+        _handAnimation.Deactivate();
+    }
 
-        if (gunController != null)
-        {
-            Debug.unityLogger.Log($"PlayerHandController | SetGunController | call RpcSrv_GunChangeOwnership with null");
-            RpcSrv_GunChangeOwnership(null,gunController.gameObject.GetComponent<NetworkObject>());
-        }
-        
+    private void SetGunController(GunController gunControllerParam)
+    {
+        if(gunControllerParam == _gunController) return;
+
         if (_gunController != null)
         {
+            Debug.unityLogger.Log($"PlayerHandController | SetGunController | call RpcSrv_GunChangeOwnership with null");
+            RpcSrv_GunChangeOwnership(null,_gunController.gameObject.GetComponent<NetworkObject>());
+        }
+        
+        if (gunControllerParam != null)
+        {
             Debug.unityLogger.Log($"PlayerHandController | SetGunController | call RpcSrv_GunChangeOwnership with ownerId: {base.OwnerId}");
-            RpcSrv_GunChangeOwnership(base.Owner,_gunController.gameObject.GetComponent<NetworkObject>());
+            RpcSrv_GunChangeOwnership(base.Owner,gunControllerParam.gameObject.GetComponent<NetworkObject>());
         }
 
-        gunController = _gunController;
+        _gunController = gunControllerParam;
     }
 
     [ServerRpc]
@@ -158,42 +195,42 @@ public class PlayerHandController : NetworkBehaviour
             Debug.unityLogger.Log($"PlayerHandController | RpcSrv_GunChangeOwnership | after ownerId is {networkObject.OwnerId}");
         }
     }
-    
-    GunController GetGunController()
+
+    private GunController GetGunController()
     {
-        return gunController;
+        return _gunController;
     }
 
-    public void HandRecoil(PlayerHand _hand, int numberOfHands)
+    public void HandRecoil(PlayerHand playerHand, int numberOfHands)
     {
-        handAnimation.PlayRecoil();
+        _handAnimation.PlayRecoil();
     }
 
     public bool HasSelection()
     {
-        return interactor != null && interactor.hasSelection;
+        return _interactor != null && _interactor.hasSelection;
     }
 
-    Transform SelectedInteractable()
+    private Transform SelectedInteractable()
     {
-        return interactor.interactablesSelected[0].transform;
+        return _interactor.interactablesSelected[0].transform;
     }
 
-    void SetBoltScript(BoltControl _boltControl)
+    private void SetBoltScript(BoltControl boltControlParam)
     {
-        boltControl = _boltControl;
+        _boltControl = boltControlParam;
     }
 
-    void TakeAction(InputAction.CallbackContext callback)
+    private void TakeAction(InputAction.CallbackContext callback)
     {
-        OldHandPosition = controller.localPosition;
+        _oldHandPosition = controller.localPosition;
     }
 
-    void ReleaseAction(InputAction.CallbackContext callback)
+    private void ReleaseAction(InputAction.CallbackContext callback)
     {
-        if(boltControl != null && callback.ReadValue<float>() < pressureSensitivity)
+        if(_boltControl != null && callback.ReadValue<float>() < pressureSensitivity)
         {
-            boltControl.LeaveBolt();
+            _boltControl.LeaveBolt();
             SetBoltScript(null);
         }
     }
@@ -218,7 +255,6 @@ public class PlayerHandController : NetworkBehaviour
     {
         if(GetGunController() != null)
         {
-            //GetGunController().ChangeShootingMode(hand, ChangeModeDirection.down);
             GetGunController().PrimaryButtonPressed(hand, ChangeModeDirection.down);
         }
     }
@@ -227,16 +263,15 @@ public class PlayerHandController : NetworkBehaviour
     {
         if(GetGunController() != null)
         {
-            //GetGunController().ChangeShootingMode(hand, ChangeModeDirection.up);
             GetGunController().SecondaryButtonPressed(hand, ChangeModeDirection.up);
         }
     }
 
     void HandPositionInput(InputAction.CallbackContext context)
     {
-        if(boltControl != null && HasSelection())
+        if(_boltControl != null && HasSelection())
         {
-            var distance = controller.localPosition - OldHandPosition;
+            var distance = controller.localPosition - _oldHandPosition;
 
             int direction = 0;
             var angle = Quaternion.Angle(Quaternion.LookRotation(distance), SelectedInteractable().rotation);
@@ -246,9 +281,9 @@ public class PlayerHandController : NetworkBehaviour
             else if (angle < 60)
                 direction = -1;
 
-            handPositionFloat = distance.magnitude * direction * 10;
-            OldHandPosition = controller.localPosition;
-            boltControl.MoveBolt(handPositionFloat);
+            _handPositionFloat = distance.magnitude * direction * 10;
+            _oldHandPosition = controller.localPosition;
+            _boltControl.MoveBolt(_handPositionFloat);
         }
     }
 

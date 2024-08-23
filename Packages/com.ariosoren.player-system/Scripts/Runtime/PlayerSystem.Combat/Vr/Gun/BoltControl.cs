@@ -124,6 +124,7 @@ public class BoltControl : MonoBehaviour
         }
         SetAnimatorValue(0);
 
+        // TODO @Network sync - play sound
         if (_playedPullSound)
         {
             audioSource.PlayOneShot(releaseSound);
