@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using FishNet.Object;
+using FishNet.Transporting;
+using UnityEngine;
 
 public class Rifle : Gun
 {
@@ -6,12 +8,10 @@ public class Rifle : Gun
     [SerializeField] private bool _readyToShoot;
     private float _lastShootTime;
     [SerializeField] private bool GunTriggered;
-    //private int brustshotingCount = 0;
 
     // @NetworkHint called form Triggered and update
     public override void DoAction()
     {
-        //Debug.Log("DoAction");
         if (!_readyToShoot || _shootingMode == ShootingMode.safety)
             return;
 
@@ -23,7 +23,6 @@ public class Rifle : Gun
                 return;
             }
             Shoot();
-        //brustshotingCount++;
             _readyToShoot = false;
             _lastShootTime = Time.time;
         }
@@ -33,53 +32,54 @@ public class Rifle : Gun
     {
         GunType = GunType.Rifle;
         _gunController.AddGunReactionsToTrigger(TriggerStarted, TriggerEnded);
-        //Fire.performed += Fire_performed;
     }
 
     private void Update()
     {
-        //if (Fire.IsPressed())
-        //{
-        //    DoAction();
-        //}
-
         if (GunTriggered) 
             DoAction();
 
         if (_shootingMode == ShootingMode.fullAuto)
         {
-            //Debug.Log("fullAuto");
             if (Time.time > _lastShootTime + _durationBetweenShoot)
                 _readyToShoot = true;
         }
-
-        //if (_shootingMode == ShootingMode.burst)
-        //{
-        //    Debug.Log("burst");
-        //    if (Time.time > _lastShootTime + _durationBetweenShoot && brustshotingCount < 3)
-        //    {
-        //        _readyToShoot = true;
-        //    }
-        //    //if (!Fire.IsPressed())
-        //    //    brustshotingCount = 0;
-        //}
+        
     }
 
     protected override void TriggerStarted()
     {
         GunTriggered = true;
-        //Debug.Log("TriggerStarted");
         if (_shootingMode == ShootingMode.semi)
+        {
+            _readyToShoot = true;
+            DoAction();
+        }
+        RpcSrv_Triggered(true);
+    }
+    
+    protected override void TriggerEnded()
+    {
+        GunTriggered = false;
+        RpcSrv_Triggered(false);
+    }
+    
+    [ServerRpc]
+    private void RpcSrv_Triggered(bool state, Channel channel = Channel.Reliable)
+    {
+        RpcObs_Triggered(state);
+    }
+    [ObserversRpc(RunLocally = true, BufferLast = true,ExcludeOwner = true)]
+    private void RpcObs_Triggered(bool state, Channel channel = Channel.Reliable)
+    {
+        GunTriggered = state;
+        if (state && _shootingMode == ShootingMode.semi)
         {
             _readyToShoot = true;
             DoAction();
         }
     }
 
-    protected override void TriggerEnded()
-    {
-        GunTriggered = false;
-        //brustshotingCount = 0;
-    }
+    
 }
 

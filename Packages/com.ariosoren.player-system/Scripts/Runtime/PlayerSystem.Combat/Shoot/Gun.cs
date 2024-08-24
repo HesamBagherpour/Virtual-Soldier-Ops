@@ -1,4 +1,5 @@
 using System;
+using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,7 @@ public enum GunType
     None, Pistol, Rifle
 }
 
-public abstract class Gun : MonoBehaviour
+public abstract class Gun : NetworkBehaviour
 {
     public PlayerInputActions PlayerControls;
     public LayerMask ValidLayers;
@@ -146,13 +147,6 @@ public abstract class Gun : MonoBehaviour
         return _currentMagazine.GetBulletAmount();
     }
 
-    //protected virtual void OnRaycastHit(RaycastHit hit, float damage)
-    //{
-    //    Debug.Log(hit.collider.gameObject.name);
-    //    var damageable = hit.collider.GetComponent<Idamageable>();
-    //    if (damageable != null)
-    //        damageable.ReceiveDamage(hit, damage);
-    //} 
     protected virtual void OnRaycastHit(HitData data)
     {
         Debug.Log(data.collide.name);

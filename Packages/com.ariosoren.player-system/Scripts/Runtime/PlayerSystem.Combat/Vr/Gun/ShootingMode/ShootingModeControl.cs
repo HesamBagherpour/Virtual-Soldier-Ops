@@ -1,4 +1,6 @@
 using System;
+using FishNet.Object;
+using FishNet.Transporting;
 using UnityEngine;
 
 public enum ShootingMode
@@ -20,7 +22,7 @@ public enum ChangeModeDirection
     down = -1,
 }
 
-public class ShootingModeControl : MonoBehaviour
+public class ShootingModeControl : NetworkBehaviour
 {
     [SerializeField] ModeType type;
     [SerializeField] AudioSource audioSource;
@@ -59,6 +61,21 @@ public class ShootingModeControl : MonoBehaviour
             OnShootingModeChange?.Invoke(mode);
             audioSource.Play();
         }
+
+        RpcSrv_ChangeMode(mode);
+    }
+    
+    [ServerRpc]
+    private void RpcSrv_ChangeMode(ShootingMode shootingMode, Channel channel = Channel.Reliable)
+    {
+        RpcObs_ChangeMode(shootingMode);
+    }
+    [ObserversRpc(RunLocally = true, BufferLast = true,ExcludeOwner = true)]
+    private void RpcObs_ChangeMode(ShootingMode shootingMode, Channel channel = Channel.Reliable)
+    {
+        mode = shootingMode;
+        OnShootingModeChange?.Invoke(mode);
+        audioSource.Play();
     }
 
     void PlayChangingModeAnimation(string animation)
