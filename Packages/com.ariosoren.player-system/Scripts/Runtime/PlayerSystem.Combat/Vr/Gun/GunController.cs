@@ -392,7 +392,9 @@ public class GunController : NetworkBehaviour
     [ObserversRpc(RunLocally = true, BufferLast = true, ExcludeOwner = true)]
     private void RpcObs_OnFirstSelectEntered(NetworkObject networkObject, Channel channel = Channel.Reliable)
     {
+        Debug.unityLogger.Log("GunController | RpcObs_OnFirstSelectEntered | started.");
         _firstSelectingHand = networkObject.GetComponent<PlayerHandController>();
+        Debug.unityLogger.Log($"GunController | RpcObs_OnFirstSelectEntered | _firstSelectingHand == null {_firstSelectingHand == null}");
     }
 
     private void OnSelectEntered(SelectEnterEventArgs eventArgs)
