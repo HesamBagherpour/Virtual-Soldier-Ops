@@ -41,37 +41,27 @@ public class GunController : NetworkBehaviour
 
     private PlayerHandController _firstSelectingHand;
 
-    #region Shared
-
-    public override void OnStartNetwork()
+    private void Awake()
     {
-        base.OnStartNetwork();
-
-        // All Clients and Server
-
+        _firstAttachColliders = new List<GameObject>();
+        _idle = new Idle();
+        _oneHandGrab = new OneHandGrab();
+        _twoHandGrab = new TwoHandGrab();
     }
-
-    #endregion
-
-    #region Server
-
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-    }
-
-    #endregion
 
     #region Client
 
     public override void OnStartClient()
     {
         base.OnStartClient();
+
+        ChangePlayerInputSubscription(true);
+        GetFirstAttachColliders();
+        MoveToState(_idle);
+        
         if (base.IsOwner)
         {
-            ChangePlayerInputSubscription(true);
-            GetFirstAttachColliders();
-            MoveToState(_idle);
+
         }
         else
         {
@@ -84,9 +74,11 @@ public class GunController : NetworkBehaviour
     public override void OnStopClient()
     {
         base.OnStopClient();
+        
+        ChangePlayerInputSubscription(false);
+        
         if (base.IsOwner)
         {
-            ChangePlayerInputSubscription(false);
         }
         else
         {
