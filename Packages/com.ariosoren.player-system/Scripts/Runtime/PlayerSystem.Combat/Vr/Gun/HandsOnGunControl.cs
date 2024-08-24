@@ -28,15 +28,18 @@ public class HandsOnGunControl : MonoBehaviour
 
     public void SetSecondHandToNormal()
     {
+        Debug.unityLogger.Log($"HandsOnGunControl | SetSecondHandToNormal | Started.");
         SetHands(secondHands, secondHand_Left, secondHand_Right);
     }
     public void SetSecondHandToBolt()
     {
+        Debug.unityLogger.Log($"HandsOnGunControl | SetSecondHandToBolt | Started.");
         SetHands(secondHands, boltHand_Left, boltHand_Right);
     }
 
     public void SetToNoGrab()
     {
+        Debug.unityLogger.Log($"HandsOnGunControl | SetToNoGrab | Started.");
         SetDeactive(firstHands);
         SetDeactive(secondHands);
         SetDeactive(boltHands);
@@ -44,6 +47,7 @@ public class HandsOnGunControl : MonoBehaviour
 
     public void SetToSingleGrab(PlayerHand grabHand)
     {
+        Debug.unityLogger.Log($"HandsOnGunControl | SetToSingleGrab | Started.");
         SetActive(firstHands, grabHand);
         SetDeactive(secondHands);
         SetDeactive(boltHands);
@@ -51,6 +55,7 @@ public class HandsOnGunControl : MonoBehaviour
 
     public void SetToDoubleGrab(PlayerHand firstEnteredHand)
     {
+        Debug.unityLogger.Log($"HandsOnGunControl | SetToDoubleGrab | Started.");
         PlayerHand secondEnteredHand;
         if(firstEnteredHand == PlayerHand.Left)
             secondEnteredHand = PlayerHand.Right;

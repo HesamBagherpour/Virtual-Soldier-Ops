@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Transporting;
 using UnityEngine;
@@ -89,6 +90,19 @@ public class GunController : NetworkBehaviour
 
     #endregion
 
+    public override void OnOwnershipClient(NetworkConnection prevOwner)
+    {
+        base.OnOwnershipClient(prevOwner);
+        Debug.unityLogger.Log($"GunController | OnOwnershipClient | started. prevOwner: {prevOwner.ClientId} - owner: {OwnerId}");
+
+    }
+
+    public override void OnOwnershipServer(NetworkConnection prevOwner)
+    {
+        base.OnOwnershipServer(prevOwner);
+        Debug.unityLogger.Log($"GunController | OnOwnershipServer | started. prevOwner: {prevOwner.ClientId} - owner: {OwnerId}");
+    }
+
 
     #region Logics
 
@@ -150,7 +164,7 @@ public class GunController : NetworkBehaviour
         RpcSrv_MoveToState(state.GetNameId());
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void RpcSrv_MoveToState(string stateNameId, Channel channel = Channel.Reliable)
     {
         RpcObs_MoveToState(stateNameId);
@@ -159,6 +173,7 @@ public class GunController : NetworkBehaviour
     [ObserversRpc(RunLocally = true, BufferLast = true, ExcludeOwner = true)]
     private void RpcObs_MoveToState(string stateNameId, Channel channel = Channel.Reliable)
     {
+        Debug.unityLogger.Log($"GunController | RpcObs_MoveToState | Started. stateNameId: {stateNameId}");
         _gunState?.Exit();
         _gunState = GetStateByNameId(stateNameId);
         _gunState?.init(this, handOnGun);
@@ -225,7 +240,7 @@ public class GunController : NetworkBehaviour
         RpcSrv_ChangeSelection(_gunState != _idle);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void RpcSrv_ChangeSelection(bool isAllowSocketSelect, Channel channel = Channel.Reliable)
     {
         RpcObs_ChangeSelection(isAllowSocketSelect);
@@ -358,25 +373,43 @@ public class GunController : NetworkBehaviour
         return _firstSelectingHand.Hand;
     }
 
+    //TODO @Network sync 
     private void OnFirstSelectEntered(SelectEnterEventArgs eventArgs)
     {
         Debug.unityLogger.Log("GunController | OnFirstSelectEntered | started.");
         var playerHandController = GetFirstSelectingInteractor().transform.GetComponent<PlayerHandController>();
         _firstSelectingHand = playerHandController;
+        RpcSrv_OnFirstSelectEntered(playerHandController.NetworkObject);
+    }
+    
+    
+    [ServerRpc(RequireOwnership = false)]
+    private void RpcSrv_OnFirstSelectEntered(NetworkObject networkObject, Channel channel = Channel.Reliable)
+    {
+        RpcObs_OnFirstSelectEntered(networkObject);
+    }
+
+    [ObserversRpc(RunLocally = true, BufferLast = true, ExcludeOwner = true)]
+    private void RpcObs_OnFirstSelectEntered(NetworkObject networkObject, Channel channel = Channel.Reliable)
+    {
+        _firstSelectingHand = networkObject.GetComponent<PlayerHandController>();
     }
 
     private void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
         Debug.unityLogger.Log("GunController | OnSelectEntered | started.");
         ChangeSelection();
+        RpcObs_OnSelect(true);
     }
-
+        
+    //TODO @Network sync expect ChangeSelection()
     private void OnSelectExited(SelectExitEventArgs eventArgs)
     {
         Debug.unityLogger.Log("GunController | OnSelectExited | started.");
         CancelShootOnGunReleased();
         CancelSelectionsOnFirstSelectExit(eventArgs);
         ChangeSelection();
+        RpcObs_OnSelect(false);
     }
 
 
@@ -399,6 +432,12 @@ public class GunController : NetworkBehaviour
         {
             rigidbody.angularDrag = 0.05f;
             rigidbody.isKinematic = false;
+        }
+        else
+        {
+            //TODO @Network sync
+            //CancelShootOnGunReleased(); // implement in inner method
+            //CancelSelectionsOnFirstSelectExit(eventArgs);
         }
     }
 

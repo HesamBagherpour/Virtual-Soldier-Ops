@@ -206,6 +206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452586321645868655, guid: d723c9af688b12d4f823e5a79354013f,
         type: 3}
+      propertyPath: m_RotationAtRest.z
+      value: 47.563023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452586321645868655, guid: d723c9af688b12d4f823e5a79354013f,
+        type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 6672192268206322734}
@@ -265,6 +270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RemoteCharacterBody
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479748388592785248, guid: 4d59748464773ad42b7c699f561078a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6281403319276159698, guid: 4d59748464773ad42b7c699f561078a9,
         type: 3}

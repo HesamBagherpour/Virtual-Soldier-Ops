@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public class OneHandGrab : IGunState
@@ -13,6 +14,7 @@ public class OneHandGrab : IGunState
 
     public void Enter()
     {
+        Debug.unityLogger.Log($"OneHandGrab | Enter | Started.");
         gunController.FirstAttachCollidersSetActive(false);
         gunController.SecondAttachColliderSetActive(true);
         gunController.BoltColliderSetActive(true);

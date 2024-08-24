@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class TwoHandGrab : IGunState
 {
     GunController gunController;
@@ -11,6 +13,7 @@ public class TwoHandGrab : IGunState
 
     public void Enter()
     {
+        Debug.unityLogger.Log($"TwoHandGrab | Enter | Started.");
         gunController.FirstAttachCollidersSetActive(false);
         gunController.SecondAttachColliderSetActive(false);
         gunController.BoltColliderSetActive(true);
