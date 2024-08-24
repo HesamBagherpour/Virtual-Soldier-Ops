@@ -58,10 +58,9 @@ public class GunController : NetworkBehaviour
         ChangePlayerInputSubscription(true);
         GetFirstAttachColliders();
         MoveToState(_idle);
-        
+
         if (base.IsOwner)
         {
-
         }
         else
         {
@@ -74,9 +73,9 @@ public class GunController : NetworkBehaviour
     public override void OnStopClient()
     {
         base.OnStopClient();
-        
+
         ChangePlayerInputSubscription(false);
-        
+
         if (base.IsOwner)
         {
         }
@@ -141,7 +140,7 @@ public class GunController : NetworkBehaviour
     }
 
     #region MoveToState
-    
+
     private void MoveToState(IGunState state)
     {
         _gunState?.Exit();
@@ -156,7 +155,8 @@ public class GunController : NetworkBehaviour
     {
         RpcObs_MoveToState(stateNameId);
     }
-    [ObserversRpc(RunLocally = true, BufferLast = true,ExcludeOwner = true)]
+
+    [ObserversRpc(RunLocally = true, BufferLast = true, ExcludeOwner = true)]
     private void RpcObs_MoveToState(string stateNameId, Channel channel = Channel.Reliable)
     {
         _gunState?.Exit();
@@ -181,7 +181,7 @@ public class GunController : NetworkBehaviour
 
     #endregion
 
-    
+
     public bool IsGunReadyToShoot()
     {
         return _gunState != _idle;
@@ -203,7 +203,7 @@ public class GunController : NetworkBehaviour
     }
 
     #region ChangeSelection
-    
+
     // @NetworkHint Called from player input
     private void ChangeSelection()
     {
@@ -230,14 +230,14 @@ public class GunController : NetworkBehaviour
     {
         RpcObs_ChangeSelection(isAllowSocketSelect);
     }
-    
-    [ObserversRpc(RunLocally = true,ExcludeOwner = true)]
+
+    [ObserversRpc(RunLocally = true, ExcludeOwner = true)]
     private void RpcObs_ChangeSelection(bool isAllowSocketSelect, Channel channel = Channel.Reliable)
     {
         // magazineReceiver.AllowSocketSelect(isAllowSocketSelect);
         boltControl.OnGunStateChnged();
     }
-    
+
     #endregion
 
     public bool IsGrabbed()
@@ -250,7 +250,7 @@ public class GunController : NetworkBehaviour
         return _gunState == _twoHandGrab;
     }
 
-    public void  AllowTakeMagazine(bool value)
+    public void AllowTakeMagazine(bool value)
     {
         magazineReceiver.AllowSelectMagazine(value);
     }
@@ -258,7 +258,7 @@ public class GunController : NetworkBehaviour
     // TODO @Network VR -> should just run on owner
     public void SetTwoHandRotationMode(XRGeneralGrabTransformer.TwoHandedRotationMode rotationMode)
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
         if (gunType != GunType.Pistol)
             grabTransformer.allowTwoHandedRotation = rotationMode;
     }
@@ -266,14 +266,14 @@ public class GunController : NetworkBehaviour
     // TODO @Network VR -> should just run on owner
     public void SetSecondaryAttachTransform(Transform transformParam)
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
         xRGrabIntractable.secondaryAttachTransform = transformParam;
     }
 
     // TODO @Network check VR -> should just run on owner
     public void SetDefaultSecondaryAttachTransform()
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
         xRGrabIntractable.secondaryAttachTransform = secondAttachPoint;
     }
 
@@ -318,6 +318,7 @@ public class GunController : NetworkBehaviour
                 break;
         }
     }
+
     // @NetworkHint called form Shoot -> this just set animator -> not need sync
     public void Recoil()
     {
@@ -330,7 +331,7 @@ public class GunController : NetworkBehaviour
     {
         if (triggerControlRight.gameObject.activeSelf)
             return triggerControlRight;
-        
+
         return triggerControlLeft.gameObject.activeSelf ? triggerControlLeft : null;
     }
 
@@ -359,20 +360,46 @@ public class GunController : NetworkBehaviour
 
     private void OnFirstSelectEntered(SelectEnterEventArgs eventArgs)
     {
+        Debug.unityLogger.Log("GunController | OnFirstSelectEntered | started.");
         var playerHandController = GetFirstSelectingInteractor().transform.GetComponent<PlayerHandController>();
         _firstSelectingHand = playerHandController;
     }
 
     private void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
+        Debug.unityLogger.Log("GunController | OnSelectEntered | started.");
         ChangeSelection();
     }
 
     private void OnSelectExited(SelectExitEventArgs eventArgs)
     {
+        Debug.unityLogger.Log("GunController | OnSelectExited | started.");
         CancelShootOnGunReleased();
         CancelSelectionsOnFirstSelectExit(eventArgs);
         ChangeSelection();
+    }
+
+
+    [ServerRpc]
+    private void RpcSrv_OnSelect(bool state, Channel channel = Channel.Reliable)
+    {
+        RpcObs_OnSelect(state);
+    }
+
+    [ObserversRpc(RunLocally = true, BufferLast = true, ExcludeOwner = true)]
+    private void RpcObs_OnSelect(bool state, Channel channel = Channel.Reliable)
+    {
+        Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
+        if (state && rigidbody)
+        {
+            rigidbody.angularDrag = 0;
+            rigidbody.isKinematic = true;
+        }
+        else if (rigidbody)
+        {
+            rigidbody.angularDrag = 0.05f;
+            rigidbody.isKinematic = false;
+        }
     }
 
     private void CancelSelectionsOnFirstSelectExit(SelectExitEventArgs args)

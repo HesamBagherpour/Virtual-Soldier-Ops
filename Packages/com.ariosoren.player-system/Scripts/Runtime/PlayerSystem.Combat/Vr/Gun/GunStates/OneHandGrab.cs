@@ -17,7 +17,7 @@ public class OneHandGrab : IGunState
         gunController.SecondAttachColliderSetActive(true);
         gunController.BoltColliderSetActive(true);
         gunController.SetDefaultSecondaryAttachTransform();
-        //TODO related to VR
+        //TODO Network sync related to VR
         gunController.SetTwoHandRotationMode(XRGeneralGrabTransformer.TwoHandedRotationMode.FirstHandDirectedTowardsSecondHand);
         handOnGun.SetSecondHandToNormal();
         handOnGun.SetToSingleGrab(gunController.GetFirstSelectedHand());
