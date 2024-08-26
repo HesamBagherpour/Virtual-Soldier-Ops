@@ -153,6 +153,7 @@ public class PlayerHandController : NetworkBehaviour
         {
             SetGunController(SelectedInteractable().GetComponent<GunController>());
             HideDefaultHand();
+            RpcSrv_OnSelect(SelectedInteractable().GetComponent<NetworkObject>());
         }
 
         OnSelectChange?.Invoke();
@@ -203,6 +204,7 @@ public class PlayerHandController : NetworkBehaviour
         SetGunController(null);
 
         OnSelectChange?.Invoke();
+        RpcSrv_OnSelect(null);
     }
 
     private void SetActiveHandAnimation()
