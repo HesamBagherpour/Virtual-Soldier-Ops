@@ -206,11 +206,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452586321645868655, guid: d723c9af688b12d4f823e5a79354013f,
         type: 3}
-      propertyPath: m_RotationAtRest.z
-      value: 47.563023
-      objectReference: {fileID: 0}
-    - target: {fileID: 5452586321645868655, guid: d723c9af688b12d4f823e5a79354013f,
-        type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 6672192268206322734}
@@ -270,11 +265,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RemoteCharacterBody
-      objectReference: {fileID: 0}
-    - target: {fileID: 1479748388592785248, guid: 4d59748464773ad42b7c699f561078a9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6281403319276159698, guid: 4d59748464773ad42b7c699f561078a9,
         type: 3}
@@ -341,6 +331,11 @@ PrefabInstance:
       propertyPath: solver.spine.headTarget
       value: 
       objectReference: {fileID: 2528497799853627421}
+    - target: {fileID: 8405358751592965588, guid: 4d59748464773ad42b7c699f561078a9,
+        type: 3}
+      propertyPath: solver.rightArm.positionWeight
+      value: 0.101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
