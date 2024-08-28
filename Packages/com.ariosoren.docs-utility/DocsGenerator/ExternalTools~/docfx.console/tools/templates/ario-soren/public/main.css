@@ -3,6 +3,26 @@
     display: none;
 }
 
+body>main>.content>article, body[data-layout=landing]>main>.content>article {
+    line-height: 2.5;
+}
+
+ol, ul, dl {
+    line-height: 2;
+}
+
+code {
+    line-height: 1.5;
+}
+
+.affix {
+    line-height: 1.5;
+}
+
+ul>li>p {
+    margin-bottom: 0;
+}
+
 /* dl.typelist.inheritance {
     display: none;
 }

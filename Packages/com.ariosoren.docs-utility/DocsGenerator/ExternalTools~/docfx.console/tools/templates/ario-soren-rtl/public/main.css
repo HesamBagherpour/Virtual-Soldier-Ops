@@ -5,14 +5,17 @@
 
 body>main>.content>article, body[data-layout=landing]>main>.content>article {
     direction: rtl;
+    line-height: 2.5;
 }
 
 code {
     direction: ltr;
+    line-height: 1.5;
 }
 
 .affix {
     direction: rtl;
+    line-height: 1.5;
 }
 
 body>header {
