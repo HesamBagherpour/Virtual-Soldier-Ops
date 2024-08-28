@@ -1,0 +1,32 @@
+/* This rule hides the display of inherited types */
+.typelist.inheritedMembers {
+    display: none;
+}
+
+body>main>.content>article, body[data-layout=landing]>main>.content>article {
+    direction: rtl;
+}
+
+code {
+    direction: ltr;
+}
+
+.affix {
+    direction: rtl;
+}
+
+body>header {
+    direction: rtl;
+}
+
+/* dl.typelist.inheritance {
+    display: none;
+}
+
+dl.typelist.implements {
+    display: none;
+}
+
+dl.typelist.derived {
+    display: none;
+} */
