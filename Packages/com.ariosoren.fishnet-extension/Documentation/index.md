@@ -254,12 +254,15 @@ public override void OnStartClient()
 ```
 <div dir=rtl>
 
+<br>
+
 ### اسپاون و دی‌اسپاون آبجکت‌ها
 
 برای ایجاد و حذف آبجکت‌های شبکه‌ای، از روش‌های زیر استفاده کنید:
 
-**اسپاون کردن آبجکت**:
+<br>
 
+**اسپاون کردن آبجکت**:
 قبل از spawn کردن آبجکت باید یک نمونه از آن را با استفاده از Instantiate ایجاد کنید.
 
 </div>
@@ -273,6 +276,8 @@ public void ServerSpawnEnemy(Vector3 position)
 }
 ```
 <div dir=rtl>
+
+<br>
 
 **دی‌اسپاون کردن آبجکت**:
 
@@ -297,7 +302,7 @@ public void ServerDespawnEnemy(NetworkObject enemyNetworkObject)
 
 <br>
 
-### در متد `OnStartNetwork` برای دست یابی  به مالک آبجکت باید از `base.Owner.IsLocalClient` استفاده کنید.
+#### در متد `OnStartNetwork` برای دست یابی  به مالک آبجکت باید از `base.Owner.IsLocalClient` استفاده کنید.
 
 </div>
 
@@ -317,7 +322,7 @@ public override void OnStartNetwork()
 
 <br>
 
-### Networked Scene Objects:
+#### Networked Scene Objects:
 
 وقتی یک Scene Object شبکه‌ای می‌شود، ممکن است رفتار متفاوتی داشته باشد.
 
@@ -329,9 +334,12 @@ public override void OnStartNetwork()
 
 - زمانی که یک Networked Scene Object دی‌اسپاون می‌شود، همیشه غیرفعال می‌شود، نه اینکه نابود شود. این کار به این دلیل است که بتوانید آن را در زمانی دیگر اسپاون کنید. به صورت دستی نابود کردن یک Scene Object در سرور ممکن است و در نتیجه آن شیء هرگز در کلاینت‌ها اسپاون نمی‌شود.
 
+> [!Note]
+> با توجه به نکته آخر پس باید به Initialize و مقدار دهی اولیه آبجکت های خود توجه داشته باشد 
+
 <br>
 
-### Nested NetworkObjects و NetworkBehaviours:
+#### Nested NetworkObjects و NetworkBehaviours:
 
 یک `NetworkObject` تو در تو ممکن است از والد خود جدا شود، اما حتی در صورت جدا شدن از والد، باز هم با دی‌اسپاون شدن والد، آن نیز دی‌اسپاون می‌شود. این اتفاق به این دلیل می‌افتد که والد یک مرجع کش شده از رفتارها و اشیاء تو در تو خود دارد و این مراجع نمی‌توانند بدون هزینه عملکردی غیرقابل قبول به صورت خودکار به‌روزرسانی شوند.
 
