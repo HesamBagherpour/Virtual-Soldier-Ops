@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class MoveToWaypoint : Action
 {
-    public SharedTransform[] waypoints;
+    //public SharedTransform[] waypoints;
+    public WayPointController WayPointController;
     public NavMeshAgent agent;
     public AgentController AgentController;
     private int currentWaypoint = 0;
@@ -18,14 +19,15 @@ public class MoveToWaypoint : Action
 
     public override void OnStart()
     {
-        currentWaypoint = Random.Range(0, waypoints.Length);
-        agent.destination = waypoints[currentWaypoint].Value.position;
+        //currentWaypoint = Random.Range(0, waypoints.Length);
+        //agent.destination = waypoints[currentWaypoint].Value.position;
+        agent.destination = WayPointController.GetRandomPoint();
         AgentController.SetStateWalking();
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (waypoints.Length == 0) return TaskStatus.Failure;
+        //if (waypoints.Length == 0) return TaskStatus.Failure;
 
         if (!agent.pathPending && agent.remainingDistance < 1.0f)
         {
