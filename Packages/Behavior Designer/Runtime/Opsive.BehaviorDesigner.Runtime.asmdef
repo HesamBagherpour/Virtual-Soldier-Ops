@@ -1,9 +1,7 @@
 {
-    "name": "Opsive.BehaviorDesigner.Movement",
-    "rootNamespace": "",
-    "references": [
-        "Opsive.BehaviorDesigner"
-    ],
+    "name": "Opsive.BehaviorDesigner.Runtime",
+    "rootNamespace": "BehaviorDesigner.Runtime",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,8 +1,8 @@
 {
     "name": "Opsive.BehaviorDesigner.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "BehaviorDesigner.Editor",
     "references": [
-        "Opsive.BehaviorDesigner"
+        "Opsive.BehaviorDesigner.Runtime"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,10 +1,10 @@
 {
-    "name": "Opsive.BehaviorDesigner.Movement.Editor",
-    "rootNamespace": "",
+    "name": "Opsive.BehaviorDesigner.Runtime.Tasks.Movement.Editor",
+    "rootNamespace": "BehaviorDesigner.Runtime.Tasks.Movement.Editor",
     "references": [
-        "Opsive.BehaviorDesigner.Movement",
+        "Opsive.BehaviorDesigner.Runtime.Tasks.Movement",
         "Opsive.BehaviorDesigner.Editor",
-        "Opsive.BehaviorDesigner"
+        "Opsive.BehaviorDesigner.Runtime"
     ],
     "includePlatforms": [
         "Editor"
