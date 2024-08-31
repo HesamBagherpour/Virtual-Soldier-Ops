@@ -1,4 +1,4 @@
-//using FishNet.Demo.AdditiveScenes;
+using FishNet.Demo.AdditiveScenes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
