@@ -9,7 +9,8 @@
         "Unity.TextMeshPro",
         "ArioSoren.InputControllerUtility",
         "ArioSoren.GeneralUtility",
-        "FishNet.Runtime"
+        "FishNet.Runtime",
+        "RootMotion"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

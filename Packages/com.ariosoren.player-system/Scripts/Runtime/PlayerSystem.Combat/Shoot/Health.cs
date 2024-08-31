@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void OnReceiveDamage(HitData data, int multiplier)
+    public void OnReceiveDamage(Gun.HitData data, int multiplier)
     {
         currentHealth -= data.DamageAmount * multiplier;
         if (currentHealth <= 0)

@@ -10,7 +10,7 @@ public class LimbHit : MonoBehaviour, Idamageable
         health = GetComponentInParent<Health>();
     }
 
-    public virtual void ReceiveDamage(HitData data)
+    public virtual void ReceiveDamage(Gun.HitData data)
     {
         health.OnReceiveDamage(data, multiplier);
         Debug.Log(transform.name + " : Damage Amount = " + multiplier);
