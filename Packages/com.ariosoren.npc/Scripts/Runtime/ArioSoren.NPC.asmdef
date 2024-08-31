@@ -3,8 +3,8 @@
     "rootNamespace": "ArioSoren.NPC",
     "references": [
         "UniTask",
-        "Opsive.BehaviorDesigner",
-        "Opsive.BehaviorDesigner.Movement"
+        "Opsive.BehaviorDesigner.Runtime",
+        "Opsive.BehaviorDesigner.Runtime.Tasks.Movement"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
