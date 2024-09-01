@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ArioSoren.UIKit.Module;
 using DG.Tweening;
 using UnityEngine;
 

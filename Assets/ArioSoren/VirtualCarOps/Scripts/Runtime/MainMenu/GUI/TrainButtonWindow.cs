@@ -4,6 +4,8 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using ArioSoren.UIKit.Module;
+
 namespace ArioSoren.VirtualCarOps.MainMenu.GUI
 {
     public class TrainButtonWindow : Window, IPointerEnterHandler, IPointerExitHandler

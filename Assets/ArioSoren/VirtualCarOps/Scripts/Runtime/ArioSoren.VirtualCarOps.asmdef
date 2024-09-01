@@ -12,7 +12,10 @@
         "Unity.TextMeshPro",
         "FishNet.Runtime",
         "Unity.XR.Interaction.Toolkit",
-        "RootMotion"
+        "RootMotion",
+        "PG.UniversalVehicleController",
+        "Unity.XR.CoreUtils",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

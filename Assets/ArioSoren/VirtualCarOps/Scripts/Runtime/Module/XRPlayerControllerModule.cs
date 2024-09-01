@@ -1,4 +1,5 @@
 using System;
+using ArioSoren.InjectKit;
 using Cysharp.Threading.Tasks;
 
 namespace ArioSoren.VirtualCarOps.Module

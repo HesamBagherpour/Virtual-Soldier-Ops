@@ -1,4 +1,6 @@
-﻿namespace ArioSoren.VirtualCarOps.MainMenu.GUI
+﻿using ArioSoren.UIKit.Module;
+
+namespace ArioSoren.VirtualCarOps.MainMenu.GUI
 {
     public class AudioSettingValues : Window
     {
