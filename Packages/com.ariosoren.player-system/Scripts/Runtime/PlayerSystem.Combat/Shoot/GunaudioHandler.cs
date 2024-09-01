@@ -33,7 +33,4 @@ public class GunaudioHandler : MonoBehaviour
         }
         audioSource.PlayOneShot(_ShootSound);
     }
-
-
-
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LimbHit : MonoBehaviour, Idamageable
+public class LimbHit : MonoBehaviour
 {
     [SerializeField] private int multiplier;
     Health health;

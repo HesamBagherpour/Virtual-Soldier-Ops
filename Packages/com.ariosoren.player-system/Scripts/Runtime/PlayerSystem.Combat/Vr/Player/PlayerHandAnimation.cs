@@ -12,12 +12,15 @@ public class PlayerHandAnimation : NetworkBehaviour
 {
     [SerializeField] private PlayerHand hand;
     [SerializeField] private Transform controller;
+    [SerializeField] private PlayerHandController playerHand;
+    [SerializeField] private GameObject character;
 
+    private HandsAnimation _handsAnimation;
     private Animator _handDeformAnimator;
     private Animator _directInteractionAnimator;
 
     private GameObject _handGameObject;
-    
+
     //@NetworkHint: Just used and set on owner client - player input
     private bool _isActive = true;
     private bool _playRecoilToggle;
@@ -26,7 +29,6 @@ public class PlayerHandAnimation : NetworkBehaviour
     private static readonly int Grip = Animator.StringToHash("Grip");
     private static readonly int Pinch = Animator.StringToHash("Pinch");
 
-    
 
     #region Client
 
@@ -98,7 +100,7 @@ public class PlayerHandAnimation : NetworkBehaviour
             //TODO if 'this gameObject' possible will destroy -> should unsubscribe input in OnDestroy method too 
         }
     }
-    
+
 
     protected void Awake()
     {
@@ -108,11 +110,17 @@ public class PlayerHandAnimation : NetworkBehaviour
         _handDeformAnimator = _handGameObject.GetComponent<Animator>();
         _directInteractionAnimator = GetComponent<Animator>();
         _inputControl = gameObject.GetComponent<InputControllerComp>();
+
+        if (character != null)
+            _handsAnimation = character.GetComponent<HandsAnimation>();
     }
 
     //TODO player input - animation sync - client 
     private void OnGripping(InputAction.CallbackContext obj)
     {
+        if (character != null)
+            _handsAnimation.Grab(playerHand.Hand, obj.ReadValue<float>());
+
         if (_isActive)
             _handDeformAnimator.SetFloat(Grip, obj.ReadValue<float>());
     }
@@ -126,6 +134,8 @@ public class PlayerHandAnimation : NetworkBehaviour
     //TODO player input - animation sync - client 
     private void OnPinching(InputAction.CallbackContext obj)
     {
+        if (character != null)
+            _handsAnimation.Pinch(playerHand.Hand, obj.ReadValue<float>());
         if (_isActive)
             _handDeformAnimator.SetFloat(Pinch, obj.ReadValue<float>());
     }
@@ -138,11 +148,17 @@ public class PlayerHandAnimation : NetworkBehaviour
 
     private void GripRelease()
     {
+        if (character != null)
+            _handsAnimation.Grab(playerHand.Hand, 0f);
+
         _handDeformAnimator.SetFloat(Grip, 0f);
     }
 
     private void PinchRelease()
     {
+        if (character != null)
+            _handsAnimation.Pinch(playerHand.Hand, 0f);
+
         _handDeformAnimator.SetFloat(Pinch, 0f);
     }
 

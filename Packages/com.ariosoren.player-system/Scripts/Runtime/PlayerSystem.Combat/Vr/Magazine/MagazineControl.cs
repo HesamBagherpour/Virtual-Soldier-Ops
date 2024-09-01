@@ -67,10 +67,7 @@ public class MagazineControl : MonoBehaviour
     public void AllowInteractOnGunStateChange(bool value)
     {
         if(magazineType != MagazineType.pistolmag)
-        {
-            Debug.Log("Magazine Control Is Gun Grabbed: " + value);
             grabInteractable.allowGrab = value;
-        }
     }
 
     public void OnEnteredGun()
@@ -114,7 +111,6 @@ public class MagazineControl : MonoBehaviour
             bullets--;
             return bulletRefrence;
         }
-        Debug.Log("No  bullet in clip");
         return null;
     }
 
