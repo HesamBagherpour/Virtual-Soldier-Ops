@@ -39,6 +39,7 @@ public class TriggerControl : MonoBehaviour
 
     public void OnActionCancle()
     {
+        readyToShoot = true;
         OnTriggerEnd?.Invoke();
         StartCoroutine(ReturnToDefault());
     }

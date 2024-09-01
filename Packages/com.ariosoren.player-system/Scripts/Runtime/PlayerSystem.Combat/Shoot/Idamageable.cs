@@ -1,6 +1,4 @@
-﻿using static Gun;
-
-public interface Idamageable
+﻿public interface Idamageable
 {
     void ReceiveDamage(HitData data);
 }

@@ -87,9 +87,7 @@ public class MagazineReceiver : MonoBehaviour
     public void ForceRelease()
     {
         if (magazineType == MagazineType.pistolmag)
-        {
             PlayAnimation("magrelease");
-        }
         else
             AllowSocketSelect(false);
     }
@@ -120,12 +118,9 @@ public class MagazineReceiver : MonoBehaviour
         else
         {
             if(! xRSocketInteractor.hasSelection)
-            {
                 AllowSocketInteractWithMagazine(false);
-            }
 
             magazine?.AllowInteractOnGunStateChange(false);
-            if(magazine == null){ Debug.Log("Magazine Null"); }
         }
     }
 
@@ -144,31 +139,4 @@ public class MagazineReceiver : MonoBehaviour
     {
         animator.CrossFade(animation, corssFadeTime);
     }
-
-    /*void OnTriggerStay(Collider other)
-    {
-        if(other.transform.tag == "Clip" && isthereAnyClipInGun == false)
-        {
-            ChangeMagazineState(true);
-            clipObjectOnGun.SetActive(true);
-            receiverAnimator.CrossFade("NewMp5Recieve", 1);
-            //clipOnGun.SetBullet(other.GetComponent<Clip>().GetBulletsLeft());
-            other.GetComponent<ClipController>().destroy();
-
-            //Adds Magazine To Gun
-        }
-    }*/
-
-    /*public void TakeMagazine()
-    {
-        if(isthereAnyClipInGun == true)
-        {
-            ChangeMagazineState(false);
-            clipObjectOnGun.SetActive(false);
-            Instantiate(clipPrefab, clipOnGun.transform);
-            boltControl.Pull(false);
-
-            //Take Magazine From Gun
-        }
-    }*/
 }

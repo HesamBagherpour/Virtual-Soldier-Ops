@@ -1,10 +1,19 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public enum GunType
 {
     None, Pistol, Rifle
+}
+
+public class HitData
+{
+    public Vector3 normal;
+    public float DamageAmount;
+    public Vector3 HitPoint;
+    public float HitForce;
+    public float DistanceFactor;
+    public GameObject collide;
 }
 
 public abstract class Gun : MonoBehaviour
@@ -14,14 +23,11 @@ public abstract class Gun : MonoBehaviour
     public GunType GunType;
     public Action<bool> onShoot;
 
-    private BulletScriptableObject CurrentBullet;//bullet  in gun
-    private bool clipReady;
+    private BulletScriptableObject CurrentBullets;//bullet  in gun
+    private bool isBulletInGun;
     private bool ReadyToPull;
 
-    protected InputAction Fire;
-
-    [SerializeField] private GameObject _shooptStartPosition;
-    //[SerializeField] protected Magazine _currentMagazine;
+    [SerializeField] private GameObject _shootStartPosition;
     [SerializeField] protected MagazineControl _currentMagazine;
     [SerializeField] protected GunController _gunController;
     [SerializeField] protected ShootingMode _shootingMode;
@@ -34,10 +40,6 @@ public abstract class Gun : MonoBehaviour
     protected abstract void TriggerEnded();
     public abstract void DoAction();
 
-    private void Awake()
-    {
-        PlayerControls = new PlayerInputActions();
-    }
     protected void Start()
     {
         Initialize();
@@ -45,93 +47,63 @@ public abstract class Gun : MonoBehaviour
         _shootingModeControl.OnShootingModeChange = (mode) => { _shootingMode = mode; };
         _boltControl.OnBoltPull = BoltPuller;
         _boltControl.OnReadyToPull = () => ReadyToPull = true;
+
         _magazineReceiver.OnMagazineSelectEnter += (t) =>
         {
             _currentMagazine = t.GetComponent<MagazineControl>();
-            if (_currentMagazine != null)
-            {
-                clipReady = true;
-            }
         };
         _magazineReceiver.OnMagazineSelectExit += () =>
         {
-            clipReady = false;
             _currentMagazine = null;
         };
     }
 
     private void BoltPuller(bool pull)
     {
-        if (_currentMagazine == null)
-            Debug.LogWarning("Use bolt");
-
         if (!ReadyToPull)
             return;
 
         if (_currentMagazine != null && pull)
         {
-            CurrentBullet = _currentMagazine.GetBullet();
+            CurrentBullets = _currentMagazine.GetBullet();
             ReadyToPull = false;
         }
     }
 
-    private void OnEnable()
-    {
-        Fire = PlayerControls.Player.Fire;
-        Fire.Enable();
-
-    }
-
-    private void OnDisable()
-    {
-        Fire.Disable();
-    }
-
     protected void Shoot()
     {
-        //if (!_gunController.IsGunReadyToShoot())
-            //return;
+        if (!_gunController.IsGunReadyToShoot())
+            return;
 
-        if (CurrentBullet == null)
+        if (CurrentBullets == null)
         {
-            Debug.LogWarning("CurrentBullet == null");
             onShoot?.Invoke(false);
             return;
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(_shooptStartPosition.transform.position, //+ UnityEngine.Random.onUnitSphere * 0.1f,
-             transform.forward, out hit, CurrentBullet.MaxDistance,
-             ValidLayers, QueryTriggerInteraction.Ignore))
-        {//OnRaycastHit(hit, currentBullet.Damage,currentBullet.PhysicForceOnHit);
-
+        if (Physics.Raycast(_shootStartPosition.transform.position, transform.forward, out hit, CurrentBullets.MaxDistance, ValidLayers/*, QueryTriggerInteraction.Ignore*/))
+        {
             var hitData = new HitData()
             {
                 collide = hit.collider.gameObject,
-                DamageAmount = CurrentBullet.Damage,
-                HitForce = CurrentBullet.PhysicForceOnHit,
+                DamageAmount = CurrentBullets.Damage,
+                HitForce = CurrentBullets.PhysicForceOnHit,
                 HitPoint = hit.point,
                 normal = hit.normal,
-                DistanceFactor = GetDistanceFactor(_shooptStartPosition.transform.position, hit.collider.gameObject.transform.position)
+                DistanceFactor = GetDistanceFactor(_shootStartPosition.transform.position, hit.collider.gameObject.transform.position)
             };
             OnRaycastHit(hitData);
         }
         onShoot?.Invoke(true);
         _gunController.Recoil();
 
-        if (!clipReady)
-            Debug.LogWarning("clip not ready");
-
-        if (_currentMagazine == null)
-            Debug.LogWarning("clip is null");
-
-        CurrentBullet = clipReady ? _currentMagazine?.GetBullet() : null;
+        CurrentBullets = _currentMagazine? _currentMagazine?.GetBullet() : null;
     }
 
     private float GetDistanceFactor(Vector3 startPoint, Vector3 endPoint)
     {
         Vector3.Distance(startPoint, endPoint);
-
         return 0;
     }
 
@@ -140,33 +112,13 @@ public abstract class Gun : MonoBehaviour
         return _currentMagazine.GetBulletAmount();
     }
 
-    //protected virtual void OnRaycastHit(RaycastHit hit, float damage)
-    //{
-    //    Debug.Log(hit.collider.gameObject.name);
-    //    var damageable = hit.collider.GetComponent<Idamageable>();
-    //    if (damageable != null)
-    //        damageable.ReceiveDamage(hit, damage);
-    //} 
     protected virtual void OnRaycastHit(HitData data)
     {
-        Debug.Log(data.collide.name);
         var damageable = data.collide.GetComponent<Idamageable>();
         if (damageable != null)
             damageable.ReceiveDamage(data);
 
         if (data.collide.TryGetComponent(out MaterialType matType))
             matType.ShowImpact(data);
-    }
-
-
-    public class HitData
-    {
-        public Vector3 normal;
-        public float DamageAmount;
-        //public Vector3 HitPosition;
-        public Vector3 HitPoint;
-        public float HitForce;
-        public float DistanceFactor;
-        public GameObject collide;
     }
 }

@@ -25,7 +25,6 @@ public class PlayerHandController : MonoBehaviour
     Vector3 OldHandPosition;
     float handPositionFloat;
 
-    //PlayerHandAnimation handAnimation;
     GunController gunController;
     BoltControl boltControl;
 
@@ -197,19 +196,20 @@ public class PlayerHandController : MonoBehaviour
     {
         if(boltControl != null && HasSelection())
         {
-            var distance = controller.localPosition - OldHandPosition;
 
+        //Rotation Base Calculation
+        
+            /*var distance = controller.localPosition - OldHandPosition;
             int direction = 0;
             var angle = Quaternion.Angle(Quaternion.LookRotation(distance), SelectedInteractable().rotation);
-
-            if (angle > 120)
+            if (angle > 90)
                 direction = 1;
-            else if (angle < 60)
+            else if (angle <= 90)
                 direction = -1;
+            handPositionFloat = distance.magnitude * direction * 12;
+            OldHandPosition = controller.localPosition;*/
 
-            handPositionFloat = distance.magnitude * direction * 10;
-            OldHandPosition = controller.localPosition;
-            boltControl.MoveBolt(handPositionFloat);
+            boltControl.MoveBolt(handPositionFloat, transform.position);
         }
     }
 }
