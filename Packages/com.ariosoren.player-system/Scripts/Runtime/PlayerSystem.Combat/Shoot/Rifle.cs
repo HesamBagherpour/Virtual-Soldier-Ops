@@ -1,4 +1,5 @@
-﻿using FishNet.Object;
+﻿using System.Collections;
+using FishNet.Object;
 using FishNet.Transporting;
 using UnityEngine;
 
@@ -6,25 +7,18 @@ public class Rifle : Gun
 {
     [SerializeField] private float _durationBetweenShoot = .2f;
     [SerializeField] private bool _readyToShoot;
-    private float _lastShootTime;
     [SerializeField] private bool GunTriggered;
-
+    
     // @NetworkHint called form Triggered and update
     public override void DoAction()
     {
-        if (!_readyToShoot || _shootingMode == ShootingMode.safety)
+        if (!_readyToShoot)
             return;
 
         if(_currentMagazine != null)
         {
-            if (!_currentMagazine.HasBullet())
-            {
-                Debug.Log("Rifle magazine is empty");
-                return;
-            }
             Shoot();
             _readyToShoot = false;
-            _lastShootTime = Time.time;
         }
     }
 
@@ -34,18 +28,18 @@ public class Rifle : Gun
         _gunController.AddGunReactionsToTrigger(TriggerStarted, TriggerEnded);
     }
 
-    private void Update()
-    {
-        if (GunTriggered) 
-            DoAction();
-
-        if (_shootingMode == ShootingMode.fullAuto)
-        {
-            if (Time.time > _lastShootTime + _durationBetweenShoot)
-                _readyToShoot = true;
-        }
-        
-    }
+    // private void Update()
+    // {
+    //     if (GunTriggered) 
+    //         DoAction();
+    //
+    //     if (_shootingMode == ShootingMode.fullAuto)
+    //     {
+    //         if (Time.time > _lastShootTime + _durationBetweenShoot)
+    //             _readyToShoot = true;
+    //     }
+    //     
+    // }
 
     protected override void TriggerStarted()
     {
@@ -54,8 +48,12 @@ public class Rifle : Gun
         {
             _readyToShoot = true;
             DoAction();
+            RpcSrv_Triggered(true);
         }
-        RpcSrv_Triggered(true);
+        //TODO @Network sync else
+        else if (_shootingMode == ShootingMode.fullAuto)
+            StartCoroutine(ShootCoroutine());
+        
     }
     
     protected override void TriggerEnded()
@@ -80,6 +78,20 @@ public class Rifle : Gun
         }
     }
 
+    IEnumerator ShootCoroutine()
+    {
+        yield return new WaitForSeconds(_durationBetweenShoot);
+
+        if (_shootingMode == ShootingMode.fullAuto)
+        {
+            _readyToShoot = true;
+
+            DoAction();
+            if(GunTriggered)
+                StartCoroutine(ShootCoroutine());
+        }
+    }
+    
     
 }
 

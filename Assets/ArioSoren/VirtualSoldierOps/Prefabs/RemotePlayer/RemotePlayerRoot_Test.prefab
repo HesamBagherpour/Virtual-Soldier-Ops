@@ -3264,6 +3264,8 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 2981371588979690000}
   hand: 0
   controller: {fileID: 9014170785475729501}
+  playerHand: {fileID: 7837635443077679090}
+  character: {fileID: 0}
 --- !u!135 &139700479909346137
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6677,6 +6679,8 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 5362365073828819954}
   hand: 0
   controller: {fileID: 9014170783705847996}
+  playerHand: {fileID: 6281465586775403504}
+  character: {fileID: 0}
 --- !u!135 &8349061882038045356
 SphereCollider:
   m_ObjectHideFlags: 0

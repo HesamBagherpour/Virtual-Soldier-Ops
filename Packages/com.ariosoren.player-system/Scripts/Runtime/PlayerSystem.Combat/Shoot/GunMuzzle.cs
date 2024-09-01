@@ -35,7 +35,6 @@ public class GunMuzzle : MonoBehaviour
         StartCoroutine(DisableMuzzleFlash(nextFlash.gameObject));
     }
 
-
     private IEnumerator DisableMuzzleFlash(GameObject flash)
     {
         yield return new WaitForSeconds(_disableTime);

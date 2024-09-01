@@ -45,39 +45,20 @@ public class HandGrabDetector : MonoBehaviour
     private void OnGrab(SelectEnterEventArgs args)
     {
         XRBaseInteractor interactor = args.interactor;
+
         if (interactor.name.Contains("Left"))
-        {
-            //Debug.Log("Grabbed by Left Hand");
             leftHand.SetActive(true);
-        }
         else if (interactor.name.Contains("Right"))
-        {
-            //Debug.Log("Grabbed by Right Hand");
             RightHand.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("Grabbed by Unknown Hand");
-        }
     }
 
     private void OnRelease(SelectExitEventArgs args)
     {
         XRBaseInteractor interactor = args.interactor;
-        //Debug.Log("Object Released");
+        
         if (interactor.name.Contains("Left"))
-        {
-            //Debug.Log("Grabbed by Left Hand");
             leftHand.SetActive(false);
-        }
         else if (interactor.name.Contains("Right"))
-        {
-            //Debug.Log("Grabbed by Right Hand");
             RightHand.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Grabbed by Unknown Hand");
-        }
     }
 }

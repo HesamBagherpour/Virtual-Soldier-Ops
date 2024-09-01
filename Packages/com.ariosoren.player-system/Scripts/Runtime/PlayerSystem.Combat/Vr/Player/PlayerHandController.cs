@@ -331,21 +331,18 @@ public class PlayerHandController : NetworkBehaviour
 
     void HandPositionInput(InputAction.CallbackContext context)
     {
+        var distance = controller.localPosition - _oldHandPosition;
         if (_boltControl != null && HasSelection())
         {
-            var distance = controller.localPosition - _oldHandPosition;
-
             int direction = 0;
             var angle = Quaternion.Angle(Quaternion.LookRotation(distance), SelectedInteractable().rotation);
-
-            if (angle > 120)
+            if (angle > 90)
                 direction = 1;
-            else if (angle < 60)
+            else if (angle <= 90)
                 direction = -1;
-
-            _handPositionFloat = distance.magnitude * direction * 10;
+            _handPositionFloat = distance.magnitude * direction * 12;
             _oldHandPosition = controller.localPosition;
-            _boltControl.MoveBolt(_handPositionFloat);
+            _boltControl.MoveBolt(_handPositionFloat, transform.position);
         }
     }
 
