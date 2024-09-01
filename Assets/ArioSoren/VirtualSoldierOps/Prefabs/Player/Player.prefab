@@ -520,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1681925117327453206}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1681925117327453206}
   hand: 0
   handGameObject: {fileID: 7044858116472744093}
   controller: {fileID: 4974521508546911864}
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1681925117327453206}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1681925117327453206}
   hand: 0
   controller: {fileID: 4974521508546911864}
   playerHand: {fileID: 6707685202316652361}
@@ -2066,7 +2066,11 @@ MonoBehaviour:
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: 6707685202316652361}
+  - {fileID: 3836076837095463850}
+  - {fileID: 992970860705967887}
+  - {fileID: 791409502362330339}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField: []
   SerializedTransformProperties:
@@ -2095,7 +2099,7 @@ MonoBehaviour:
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 3193620988273087308
+  <AssetPathHash>k__BackingField: 7181369571683565454
 --- !u!1 &6260376371324158635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,7 +3680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 1681925117327453206}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1681925117327453206}
   hand: 1
   handGameObject: {fileID: 2263178441436418273}
   controller: {fileID: 6061026171457161295}
@@ -3695,7 +3699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1681925117327453206}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1681925117327453206}
   hand: 0
   controller: {fileID: 6061026171457161295}
   playerHand: {fileID: 992970860705967887}
