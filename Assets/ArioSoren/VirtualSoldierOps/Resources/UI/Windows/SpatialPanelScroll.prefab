@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 9052761944538879226}
   - component: {fileID: 4059815387556132535}
   - component: {fileID: 5787232888691689643}
+  - component: {fileID: 2020548113915772985}
   m_Layer: 5
   m_Name: SpatialPanelScroll
   m_TagString: Untagged
@@ -882,6 +883,25 @@ MonoBehaviour:
   modalWindows: []
   widgets: []
   close: {fileID: 377169120442794175}
+--- !u!114 &2020548113915772985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930812967507959205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &7838075298508118829
 GameObject:
   m_ObjectHideFlags: 0

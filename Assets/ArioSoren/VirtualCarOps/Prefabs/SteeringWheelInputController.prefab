@@ -1,0 +1,296 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2905589730917327970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2564106899941631374}
+  - component: {fileID: 6096391612707073946}
+  m_Layer: 0
+  m_Name: SteeringWheelInputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2564106899941631374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905589730917327970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1668.4646, y: 75.07244, z: 127.02941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6096391612707073946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905589730917327970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca796f050f8cd9428fef05e783bda2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSteeringWheelRotate:
+    m_PersistentCalls:
+      m_Calls: []
+  onGasPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  onBrakePressed:
+    m_PersistentCalls:
+      m_Calls: []
+  onClutchPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonsList:
+  - inputName: 0
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 1
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 2
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 3
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 4
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 5
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 6
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 7
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 8
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 9
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 10
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 11
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 12
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 13
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 14
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 15
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 16
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 17
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 18
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 24
+    started:
+      m_PersistentCalls:
+        m_Calls: []
+    performed:
+      m_PersistentCalls:
+        m_Calls: []
+    released:
+      m_PersistentCalls:
+        m_Calls: []
+  directionList:
+  - inputName: 0
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 27000
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 9000
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 31500
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 4500
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 22500
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 13500
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 18000
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []
+  - inputName: 29
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls: []

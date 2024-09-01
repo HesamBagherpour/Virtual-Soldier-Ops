@@ -1,36 +1,39 @@
 using UnityEngine;
 
-public class GunaudioHandler : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip _emptyGunSound;
-    [SerializeField] private AudioClip _ShootSound;
-
-    private Gun _gun;
-
-    private void Awake()
+    public class GunaudioHandler : MonoBehaviour
     {
-        _gun = GetComponent<Gun>();
-    }
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip _emptyGunSound;
+        [SerializeField] private AudioClip _ShootSound;
 
-    private void OnEnable()
-    {
-        _gun.onShoot += onShootHandle;
-    }
+        private Gun _gun;
 
-    private void OnDisable()
-    {
-        _gun.onShoot -= onShootHandle;
-
-    }
-
-    private void onShootHandle(bool onShoot)
-    {
-        if (!onShoot)
+        private void Awake()
         {
-            audioSource.PlayOneShot(_emptyGunSound);
-            return;
+            _gun = GetComponent<Gun>();
         }
-        audioSource.PlayOneShot(_ShootSound);
+
+        private void OnEnable()
+        {
+            _gun.onShoot += onShootHandle;
+        }
+
+        private void OnDisable()
+        {
+            _gun.onShoot -= onShootHandle;
+
+        }
+
+        private void onShootHandle(bool onShoot)
+        {
+            if (!onShoot)
+            {
+                audioSource.PlayOneShot(_emptyGunSound);
+                return;
+            }
+            audioSource.PlayOneShot(_ShootSound);
+        }
     }
 }

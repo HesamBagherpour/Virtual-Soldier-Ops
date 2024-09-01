@@ -1,38 +1,41 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-[ExecuteAlways]
-public class FPS_PerPlatformSettings : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Effects.Effects.Rendering
 {
-    private bool defaultOpaueColorUsing;
-    private bool defaultDepthUsing;
-
-
-    void OnEnable()
+    [ExecuteAlways]
+    public class FPS_PerPlatformSettings : MonoBehaviour
     {
-        var cam = Camera.main;
+        private bool defaultOpaueColorUsing;
+        private bool defaultDepthUsing;
 
-        if (cam == null) return;
-        var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
-        if (addCamData != null)
+
+        void OnEnable()
         {
-            defaultOpaueColorUsing = addCamData.requiresColorTexture;
-            defaultDepthUsing = addCamData.requiresDepthTexture;
-            addCamData.requiresColorTexture = true;
-            addCamData.requiresDepthTexture = true;
+            var cam = Camera.main;
+
+            if (cam == null) return;
+            var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+            if (addCamData != null)
+            {
+                defaultOpaueColorUsing = addCamData.requiresColorTexture;
+                defaultDepthUsing = addCamData.requiresDepthTexture;
+                addCamData.requiresColorTexture = true;
+                addCamData.requiresDepthTexture = true;
+            }
         }
-    }
 
-    void OnDisable()
-    {
-        var cam = Camera.main;
-
-        if (cam == null) return;
-        var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
-        if (addCamData != null)
+        void OnDisable()
         {
-            addCamData.requiresColorTexture = defaultOpaueColorUsing;
-            addCamData.requiresDepthTexture = defaultDepthUsing;
+            var cam = Camera.main;
+
+            if (cam == null) return;
+            var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+            if (addCamData != null)
+            {
+                addCamData.requiresColorTexture = defaultOpaueColorUsing;
+                addCamData.requiresDepthTexture = defaultDepthUsing;
+            }
         }
     }
 }

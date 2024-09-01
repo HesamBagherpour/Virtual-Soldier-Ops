@@ -1,5 +1,4 @@
 using System;
-using ArioSoren.VirtualSoldierOps.MainMenu.UIMenus;
 using ArioSoren.UIKit.Core;
 using TMPro;
 using UnityEngine;

@@ -1,4 +1,4 @@
-﻿using ArioSoren.Logger;
+﻿using AS_Ekbatan_Showdown.Scripts.Logger;
 
 namespace ArioSoren.StateMachine
 {

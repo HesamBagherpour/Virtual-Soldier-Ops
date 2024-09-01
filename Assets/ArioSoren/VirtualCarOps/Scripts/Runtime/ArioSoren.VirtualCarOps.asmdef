@@ -1,0 +1,28 @@
+{
+    "name": "ArioSoren.VirtualCarOps",
+    "rootNamespace": "ArioSoren.VirtualCarOps",
+    "references": [
+        "ArioSoren.StateMachine",
+        "ArioSoren.InjectKit",
+        "ArioSoren.TutorialKit",
+        "ArioSoren.Logger",
+        "ArioSoren.UIKit",
+        "UniTask",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "FishNet.Runtime",
+        "Unity.XR.Interaction.Toolkit",
+        "RootMotion"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

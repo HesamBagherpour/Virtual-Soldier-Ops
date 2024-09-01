@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    // todo this script must change to shoot package 
-    public void OnDrop()
+    public class Bullet : MonoBehaviour
     {
-        transform.GetChild(0).gameObject.AddComponent<Rigidbody>();
+        // todo this script must change to shoot package 
+        public void OnDrop()
+        {
+            transform.GetChild(0).gameObject.AddComponent<Rigidbody>();
+        }
     }
 }

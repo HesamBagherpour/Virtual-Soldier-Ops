@@ -274,8 +274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2914503216214332612, guid: 3c7a9c6b6a1ca7246ad866a2f278af66,
-    type: 3}
+  m_Sprite: {fileID: -2914503216214332612, guid: 3c7a9c6b6a1ca7246ad866a2f278af66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -300,13 +299,14 @@ GameObject:
   - component: {fileID: -1649302730304624112}
   - component: {fileID: -1719885331609232343}
   - component: {fileID: -3774736011584008953}
+  - component: {fileID: 6716042998899846158}
   m_Layer: 5
   m_Name: AlertBoxWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5140399805775369905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -437,6 +437,25 @@ MonoBehaviour:
   _transitionAction: 0
   _tweenTime: 0.4
   _darkBg: {fileID: 5140399805770031061}
+--- !u!114 &6716042998899846158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140399805775369904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &5623442554371828252
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +633,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

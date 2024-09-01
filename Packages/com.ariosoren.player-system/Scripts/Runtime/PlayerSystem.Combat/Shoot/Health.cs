@@ -1,27 +1,30 @@
 using RootMotion.FinalIK;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private float maxHealth;
-    private float currentHealth;
-
-    void Awake()
+    public class Health : MonoBehaviour
     {
-        currentHealth = maxHealth;
-    }
+        [SerializeField] private Animator animator;
+        [SerializeField] private float maxHealth;
+        private float currentHealth;
 
-    public void OnReceiveDamage(Gun.HitData data, int multiplier)
-    {
-        currentHealth -= data.DamageAmount * multiplier;
-        if (currentHealth <= 0)
-            Die();
-    }
+        void Awake()
+        {
+            currentHealth = maxHealth;
+        }
 
-    void Die()
-    {
-        transform.GetComponent<VRIK>().enabled = false;
-        animator.CrossFade("Falling Forward Death", 0.3f);
+        public void OnReceiveDamage(Gun.HitData data, int multiplier)
+        {
+            currentHealth -= data.DamageAmount * multiplier;
+            if (currentHealth <= 0)
+                Die();
+        }
+
+        void Die()
+        {
+            transform.GetComponent<VRIK>().enabled = false;
+            animator.CrossFade("Falling Forward Death", 0.3f);
+        }
     }
 }

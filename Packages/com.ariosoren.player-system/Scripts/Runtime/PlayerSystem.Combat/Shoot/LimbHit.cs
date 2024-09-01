@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class LimbHit : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    [SerializeField] private int multiplier;
-    Health health;
-
-    void Start()
+    public class LimbHit : MonoBehaviour
     {
-        health = GetComponentInParent<Health>();
-    }
+        [SerializeField] private int multiplier;
+        Health health;
 
-    public virtual void ReceiveDamage(Gun.HitData data)
-    {
-        health.OnReceiveDamage(data, multiplier);
-        Debug.Log(transform.name + " : Damage Amount = " + multiplier);
+        void Start()
+        {
+            health = GetComponentInParent<Health>();
+        }
+
+        public virtual void ReceiveDamage(Gun.HitData data)
+        {
+            health.OnReceiveDamage(data, multiplier);
+            Debug.Log(transform.name + " : Damage Amount = " + multiplier);
+        }
     }
 }

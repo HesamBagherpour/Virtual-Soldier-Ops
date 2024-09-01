@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using FishNet.Object;
 using UnityEngine;
 
-namespace ArioSoren.VirtualSoldierOps
+namespace ArioSoren.VirtualSoldierOps.FishNet
 {
     public class NetworkCharacterController : NetworkBehaviour
     {

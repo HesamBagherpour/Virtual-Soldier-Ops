@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
-namespace ArioSoren.VirtualSoldierOps
+
+namespace ArioSoren.VirtualSoldierOps.FishNet
 {
 public class VRPlayerRefrences : MonoBehaviour
 {

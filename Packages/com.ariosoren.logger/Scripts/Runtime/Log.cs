@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ArioSoren.Logger
+namespace AS_Ekbatan_Showdown.Scripts.Logger
 {
     public abstract class Logger
     {

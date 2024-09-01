@@ -1,4 +1,7 @@
-﻿public interface Idamageable
+﻿namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    void ReceiveDamage(Gun.HitData data);
+    public interface Idamageable
+    {
+        void ReceiveDamage(Gun.HitData data);
+    }
 }

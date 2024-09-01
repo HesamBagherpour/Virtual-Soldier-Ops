@@ -1,31 +1,35 @@
 using System;
+using ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.VR.Player;
 using UnityEngine;
 
-public class HandsAnimation : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    Animator animator;
-    string grabParameter;
-    string pinchParameter;
-
-    void Start()
+    public class HandsAnimation : MonoBehaviour
     {
-        animator = transform.GetComponent<Animator>();
-    }
+        Animator animator;
+        string grabParameter;
+        string pinchParameter;
 
-    public void Grab(PlayerHand hand, float value)
-    {
-        grabParameter = hand == PlayerHand.Left? "LHand_Grab" : "RHand_Grab";
-        ChangeValue(grabParameter, value);
-    }
+        void Start()
+        {
+            animator = transform.GetComponent<Animator>();
+        }
 
-    public void Pinch(PlayerHand hand, float value)
-    {
-        pinchParameter = hand == PlayerHand.Left? "LHand_Pinch" : "RHand_Pinch";
-        ChangeValue(pinchParameter, value);
-    }
+        public void Grab(PlayerHand hand, float value)
+        {
+            grabParameter = hand == PlayerHand.Left? "LHand_Grab" : "RHand_Grab";
+            ChangeValue(grabParameter, value);
+        }
 
-    void ChangeValue(String name, float value)
-    {
-        animator.SetFloat(name, value);
+        public void Pinch(PlayerHand hand, float value)
+        {
+            pinchParameter = hand == PlayerHand.Left? "LHand_Pinch" : "RHand_Pinch";
+            ChangeValue(pinchParameter, value);
+        }
+
+        void ChangeValue(String name, float value)
+        {
+            animator.SetFloat(name, value);
+        }
     }
 }

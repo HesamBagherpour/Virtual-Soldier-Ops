@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Impact", menuName = "ScriptableObjects/ImpactDatabase", order = 1)]
-public class ImpactList : ScriptableObject
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    public GameObject bulletImpactPrefab;
-    public GameObject HitVfxPrefab;
+    [CreateAssetMenu(fileName = "Impact", menuName = "ScriptableObjects/ImpactDatabase", order = 1)]
+    public class ImpactList : ScriptableObject
+    {
+        public GameObject bulletImpactPrefab;
+        public GameObject HitVfxPrefab;
+    }
 }

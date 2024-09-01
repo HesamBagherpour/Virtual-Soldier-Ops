@@ -93,6 +93,7 @@ namespace ArioSoren.UIKit.Core
 
                 _windowModels.Add(win);
             }
+            Debug.Log(_windowModels.Count);
 
             _isLoaded = true;
             onLoaded?.Invoke(this);

@@ -6,7 +6,7 @@ namespace ArioSoren.UIKit.Module
 {
     public class AnimationController : MonoBehaviour
     {
-
+ 
         public static AnimationController Instance;
         [SerializeField] private UIController uiController;
         private void Awake()

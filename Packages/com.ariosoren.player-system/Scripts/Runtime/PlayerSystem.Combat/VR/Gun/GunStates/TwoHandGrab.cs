@@ -1,0 +1,52 @@
+using UnityEngine;
+
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.VR.Gun.GunStates
+{
+    public class TwoHandGrab : IGunState
+    {
+        GunController gunController;
+        HandsOnGunControl handOnGun;
+
+        public void init(GunController _gunController, HandsOnGunControl _handOnGun)
+        {
+            gunController = _gunController;
+            handOnGun = _handOnGun;
+        }
+
+        public void Enter()
+        {
+            Debug.unityLogger.Log($"TwoHandGrab | Enter | Started.");
+            gunController.FirstAttachCollidersSetActive(false);
+            gunController.SecondAttachColliderSetActive(false);
+            gunController.BoltColliderSetActive(true);
+            handOnGun.SetToDoubleGrab(gunController.GetFirstSelectedHand());
+        }
+
+        public void Exit()
+        {
+            handOnGun.SetSecondHandToNormal();
+        }
+
+        // @NetworkHint called from player input
+        public void TriggerStay(float value, TriggerControl triggerHandControl)
+        {
+            triggerHandControl.OnActionStay(value);
+        }
+
+        // @NetworkHint called from player input
+        public void TriggerCancel(TriggerControl triggerHandControl)
+        {
+            triggerHandControl.OnActionCancle();
+        }
+
+        public void ChangeTriggerMode(TriggerControl triggerHandControl)
+        {
+
+        }
+    
+        public string GetNameId()
+        {
+            return "TwoHandGrab";
+        }
+    }
+}

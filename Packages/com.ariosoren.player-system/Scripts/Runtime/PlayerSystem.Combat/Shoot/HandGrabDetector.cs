@@ -1,64 +1,67 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class HandGrabDetector : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    private XRGrabInteractable grabInteractable;
-    private XRSimpleInteractable simpleInteractable;
-    [SerializeField] private GameObject leftHand;
-    [SerializeField] private GameObject RightHand;
-
-    void Awake()
+    public class HandGrabDetector : MonoBehaviour
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
+        private XRGrabInteractable grabInteractable;
+        private XRSimpleInteractable simpleInteractable;
+        [SerializeField] private GameObject leftHand;
+        [SerializeField] private GameObject RightHand;
+
+        void Awake()
         {
-            grabInteractable.selectEntered.AddListener(OnGrab);
-            grabInteractable.selectExited.AddListener(OnRelease);
+            grabInteractable = GetComponent<XRGrabInteractable>();
+            if (grabInteractable != null)
+            {
+                grabInteractable.selectEntered.AddListener(OnGrab);
+                grabInteractable.selectExited.AddListener(OnRelease);
+
+            }
+
+            simpleInteractable = GetComponent<XRSimpleInteractable>();
+            if (simpleInteractable != null)
+            {
+                simpleInteractable.selectEntered.AddListener(OnGrab);
+                simpleInteractable.selectExited.AddListener(OnRelease);
+            }
 
         }
 
-        simpleInteractable = GetComponent<XRSimpleInteractable>();
-        if (simpleInteractable != null)
+        void OnDestroy()
         {
-            simpleInteractable.selectEntered.AddListener(OnGrab);
-            simpleInteractable.selectExited.AddListener(OnRelease);
+            if (grabInteractable != null)
+            {
+                grabInteractable.selectEntered.RemoveListener(OnGrab);
+                grabInteractable.selectExited.RemoveListener(OnRelease);
+            }
+
+            if (simpleInteractable != null)
+            {
+                simpleInteractable.selectEntered.RemoveListener(OnGrab);
+                simpleInteractable.selectExited.RemoveListener(OnRelease);
+            }
         }
 
-    }
-
-    void OnDestroy()
-    {
-        if (grabInteractable != null)
+        private void OnGrab(SelectEnterEventArgs args)
         {
-            grabInteractable.selectEntered.RemoveListener(OnGrab);
-            grabInteractable.selectExited.RemoveListener(OnRelease);
+            XRBaseInteractor interactor = args.interactor;
+
+            if (interactor.name.Contains("Left"))
+                leftHand.SetActive(true);
+            else if (interactor.name.Contains("Right"))
+                RightHand.SetActive(true);
         }
 
-        if (simpleInteractable != null)
+        private void OnRelease(SelectExitEventArgs args)
         {
-            simpleInteractable.selectEntered.RemoveListener(OnGrab);
-            simpleInteractable.selectExited.RemoveListener(OnRelease);
-        }
-    }
-
-    private void OnGrab(SelectEnterEventArgs args)
-    {
-        XRBaseInteractor interactor = args.interactor;
-
-        if (interactor.name.Contains("Left"))
-            leftHand.SetActive(true);
-        else if (interactor.name.Contains("Right"))
-            RightHand.SetActive(true);
-    }
-
-    private void OnRelease(SelectExitEventArgs args)
-    {
-        XRBaseInteractor interactor = args.interactor;
+            XRBaseInteractor interactor = args.interactor;
         
-        if (interactor.name.Contains("Left"))
-            leftHand.SetActive(false);
-        else if (interactor.name.Contains("Right"))
-            RightHand.SetActive(false);
+            if (interactor.name.Contains("Left"))
+                leftHand.SetActive(false);
+            else if (interactor.name.Contains("Right"))
+                RightHand.SetActive(false);
+        }
     }
 }

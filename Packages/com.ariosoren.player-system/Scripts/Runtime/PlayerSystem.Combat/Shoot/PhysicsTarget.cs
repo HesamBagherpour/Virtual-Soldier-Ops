@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
 
-public class PhysicsTarget : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    private Rigidbody _rigidbody;
+    public class PhysicsTarget : MonoBehaviour
+    {
+        private Rigidbody _rigidbody;
 
-    public void ReceiveDamage(Gun.HitData data)
-    {
-        if (_rigidbody == null)
+        public void ReceiveDamage(Gun.HitData data)
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            if (_rigidbody == null)
+            {
+                _rigidbody = GetComponent<Rigidbody>();
+            }
+            _rigidbody.AddForceAtPosition(data.HitForce * data.normal*-1, data.collide.transform.position);
         }
-        _rigidbody.AddForceAtPosition(data.HitForce * data.normal*-1, data.collide.transform.position);
-    }
     
-    public void Start()
-    {
-        if (_rigidbody == null)
+        public void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            if (_rigidbody == null)
+            {
+                _rigidbody = GetComponent<Rigidbody>();
+            }
         }
     }
 }

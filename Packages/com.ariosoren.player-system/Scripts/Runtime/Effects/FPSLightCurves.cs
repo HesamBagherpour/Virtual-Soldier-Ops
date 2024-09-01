@@ -1,40 +1,42 @@
 using UnityEngine;
-using System.Collections;
 
-public class FPSLightCurves : MonoBehaviour
+namespace ArioSoren.PlayerSystem.Effects.Effects
 {
-    public AnimationCurve LightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    public float GraphTimeMultiplier = 1, GraphIntensityMultiplier = 1;
-
-    private bool canUpdate;
-    private float startTime;
-    private Light lightSource;
-
-    private void Awake()
+    public class FPSLightCurves : MonoBehaviour
     {
-        lightSource = GetComponent<Light>();
-        lightSource.intensity = LightCurve.Evaluate(0);
-    }
+        public AnimationCurve LightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        public float GraphTimeMultiplier = 1, GraphIntensityMultiplier = 1;
 
-    private void OnEnable()
-    {
-        startTime = Time.time;
-        canUpdate = true;
-        lightSource.enabled = true;
-    }
+        private bool canUpdate;
+        private float startTime;
+        private Light lightSource;
 
-    private void Update()
-    {
-        var time = Time.time - startTime;
-        if (canUpdate) {
-            var eval = LightCurve.Evaluate(time / GraphTimeMultiplier) * GraphIntensityMultiplier;
-            lightSource.intensity = eval;
+        private void Awake()
+        {
+            lightSource = GetComponent<Light>();
+            lightSource.intensity = LightCurve.Evaluate(0);
         }
 
-        if (time >= GraphTimeMultiplier)
+        private void OnEnable()
         {
-            canUpdate = false;
-            lightSource.enabled = false;
+            startTime = Time.time;
+            canUpdate = true;
+            lightSource.enabled = true;
+        }
+
+        private void Update()
+        {
+            var time = Time.time - startTime;
+            if (canUpdate) {
+                var eval = LightCurve.Evaluate(time / GraphTimeMultiplier) * GraphIntensityMultiplier;
+                lightSource.intensity = eval;
+            }
+
+            if (time >= GraphTimeMultiplier)
+            {
+                canUpdate = false;
+                lightSource.enabled = false;
+            }
         }
     }
 }

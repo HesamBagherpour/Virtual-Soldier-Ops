@@ -15,7 +15,6 @@ namespace ArioSoren.UIKit.Module
                 ui.Load(OnUiLoaded);
                 ui.Init();
             }
-            // TODO: check for using project scope
             // var gameGameUI = ui.OpenWindow<GameUIManager>();
         }
         private void OnUiLoaded(IModule obj)

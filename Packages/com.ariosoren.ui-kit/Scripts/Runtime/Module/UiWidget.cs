@@ -28,14 +28,14 @@ namespace ArioSoren.UIKit.Module
             RectTransform = transform as RectTransform;
         }
 
-        public virtual  void Open()
+        public virtual void Open()
         {
 
             gameObject.SetActive(true);
             if (openUiTransition != null)
                 openUiTransition.Apply(OnOpened);
             else
-                OnOpened();
+                OnOpened(); 
         }
 
         public virtual void Close()

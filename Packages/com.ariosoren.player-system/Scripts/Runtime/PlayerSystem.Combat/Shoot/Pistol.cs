@@ -1,25 +1,30 @@
-﻿public class Pistol : Gun
+﻿using ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.VR.Gun.ShootingMode;
+
+namespace ArioSoren.PlayerSystem.Combat.PlayerSystem.Combat.Shoot
 {
-    public override void DoAction()
+    public class Pistol : Gun
     {
-        if ( _shootingMode == ShootingMode.safety)
-            return;
+        public override void DoAction()
+        {
+            if ( _shootingMode == ShootingMode.safety)
+                return;
 
-        Shoot();
-    }
+            Shoot();
+        }
 
-    protected override void Initialize()
-    {
-        GunType = GunType.Pistol;
-    }
+        protected override void Initialize()
+        {
+            GunType = GunType.Pistol;
+        }
 
-    protected override void TriggerEnded()
-    {
+        protected override void TriggerEnded()
+        {
 
-    }
+        }
 
-    protected override void TriggerStarted()
-    {
-        DoAction();
+        protected override void TriggerStarted()
+        {
+            DoAction();
+        }
     }
 }
