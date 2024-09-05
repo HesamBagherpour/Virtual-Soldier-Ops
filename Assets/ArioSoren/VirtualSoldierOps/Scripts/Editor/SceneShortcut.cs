@@ -19,6 +19,12 @@ public class SceneShortcut
 	{
 		EditorSceneManager.OpenScene(EditorBuildSettings.scenes.First(a => a.path.Contains("Multiplayer")).path);
 		EditorApplication.EnterPlaymode();   
+	} 
+	[MenuItem("ArioSoren/Play From SplashScreen Scene #&%p")]
+	public static void PlayFromSplashScreenScene()
+	{
+		EditorSceneManager.OpenScene(EditorBuildSettings.scenes.First(a => a.path.Contains("SplashScreen")).path);
+		EditorApplication.EnterPlaymode();   
 	}
 
 

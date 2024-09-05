@@ -6,6 +6,8 @@ using ArioSoren.UIKit.Module;
 using ArioSoren.VirtualSoldierOps.Conditions;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UIControllerModule = ArioSoren.VirtualSoldierOps.Module.UIControllerModule;
 
 namespace ArioSoren.VirtualSoldierOps
 {
@@ -29,30 +31,51 @@ namespace ArioSoren.VirtualSoldierOps
             private Action<IModule> _assetLoader;
             private Action<IModule> _onloadUI; 
             private bool _finished;
+   
 
             protected override async void OnEnter()
             {
                 IModuleFactory factory = new ImplicitModuleFactory(new GameObject("_ModuleContainer"), true);
                 _context = new LoadableContext(factory);
                 
-                AssetLoader assetLoader = _context.Register<AssetLoader>();
-                AudioModule contextAudioModule= _context.Register<AudioModule>();
-                
+                // AssetLoader assetLoader = _context.Register<AssetLoader>();
+                // AudioModule contextAudioModule= _context.Register<AudioModule>();
+                // MultiplayerModule multiplayerModule = _context.Register<MultiplayerModule>();
                 UIControllerModule contextUiControllerModule= _context.Register<UIControllerModule>();
                 
                 var _ui = await InitUI(contextUiControllerModule);
 
+                
                 _finished = _ui;
 
             }
-    
             private async UniTask<bool> InitUI(UIControllerModule  contextUiModule)
             {
    
                 contextUiModule.Init();
-                contextUiModule.Load(_uiController);
+                contextUiModule.Load(OnUiLoaded);
                 
                 return true;
+
+            }
+            
+            private void OnUiLoaded(IModule module)
+            {
+
+                
+                
+                // if (Agent.gameMode == GameMode.Offline)
+                // {
+                //     _loadNextSceneOperation = SceneManager.LoadSceneAsync("offline-Tutorial");
+                //     _loadNextSceneOperation.allowSceneActivation = false;
+                // }
+
+                
+                if (Agent.gameMode == GameMode.BattleFight)
+                {
+                    _loadNextSceneOperation = SceneManager.LoadSceneAsync("FishNet-InitSetup");
+                    _loadNextSceneOperation.allowSceneActivation = false;
+                }
 
             }
             protected override void OnUpdate(float deltaTime)
@@ -179,10 +202,6 @@ namespace ArioSoren.VirtualSoldierOps
 
 
         #endregion
-        
-        
-        
-        
         #region InitTutorial
 
         private class InitializeTutorial: PreloadState
@@ -209,8 +228,14 @@ namespace ArioSoren.VirtualSoldierOps
 
 
         #endregion
+        
+        
+        
         #region UNITY
 
+        
+            private static AsyncOperation _loadNextSceneOperation;
+            [SerializeField]private GameMode gameMode;
             protected void Awake()
             {
 
@@ -218,6 +243,8 @@ namespace ArioSoren.VirtualSoldierOps
 
                 IfOnlineMode ifOnlineMode = new IfOnlineMode();
                 IfTutorialMode ifTutorialMode = new IfTutorialMode();
+                 
+
 
 
                 #endregion
@@ -238,13 +265,16 @@ namespace ArioSoren.VirtualSoldierOps
 
                 
                 Transition.CreateAndAssign(initialState, initializeNetwork);
+                Transition.CreateAndAssign(initializeNetwork, gameSceneState);
                 
-                Transition.CreateAndAssign(initializeNetwork, gameSceneState,offlineMode,ifOnlineMode);
-                Transition.CreateAndAssign(initializeNetwork, gameSceneState,offlineMode,ifOnlineMode);
+                // Transition.CreateAndAssign(initializeNetwork, gameSceneState,offlineMode,ifOnlineMode);
+                // Transition.CreateAndAssign(initializeNetwork, gameSceneState,offlineMode,ifOnlineMode);
                 #endregion
 
                 _fsm = new Fsm<PreloadController>(this, initialState) { Name = "Preload FSM" };
-                _fsm.Start();
+                
+                if (gameMode != GameMode.None) _fsm.Start();
+                
         
             }       
             private void Update()
@@ -253,11 +283,19 @@ namespace ArioSoren.VirtualSoldierOps
             }
 
 
+
         #endregion
         
 
     }
     
+
+    public enum GameMode
+    {
+        None,
+        Offline,
+        BattleFight 
+    }
 
 
 }

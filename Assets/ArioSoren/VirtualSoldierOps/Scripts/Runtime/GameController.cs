@@ -35,7 +35,7 @@ namespace ArioSoren.VirtualSoldierOps
         {
             AudioModule contextAudioModule= _context.Register<AudioModule>();
             AssetLoader assetLoader = _context.Register<AssetLoader>();
-            UIControllerModule contextUiControllerModule= _context.Register<UIControllerModule>();
+            //UIControllerModule contextUiControllerModule= _context.Register<UIControllerModule>();
             UiModule ui = _context.Register<UiModule>();
             
             
