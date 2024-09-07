@@ -15,7 +15,8 @@
         "RootMotion",
         "PG.UniversalVehicleController",
         "Unity.XR.CoreUtils",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "LogitechGSDK"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

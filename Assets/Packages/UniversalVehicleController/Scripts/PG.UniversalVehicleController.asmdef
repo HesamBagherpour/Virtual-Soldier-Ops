@@ -4,7 +4,8 @@
     "references": [
         "Unity.InputSystem",
         "Unity.TextMeshPro",
-        "Unity.XR.CoreUtils"
+        "Unity.XR.CoreUtils",
+        "LogitechGSDK"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
